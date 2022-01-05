@@ -1,0 +1,38 @@
+ /* Add root/body rules :)  */
+
+/* header h1{} */
+
+/* #searchInput{} */
+
+/* #searchBtn{} */
+
+#button-container {
+    border: 1px solid black;
+    margin-top: 5px;
+    margin-right: 150px;
+    margin-bottom: 5px;
+    margin-left: 150px;
+    padding: 5px;
+    width: 80%;
+    justify-content: center;
+}
+
+#movie-images{
+    margin-top: 5px;
+    margin-right: 150px;
+    margin-bottom: 5px;
+    margin-left: 400px;
+    width: 80%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#aboutPopcornBox{
+    margin-top: 5px;
+    margin-right: 150px;
+    margin-bottom: 5px;
+    margin-left: 300px;
+    text-align: justify;
+    border: black 1px solid;
+    width: 50%;
+}
