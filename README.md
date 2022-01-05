@@ -20,10 +20,14 @@ Movies and Film Suggestions for You!
 ## View The Project
 ## Technologies Used
 
+[DrawIO] (https://app.diagrams.net)
+Used for creation of wireframes
+
 ## Server-Side APIs:
-[OMDB:](https://www.omdbapi.com/)
-[IMDB:](https://imdb-api.com)
-[Rotten Tomatoes:](https://developer.fandango.com/rotten_tomatoes)
+* [The Movie DB](https://developers.themoviedb.org/)
+* [OMDB](https://www.omdbapi.com/)
+* [IMDB](https://imdb-api.com)
+* [Rotten Tomatoes](https://developer.fandango.com/rotten_tomatoes)
 
 
 

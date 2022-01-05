@@ -1,3 +1,2 @@
 DS_Store
-
-var theMovieDB = "https://api.themoviedb.org/3/movie/550?api_key=3498aa51f28fb6eba744295d0c036fda" //Claire's API
+config.js
