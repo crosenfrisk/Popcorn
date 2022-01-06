@@ -62,3 +62,13 @@ var getTopTen = function() {
     })
 };
 
+// TODO: Update top ten for movie && | show -- Colin
+// TODO: On click, show synopsis of movie or show -- use modal -- dismiss on click or swipe -- up for grabs!
+
+// TODO: Add button to movie results/posters for local storage, cueing save to watchlist -- up for grabs!
+
+// TODO: Gene selector -- using genre ids filter choices: let them choose from list using if() statement -- Claire
+
+// TODO: Keyword search can filter request using Search, Discover, or Keyword API; clear input after submit -- Omar
+
+// TODO: Jake and Omar on CSS :)
