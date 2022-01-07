@@ -79,9 +79,9 @@ var getTopTen = function() {
                     })
                 })
             }
-          );
+          ;
         }
-      });
+      );
     }
   );
 };
