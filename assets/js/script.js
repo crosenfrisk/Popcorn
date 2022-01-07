@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", getConfigInfo);
 let top10Btn = document.querySelector("#top10Btn");
 let genreSelBtn = document.querySelector("#genreSel");
 let watchlistBtn = document.querySelector("#watchlist");
+let resultsArea = document.querySelector('#movie-images');
 
 // event listener to pull trending movies
 top10Btn.addEventListener("click", function () {
@@ -182,8 +183,7 @@ var getTopTen = function() {
                     })
                 })
             }
-        }
-
+        })})}
 // TODO: Update top ten for movie && | show -- Colin
 // TODO: On click, show synopsis of movie or show -- use modal -- dismiss on click or swipe -- up for grabs!
 
