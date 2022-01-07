@@ -11,6 +11,13 @@ let imgBaseUrl = null;
 let configData = null;
 let posterSize = null;
 
+// array to store watchlist items
+let storageArray = [];
+
+// if there is a watchlist in storage, set those items to the value of the storage array. If there are no items the storageArray will be empty
+if (localStorage.watchlist) {
+    storageArray = JSON.parse(localStorage.watchlist)
+}
 // get configuration data from TMDB api
 var getConfigInfo = function() {
     fetch('https://api.themoviedb.org/3/configuration?api_key=' + theMovieDbApiKey)
@@ -31,10 +38,11 @@ var getConfigInfo = function() {
 document.addEventListener("DOMContentLoaded", getConfigInfo);
 
 // grabbing buttons from html
-
 let top10Btn = document.querySelector("#top10Btn");
 let genreSelBtn = document.querySelector("#genreSel");
 let watchlistBtn = document.querySelector("#watchlist");
+
+// grab results area for display
 let resultsArea = document.querySelector('#movie-images');
 
 // event listener to pull trending movies
@@ -47,15 +55,64 @@ genreSelBtn.addEventListener("click", function () {
   loadGenres();
 });
 
+// even listener for watchlist, displays previously saved movies
+watchlistBtn.addEventListener('click', function() {
+    if (storageArray.length === 0) {
+        resultsArea.innerHTML = 'You have nothing saved to your Watchlist';
+    } else {
+        for (let i = 0; i < storageArray.length; i++) {
+            // create a div to hold all the info for each item in watch list
+            let itemContainer = document.createElement('div');
+
+            // create img element
+            let posterEl = document.createElement('img');
+            // set src attribute to url for the poster for the item at that index
+            posterEl.setAttribute('src', storageArray[i].url)
+            // add poster to item container
+            itemContainer.appendChild(posterEl);
+
+            // grab the other data
+            let name = storageArray[i].data.name;
+            let overview = storageArray[i].data.overview;
+            let network = storageArray[i].data.networks[0].name;
+            let seasons = storageArray[i].data.number_of_seasons;
+
+            // create html elements to contain all that info, append those elements to details container
+            let showNameEl = document.createElement('p');
+            showNameEl.textContent = name;
+            itemContainer.appendChild(showNameEl);
+
+            let showOverviewEl = document.createElement('p');
+            showOverviewEl.textContent = overview;
+            itemContainer.appendChild(showOverviewEl);
+
+            let showNetworkEl = document.createElement('p');
+            showNetworkEl.textContent = network;
+            itemContainer.appendChild(showNetworkEl);
+
+            let showSeasonsEl = document.createElement('p');
+            showSeasonsEl.textContent = seasons;
+            itemContainer.appendChild(showSeasonsEl);
+
+            // add whole container to results area
+            resultsArea.appendChild(itemContainer);
+        }
+    }
+})
+
+// called if media_type is 'movie', calls OMDB API for movie details
 var getMovieData = function(imdbID) {
     console.log(imdbID, 'this is a movie');
+    // fetch using imdbID passed as argument
     fetch(`${omdbBaseUrl}${omdbAPIKey}&i=${imdbID}`)
     .then(function(response) {
         response.json()
         .then(function(data) {
             console.log(data);
+            // make a container to put all the details
             let detailsEl = document.createElement('div');
 
+            // pull all relevant data from response
             let title = data.Title;
             let rating = data.Rated;
             let genres = data.Genre;
@@ -64,6 +121,7 @@ var getMovieData = function(imdbID) {
             let runTime = data.Runtime;
             let rottenTomatoesScore = data.Ratings[1].Value;
 
+            // create html elements to hold all that data, append them to container
             let titleEl = document.createElement('p');
             titleEl.textContent = title;
             detailsEl.appendChild(titleEl);
@@ -92,19 +150,26 @@ var getMovieData = function(imdbID) {
             rottenTomatoesScoreEl.textContent = `Rotten Tomatoes Score: ${rottenTomatoesScore}`;
             detailsEl.appendChild(rottenTomatoesScoreEl);
 
+            // append the container itself to results area (for now)
             resultsArea.appendChild(detailsEl);
         })
     })
 }
 
-var getTVData = function(data) {
+// get details for tv shows, using data passes as argument from other function
+var getTVData = function(data, src) {
+
+    // create container for all details
     let detailsEl = document.createElement('div');
     
+    // pull relevant info
+    let imgUrl = src;
     let name = data.name;
     let overview = data.overview;
     let network = data.networks[0].name;
     let seasons = data.number_of_seasons;
 
+    // create html elements to contain all that info, append those elements to details container
     let showNameEl = document.createElement('p');
     showNameEl.textContent = name;
     detailsEl.appendChild(showNameEl);
@@ -121,6 +186,17 @@ var getTVData = function(data) {
     showSeasonsEl.textContent = seasons;
     detailsEl.appendChild(showSeasonsEl);
 
+    // create save button
+    let saveBtn = document.createElement('button');
+    saveBtn.textContent = 'Save to Watchlist';
+    // click even listener for save button
+    saveBtn.addEventListener('click', function() {
+        saveItem(imgUrl, data);
+    })
+    // append save button to details container
+    detailsEl.appendChild(saveBtn);
+    
+    // append the details container to the end of the page (for now)
     document.querySelector('main').appendChild(detailsEl)
     console.log(detailsEl);
 }
@@ -168,7 +244,7 @@ var getTopTen = function() {
                             imgBlock.setAttribute('alt', `Poster for ${data.name}`)
                         }
                         imgBlock.setAttribute('data-imdbid', data.imdb_id);
-                        // imgBlock.dataset.imdbID = data.imdb_id
+
                         imgBlock.setAttribute('data-mediatype', mediaType);
                         resultsArea.appendChild(imgBlock);
                         imgBlock.addEventListener('click', function(e) {
@@ -177,7 +253,7 @@ var getTopTen = function() {
                                 getMovieData(imdbID);                            
                             }
                             else if (e.target.dataset.mediatype === 'tv') {
-                                getTVData(data);
+                                getTVData(data, fullUrl);
                             }
                         })
                     })
@@ -248,3 +324,19 @@ var searchByGenre = function (genreDataId) {
 // TODO: Keyword search can filter request using Search, Discover, or Keyword API; clear input after submit -- Omar
 
 // TODO: Jake and Omar on CSS and Bulma framework
+
+
+// watch list functionality pseudo-code
+// 1. when an image is clicked, the details for the image will show on the screen.
+// 2. create a button among the details that when clicked, will save the id/imdb id to make calls again with that information
+// 3. that data will be stored in an array in local storage
+// 4. when the user clicks watchlist, the items saved in storage will be displayed again to the screen
+
+function saveItem(imgUrl, data) {
+    let itemObject = {
+        url: imgUrl,
+        data: data
+    }
+    storageArray.push(itemObject);
+    localStorage.setItem('watchlist', JSON.stringify(storageArray));
+}
