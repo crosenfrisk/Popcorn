@@ -135,9 +135,9 @@ var getTopTen = function() {
                     })
                 })
             }
-          );
+          ;
         }
-      });
+      );
     }
   );
 };
