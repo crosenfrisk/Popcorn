@@ -104,6 +104,7 @@ var loadGenres = function () {
         });
         parentDivEl.appendChild(button);
       }
+      // Prevent default load if button is clicked more than once, limit display to one occurrence. Remove additional elements if necessary.
     });
   });
 };
