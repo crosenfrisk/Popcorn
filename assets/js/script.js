@@ -183,7 +183,13 @@ var getTopTen = function() {
                     })
                 })
             }
-        })})}
+          ;
+        }
+      );
+    }
+  );
+};
+
 // TODO: Update top ten for movie && | show -- Colin
 // TODO: On click, show synopsis of movie or show -- use modal -- dismiss on click or swipe -- up for grabs!
 
