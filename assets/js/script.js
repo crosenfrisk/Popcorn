@@ -2,6 +2,7 @@
 var theMovieDbUrl = "https://api.themoviedb.org/3/";
 // api key pulled from config file
 var theMovieDbApiKey = config.theMovieDbApiKey;
+var omdbAPIKey = config.omdbAPIKey;
 
 // placeholder for data that will be pulled from getConfigInfo
 // poster urls are -- imgBaseUrl/posterSize/[poster_path]
@@ -44,10 +45,43 @@ genreSelBtn.addEventListener("click", function () {
   loadGenres();
 });
 
+var getMovieData = function(imdbID) {
+    console.log(imdbID, 'this is a movie');
+}
+
+var getTVData = function(data) {
+    let detailsEl = document.createElement('div');
+    
+    let name = data.name;
+    let overview = data.overview;
+    let network = data.networks[0].name;
+    let seasons = data.number_of_seasons;
+
+    let showNameEl = document.createElement('p');
+    showNameEl.textContent = name;
+    detailsEl.appendChild(showNameEl);
+
+    let showOverviewEl = document.createElement('p');
+    showOverviewEl.textContent = overview;
+    detailsEl.appendChild(showOverviewEl);
+
+    let showNetworkEl = document.createElement('p');
+    showNetworkEl.textContent = network;
+    detailsEl.appendChild(showNetworkEl);
+
+    let showSeasonsEl = document.createElement('p');
+    showSeasonsEl.textContent = seasons;
+    detailsEl.appendChild(showSeasonsEl);
+
+    document.querySelector('main').appendChild(detailsEl)
+    console.log(detailsEl);
+}
+
 // https://api.themoviedb.org/3/trending/all/day?api_key=<<api_key>>
 // fetch movie data from TMDB API
 
 var getTopTen = function() {
+    resultsArea.innerHTML = '';
     // url pulls top 20 trending movies/shows for the day
     fetch(`${theMovieDbUrl}trending/all/day?api_key=${theMovieDbApiKey}`)
     .then(function(response) {
@@ -57,7 +91,10 @@ var getTopTen = function() {
             let results = data.results;
             console.log(results);
             // loop through results array
-            for (let i = 0; i < 9; i++) {
+            for (let i = 0; i < 10; i++) {
+                let imgBlock = document.createElement('img');
+                imgBlock.setAttribute('id', `movie${i+1}`);
+                
                 // pull id for each index
                 let id = results[i].id;
                 // pull media type for each index (movie/tv show)
@@ -73,9 +110,28 @@ var getTopTen = function() {
                         // full url for poster
                         let fullUrl = `${imgBaseUrl}/${posterSize}/${posterPath}`
                         // grab img element from html
-                        let imgBlock = document.querySelector(`#movie${i+1}`);
+                        // let imgBlock = document.querySelector(`#movie${i+1}`);
                         // set src attribute of imgBlock to full poster url
                         imgBlock.setAttribute('src', fullUrl);
+                        if (mediaType === 'movie') {
+                            imgBlock.setAttribute('alt', `Poster for ${data.title}`)
+                        }
+                        if (mediaType === 'tv') {
+                            imgBlock.setAttribute('alt', `Poster for ${data.name}`)
+                        }
+                        imgBlock.setAttribute('data-imdbid', data.imdb_id);
+                        // imgBlock.dataset.imdbID = data.imdb_id
+                        imgBlock.setAttribute('data-mediatype', mediaType);
+                        resultsArea.appendChild(imgBlock);
+                        imgBlock.addEventListener('click', function(e) {
+                            if (e.target.dataset.mediatype === 'movie'){
+                                let imdbID = e.target.dataset.imdbid 
+                                getMovieData(imdbID);                            
+                            }
+                            else if (e.target.dataset.mediatype === 'tv') {
+                                getTVData(data);
+                            }
+                        })
                     })
                 })
             }
