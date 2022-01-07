@@ -5,53 +5,56 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.css">
     <title>Popcorn!</title>
 </head>
+  
 <body>
-    <header>
-        <!--Jumbotron-->
-        <H1><em>Popcorn!</em></H1>
-        <input type="textfield" id="searchInput">
-        <button type="button" id="searchBtn">Keyword Search</button>
+    <header class="block has-background-info p-3">
+
+      <!--Jumbotron-->
+
+        <h1 class="has-text-white is-size-1 ml-5">Popcorn!</h1>
+        
+        <div class="has-text-right mr-5">
+            <input classe="input m-5 py-5 nav-item" id="searchInput">
+            <button class="nav-item button is-big" id="searchBtn">Search</button>
+        </div>
+
     </header>
 
     <main>
-        
-        <div class="row">
-            <div id="button-container">
-                <button type="button" id="top10Btn">Top Ten</button>
-                <button type="button" id="Watchlist">Watchlist</button>
-                <button type="button" id="genreSel">Genre Selector</button>
-            </div>
+       
+        <div class="container">
+            <section class="has-text-centered row has-background-success py-3" id="button-container">
+                <button class="button is-dark m-auto" id="top10Btn">Top Ten</button>
+                <button class="button is-dark m-auto" id="watchlist">Watchlist</button>
+                <button class="button is-dark m-auto" id="genreSel">Genre Selector</button>
+            </section>
         </div>
 
-        <div class="row">
+        <div class="section">
+            <div class="container has-text-centered">
+                <div class="button nav-item">test3</div>
+                <div class="button nav-item">test2</div>
+                <div class="button nav-item">test3</div>
+            </div>
+        </div>  
+
+        <div class="row has-text-centered">
             <div id="movie-images">
-                <!-- <div class="row"></div>
-                    <img src="assets\images\140x100placeholder.png" id="movie1">
-                    <img src="assets\images\140x100placeholder.png" id="movie2">
-                    <img src="assets\images\140x100placeholder.png" id="movie3">
-                 <div class="row">
-                    <img src="assets\images\140x100placeholder.png" id="movie4">
-                    <img src="assets\images\140x100placeholder.png" id="movie5">
-                    <img src="assets\images\140x100placeholder.png" id="movie6">
-                 <div class="row"></div>
-                    <img src="assets\images\140x100placeholder.png" id="movie7">
-                    <img src="assets\images\140x100placeholder.png" id="movie8">
-                    <img src="assets\images\140x100placeholder.png" id="movie9">   
-            </div> -->
+            </div>
         </div>
      </div>
 
      <div class="row">
          <div id="aboutPopcornBox">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias accusamus magni maiores corporis sunt corrupti eos, culpa ipsa voluptas quaerat voluptatibus amet voluptatem incidunt natus blanditiis quos aperiam? Saepe, odit.</p>
+            <p>We can decide if we want text here explaining the app or whatever</p>
         </div>
      </div>
-    
         
     </main>
 </body>
-<script type='text/javascript' src='assets/js/config.js'></script>
+<script type='text/javascript' src='./assets/js/config.js'></script>
 <script src="assets/js/script.js"></script>
 </html>
