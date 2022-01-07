@@ -42,24 +42,33 @@ top10Btn.addEventListener('click', function() {
 // https://api.themoviedb.org/3/trending/all/day?api_key=<<api_key>>
 // fetch movie data from TMDB API
 var getTopTen = function() {
+    // url pulls top 20 trending movies/shows for the day
     fetch(`${theMovieDbUrl}trending/all/day?api_key=${theMovieDbApiKey}`)
     .then(function(response) {
         response.json()
         .then(function(data) {
+            // data.results is the array of results
             let results = data.results;
             console.log(results);
+            // loop through results array
             for (let i = 0; i < 9; i++) {
+                // pull id for each index
                 let id = results[i].id;
+                // pull media type for each index (movie/tv show)
                 let mediaType = results[i].media_type;
-                console.log(mediaType);
+                // for each item, pull full entry from tmdb (to get url for poster)
                 fetch(`${theMovieDbUrl}${mediaType}/${id}?api_key=${theMovieDbApiKey}`)
                 .then(function(response) {
                     response.json()
                     .then(function(data) {
                         console.log(data);
+                        // end of url for the poster
                         let posterPath = data.poster_path;
+                        // full url for poster
                         let fullUrl = `${imgBaseUrl}/${posterSize}/${posterPath}`
+                        // grab img element from html
                         let imgBlock = document.querySelector(`#movie${i+1}`);
+                        // set src attribute of imgBlock to full poster url
                         imgBlock.setAttribute('src', fullUrl);
                     })
                 })
