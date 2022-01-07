@@ -110,30 +110,17 @@ var loadGenres = function () {
 
 var searchByGenre = function (genreDataId) {
     console.log(genreDataId);
-    event.target()
+    // event.target()
     // fetch( theMovieDbUrl + "discover/movie?api_key=" + theMovieDbApiKey + "&with_genres=37&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate")
     // .then(function (response){
     // response.json().then(function (data) {
     //   console.log(data);})})
 }
 
-// function searchByGenre(genres) {
-//     console.log("is this happening?");
 //   // Here the user will select ONE genre as a filter and
-// //   fetch(
-// //     theMovieDbUrl +
-// //       "genre/movie/list?api_key=" +
-// //       theMovieDbApiKey +
-// //       "&language=en-US"
-// //   ).then(function (response) {
-// //     response.json().then(
-// //       function (data) {
-// //         var results = data;
-// //       } // on click, results of 10 movies for that genre will return to display.
-// //     );
-// //   }); 
-// }
+// //        // on click, results of 10 movies for that genre will return to display.
+
 
 // TODO: Keyword search can filter request using Search, Discover, or Keyword API; clear input after submit -- Omar
 
-// TODO: Jake and Omar on CSS
+// TODO: Jake and Omar on CSS and Bulma framework
