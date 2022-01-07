@@ -3,6 +3,7 @@ var theMovieDbUrl = "https://api.themoviedb.org/3/";
 // api key pulled from config file
 var theMovieDbApiKey = config.theMovieDbApiKey;
 var omdbAPIKey = config.omdbAPIKey;
+var omdbBaseUrl = 'http://www.omdbapi.com/?apikey='
 
 // placeholder for data that will be pulled from getConfigInfo
 // poster urls are -- imgBaseUrl/posterSize/[poster_path]
@@ -34,6 +35,7 @@ document.addEventListener("DOMContentLoaded", getConfigInfo);
 let top10Btn = document.querySelector("#top10Btn");
 let genreSelBtn = document.querySelector("#genreSel");
 let watchlistBtn = document.querySelector("#watchlist");
+let resultsArea = document.querySelector('#movie-images');
 
 // event listener to pull trending movies
 top10Btn.addEventListener("click", function () {
@@ -47,6 +49,52 @@ genreSelBtn.addEventListener("click", function () {
 
 var getMovieData = function(imdbID) {
     console.log(imdbID, 'this is a movie');
+    fetch(`${omdbBaseUrl}${omdbAPIKey}&i=${imdbID}`)
+    .then(function(response) {
+        response.json()
+        .then(function(data) {
+            console.log(data);
+            let detailsEl = document.createElement('div');
+
+            let title = data.Title;
+            let rating = data.Rated;
+            let genres = data.Genre;
+            let plot = data.Plot;
+            let director = data.Director;
+            let runTime = data.Runtime;
+            let rottenTomatoesScore = data.Ratings[1].Value;
+
+            let titleEl = document.createElement('p');
+            titleEl.textContent = title;
+            detailsEl.appendChild(titleEl);
+
+            let ratingEl = document.createElement('p');
+            ratingEl.textContent = rating;
+            detailsEl.appendChild(ratingEl);
+
+            let genresEl = document.createElement('p');
+            genresEl.textContent = genres;
+            detailsEl.appendChild(genresEl);
+
+            let plotEl = document.createElement('p');
+            plotEl.textContent = plot;
+            detailsEl.appendChild(plotEl);
+
+            let directorEl = document.createElement('p');
+            directorEl.textContent = `Director: ${director}`;
+            detailsEl.appendChild(directorEl);
+
+            let runTimeEl = document.createElement('p');
+            runTimeEl.textContent = `Running Time:${runTime}`;
+            detailsEl.appendChild(runTimeEl);
+
+            let rottenTomatoesScoreEl = document.createElement('p');
+            rottenTomatoesScoreEl.textContent = `Rotten Tomatoes Score: ${rottenTomatoesScore}`;
+            detailsEl.appendChild(rottenTomatoesScoreEl);
+
+            resultsArea.appendChild(detailsEl);
+        })
+    })
 }
 
 var getTVData = function(data) {
