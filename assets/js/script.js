@@ -15,8 +15,11 @@ var getConfigInfo = function() {
     .then(function(response) {
         response.json()
         .then(function(data) {
+            // imgBaseUrl is the start of the url for all movie posters
             imgBaseUrl = data.images.secure_base_url;
+            // config data is all the relevant information for constructing those urls
             configData = data.images;
+            // poster_sizes is an array of sizes, must define a size in url
             posterSize = data.images.poster_sizes[1];
         })
     })
@@ -30,6 +33,7 @@ let top10Btn = document.querySelector('#top10Btn');
 let myFavBtn = document.querySelector('#myFav');
 let genreSelBtn = document.querySelector('#genreSel');
 let runTimeBtn = document.querySelector('#runTime');
+
 // event listener to pull trending movies
 top10Btn.addEventListener('click', function() {
     getTopTen();
@@ -46,7 +50,9 @@ var getTopTen = function() {
             console.log(results);
             for (let i = 0; i < 9; i++) {
                 let id = results[i].id;
-                fetch(`${theMovieDbUrl}movie/${id}?api_key=${theMovieDbApiKey}`)
+                let mediaType = results[i].media_type;
+                console.log(mediaType);
+                fetch(`${theMovieDbUrl}${mediaType}/${id}?api_key=${theMovieDbApiKey}`)
                 .then(function(response) {
                     response.json()
                     .then(function(data) {
