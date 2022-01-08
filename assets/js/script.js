@@ -41,13 +41,12 @@ let resultsArea = document.querySelector('#movie-images');
 top10Btn.addEventListener("click", function () {
   getTopTen();
   // remove "genre" buttons if displayed from previous genre selector click.
-  removeGenres();
+  // removeGenres();
 });
 
 // event listener to pull genre options for user to select
 genreSelBtn.addEventListener("click", function () {
     loadGenres();
-    // if genres are already loaded, do not let user click genreSelBtn again
 });
 
 var getMovieData = function(imdbID) {
