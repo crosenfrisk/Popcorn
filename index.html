@@ -9,60 +9,66 @@
     <title>Popcorn!</title>
 </head>
 <body>
-    <header class="block has-background-info p-3">
-        <!--Jumbotron-->
-        <h1 class="has-text-white is-size-1 ml-5">Popcorn!</h1>
-        
-        <div class="has-text-right mr-5">
-            <input classe="input m-5 py-5 nav-item" id="searchInput">
-            <button class="nav-item button is-big" id="searchBtn">Search</button>
-        </div>
-    </header>
-
     <main>
-        
-        <div class="container">
-            <section class="has-text-centered row has-background-success py-3" id="button-container">
-                <button class="button is-dark m-auto" id="top10Btn">Top Ten</button>
-                <button class="button is-dark m-auto" id="myFav">My Favorites</button>
-                <button class="button is-dark m-auto" id="genreSel">Genre Selector</button>
-                <button class="button is-dark m-auto" id="runTime">Run Time</button>
-            </section>
-        </div>
+        <header class="block p-1">
+            <!--Jumbotron-->
+            <h1 class="title has-text-black is-size-1 mt-5">Popcorn!</h1>
+            <div class="subtitle is-size-4">If you want to choose a movie to spend nice time</div>
+            
 
-        <div class="section">
-            <div class="container has-text-centered">
-                <div class="button nav-item">test3</div>
-                <div class="button nav-item">test2</div>
-                <div class="button nav-item">test3</div>
+            <div class="has-text-right mr-5">
+                <input classe="input m-5 py-5" id="searchInput">
+                <button class="nav-item button" id="searchBtn">Search</button>
             </div>
-        </div>  
+        </header>
 
-        <div class="row has-text-centered">
-            <div id="movie-images">
-                <div class="row"></div>
-                    <img src="assets\images\140x100placeholder.png" id="movie1">
-                    <img src="assets\images\140x100placeholder.png" id="movie2">
-                    <img src="assets\images\140x100placeholder.png" id="movie3">
-                 <div class="row">
-                    <img src="assets\images\140x100placeholder.png" id="movie4">
-                    <img src="assets\images\140x100placeholder.png" id="movie5">
-                    <img src="assets\images\140x100placeholder.png" id="movie6">
-                 <div class="row"></div>
-                    <img src="assets\images\140x100placeholder.png" id="movie7">
-                    <img src="assets\images\140x100placeholder.png" id="movie8">
-                    <img src="assets\images\140x100placeholder.png" id="movie9">   
+        <main>
+            
+            <div class="columns is-centered">
+                <section class="column is-half has-text-centered row is-fluid py-2 is-rounded" id="button-container">
+                    <button class="button is-dark" id="top10Btn">Top Ten</button>
+                    <button class="button is-dark" id="myFav">My Favorites</button>
+                    <button class="button is-dark" id="genreSel">Genre Selector</button>
+                    <button class="button is-dark" id="runTime">Run Time</button>
+                </section>
+            </div>
+
+            <div class="row has-text-centered">
+                <div id="movie-images">
+                    <div class="block row"></div>
+                        <img src="assets\images\140x100placeholder.png" id="movie1">
+                        <img src="assets\images\140x100placeholder.png" id="movie2">
+                        <img src="assets\images\140x100placeholder.png" id="movie3">
+                    <div class="row">
+                        <img src="assets\images\140x100placeholder.png" id="movie4">
+                        <img src="assets\images\140x100placeholder.png" id="movie5">
+                        <img src="assets\images\140x100placeholder.png" id="movie6">
+                    <div class="row"></div>
+                        <img src="assets\images\140x100placeholder.png" id="movie7">
+                        <img src="assets\images\140x100placeholder.png" id="movie8">
+                        <img src="assets\images\140x100placeholder.png" id="movie9">   
+                </div>
             </div>
         </div>
-     </div>
 
-     <div class="row">
-         <div id="aboutPopcornBox">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias accusamus magni maiores corporis sunt corrupti eos, culpa ipsa voluptas quaerat voluptatibus amet voluptatem incidunt natus blanditiis quos aperiam? Saepe, odit.</p>
+        <div class=" container has-text-centered">
+            <div id="aboutPopcornBox">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias accusamus magni maiores corporis sunt corrupti eos, culpa ipsa voluptas quaerat voluptatibus amet voluptatem incidunt natus blanditiis quos aperiam? Saepe, odit.</p>
+            </div>
         </div>
-     </div>
-    
+
+        <div class="level-right">
+            <div class="field has-addons search">
+                <div class="control">
+                <input class="input" type="text" placeholder="Find your movie">
+                </div>
+                <div class="control">
+                <a class="button is-info">Search</a>
+                </div>
+            </div>
+        </div>
         
+            
     </main>
 </body>
 <script type='text/javascript' src='config.js'></script>
