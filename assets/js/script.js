@@ -281,7 +281,7 @@ var getTVData = function(data, src) {
 // https://api.themoviedb.org/3/trending/all/day?api_key=<<api_key>>
 // fetch movie data from TMDB API
 
-var getTopTen = function() {
+var getTopTen = function() {                 
     resultsArea.innerHTML = '';
     // url pulls top 20 trending movies/shows for the day
     fetch(`${theMovieDbUrl}trending/all/day?api_key=${theMovieDbApiKey}`)
@@ -292,7 +292,7 @@ var getTopTen = function() {
             let results = data.results;
             console.log(results);
             // loop through results array
-            for (let i = 0; i < 10; i++) {
+            for (let i = 0; i < 20; i++) {
                 let imgBlock = document.createElement('img');
                 imgBlock.setAttribute('id', `movie${i+1}`);
                 
@@ -361,7 +361,7 @@ var loadGenres = function () {
     
       // viewing genre ids from array as dynamic buttons on html
       var parentDivEl = document.querySelector("#genre-list");
-
+        
       for (var i = 0; i < data.genres.length; i++) {
         
         var genreDataId = data.genres[i].id;
@@ -385,11 +385,11 @@ var loadGenres = function () {
         // button.addEventListener("click", function(){
         //     searchByGenre(genreDataId);
 
-        button.addEventListener("click", function(){
-            searchByGenre(genreDataId);
+        button.addEventListener("click", function(e){
+            searchByGenre(e.target.getAttribute('id'));
         });
         parentDivEl.append(button);
-      }
+    }
     //   event.target(genreSelBtn(stopPropagation());
       // Prevent default load if button is clicked more than once, limit display to one occurrence. Remove additional elements if necessary.      
     });
@@ -402,7 +402,7 @@ function removeGenres(){
     var removeGenreBtnsEl = document.getElementsByClassName("genre");
     parentDivEl.remove(removeGenreBtnsEl);
     // enable genreSelBtn to work again (some how I can't do both)
-}
+};
 
 
 
@@ -416,7 +416,7 @@ var searchByGenre = function (genreDataId) {
     response.json().then(function (data) {
       console.log(data);})})
     //   for (i =0;)
-}
+};
 
 
 
@@ -438,9 +438,23 @@ function saveItem(imgUrl, data) {
         url: fullPosterPath,
         data: data
     }
-
-    if (!storageArray.some(e => e.url === imgUrl)) {
-        storageArray.push(itemObject);
-        localStorage.setItem('watchlist', JSON.stringify(storageArray));       
+    if (itemObject.data.imdbID) {
+        if (!storageArray.some(e => e.data.imdbID === itemObject.data.imdbID)) {
+            console.log('This item is a MOVIE and is NOT in storage');
+            storageArray.push(itemObject);
+            localStorage.setItem('watchlist', JSON.stringify(storageArray));
+        } else {
+            console.log('This item is a MOVIE and IS in storage');
+        }
+    } else {
+        if (!storageArray.some(e => e.data.id === itemObject.data.id)) {
+            console.log('this item is a TV SHOW and is NOT in storage');
+            storageArray.push(itemObject);
+            localStorage.setItem('watchlist', JSON.stringify(storageArray));
+        } else {
+            console.log('This item is a TV show and IS in storage');
+        }
     }
+
+
 };
