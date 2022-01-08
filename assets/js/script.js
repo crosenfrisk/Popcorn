@@ -193,13 +193,12 @@ var getTopTen = function() {
   );
 };
 
-// TODO: On click, show synopsis of movie or show -- use modal -- dismiss on click or swipe -- up for grabs!
+// TODO: On click, show synopsis of movie or show -- use modal -- dismiss on click or swipe -- up for grabs! Working on it -- Claire
 
-// TODO: Add button to movie results/posters for local storage, cueing save to watchlist -- up for grabs!
+// TODO: Add button to movie results/posters for local storage, cueing save to watchlist -- up for grabs! -- Colin
 
 // Fetch genre options from TMDB api, targeting genre ids
 var loadGenres = function () {
-  resultsArea.innerHTML = '';
   fetch(
     theMovieDbUrl +
       "genre/movie/list?api_key=" +
@@ -211,6 +210,7 @@ var loadGenres = function () {
     
       // viewing genre ids from array as dynamic buttons on html
       var parentDivEl = document.querySelector("#genre-list");
+      parentDivEl.innerHTML="";
 
       for (var i = 0; i < data.genres.length; i++) {
         
@@ -227,32 +227,23 @@ var loadGenres = function () {
         button.textContent = data.genres[i].name;
         // console.log(button);
 
-         // var genreBtnEl = document.querySelectorAll(".genre");
-        // for (let i = 0; i < genreBtnEl.length; i++) {
-        //     genreBtnEl[i]. addEventListener("click", searchByGenre());
-        // }
-
-        // button.addEventListener("click", function(){
-        //     searchByGenre(genreDataId);
-
-        button.addEventListener("click", function(){
-            searchByGenre(genreDataId);
+        button.addEventListener("click", function(event){
+          searchByGenre(event.target.getAttribute('id'));
         });
         parentDivEl.append(button);
       }
-    //   event.target(genreSelBtn(stopPropagation());
-      // Prevent default load if button is clicked more than once, limit display to one occurrence. Remove additional elements if necessary.      
+        
     });
   });
 };
 
-function removeGenres(){
-    // Remove genre buttons from dynamic display
-    var parentDivEl = document.querySelector("#genre-list");
-    var removeGenreBtnsEl = document.getElementsByClassName("genre");
-    parentDivEl.remove(removeGenreBtnsEl);
-    // enable genreSelBtn to work again (some how I can't do both)
-}
+// function removeGenres(){
+//     // Remove genre buttons from dynamic display
+//     var parentDivEl = document.querySelector("#genre-list");
+//     var removeGenreBtnsEl = document.getElementsByClassName("genre");
+//     parentDivEl.remove(removeGenreBtnsEl);
+//     // enable genreSelBtn to work again (some how I can't do both)
+// }
 
 
 
