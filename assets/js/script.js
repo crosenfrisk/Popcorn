@@ -29,7 +29,7 @@ var getConfigInfo = function() {
             // config data is all the relevant information for constructing those urls
             configData = data.images;
             // poster_sizes is an array of sizes, must define a size in url
-            posterSize = data.images.poster_sizes[1];
+            posterSize = data.images.poster_sizes;
         })
     })
 };
@@ -57,11 +57,16 @@ genreSelBtn.addEventListener("click", function () {
 
 // even listener for watchlist, displays previously saved movies
 watchlistBtn.addEventListener('click', function() {
+    // clear results area
+    resultsArea.innerHTML = '';
+    // if nothing in storage, display message
     if (storageArray.length === 0) {
         resultsArea.innerHTML = 'You have nothing saved to your Watchlist';
     } else {
         for (let i = 0; i < storageArray.length; i++) {
-            // create a div to hold all the info for each item in watch list
+            // check to see if movie or tv show - if tv show, it will NOT have property imdbID
+            if (!storageArray[i].data.imdbID) {
+                // create a div to hold all the info for each item in watch list
             let itemContainer = document.createElement('div');
 
             // create img element
@@ -96,12 +101,67 @@ watchlistBtn.addEventListener('click', function() {
 
             // add whole container to results area
             resultsArea.appendChild(itemContainer);
+            } else {
+
+                let detailsEl = document.createElement('div');
+
+                // pull all relevant data from response
+                let title = storageArray[i].data.Title;
+                let rating = storageArray[i].data.Rated;
+                let genres = storageArray[i].data.Genre;
+                let plot = storageArray[i].data.Plot;
+                let director = storageArray[i].data.Director;
+                let runTime = storageArray[i].data.Runtime;
+    
+                // create html elements to hold all that data, append them to container
+                let imgEl = document.createElement('img');
+                imgEl.setAttribute('src', storageArray[i].url);
+                detailsEl.appendChild(imgEl);
+    
+                let titleEl = document.createElement('p');
+                titleEl.textContent = title;
+                detailsEl.appendChild(titleEl);
+    
+                let ratingEl = document.createElement('p');
+                ratingEl.textContent = rating;
+                detailsEl.appendChild(ratingEl);
+    
+                let genresEl = document.createElement('p');
+                genresEl.textContent = genres;
+                detailsEl.appendChild(genresEl);
+    
+                let plotEl = document.createElement('p');
+                plotEl.textContent = plot;
+                detailsEl.appendChild(plotEl);
+    
+                let directorEl = document.createElement('p');
+                directorEl.textContent = `Director: ${director}`;
+                detailsEl.appendChild(directorEl);
+    
+                let runTimeEl = document.createElement('p');
+                runTimeEl.textContent = `Running Time:${runTime}`;
+                detailsEl.appendChild(runTimeEl);
+    
+
+                // append the container itself to results area (for now)
+                resultsArea.appendChild(detailsEl);
+            }
         }
+        // create button to clear watchlist
+        let clearBtn = document.createElement('button');
+        clearBtn.textContent = 'Clear Watchlist';
+        resultsArea.appendChild(clearBtn);
+
+        clearBtn.addEventListener('click', function() {
+            localStorage.clear();
+            storageArray = [];
+            resultsArea.innerHTML = 'Your watchlist has been cleared';
+        })
     }
 })
 
 // called if media_type is 'movie', calls OMDB API for movie details
-var getMovieData = function(imdbID) {
+var getMovieData = function(imdbID, posterPath) {
     console.log(imdbID, 'this is a movie');
     // fetch using imdbID passed as argument
     fetch(`${omdbBaseUrl}${omdbAPIKey}&i=${imdbID}`)
@@ -112,6 +172,7 @@ var getMovieData = function(imdbID) {
             // make a container to put all the details
             let detailsEl = document.createElement('div');
 
+
             // pull all relevant data from response
             let title = data.Title;
             let rating = data.Rated;
@@ -119,9 +180,14 @@ var getMovieData = function(imdbID) {
             let plot = data.Plot;
             let director = data.Director;
             let runTime = data.Runtime;
-            let rottenTomatoesScore = data.Ratings[1].Value;
+
+           let fullPosterPath = `${imgBaseUrl}/${posterSize[3]}/${posterPath}`;
 
             // create html elements to hold all that data, append them to container
+            let imgEl = document.createElement('img');
+            imgEl.setAttribute('src', fullPosterPath);
+            detailsEl.appendChild(imgEl);
+
             let titleEl = document.createElement('p');
             titleEl.textContent = title;
             detailsEl.appendChild(titleEl);
@@ -144,11 +210,16 @@ var getMovieData = function(imdbID) {
 
             let runTimeEl = document.createElement('p');
             runTimeEl.textContent = `Running Time:${runTime}`;
-            detailsEl.appendChild(runTimeEl);
+            detailsEl.appendChild(runTimeEl);            
 
-            let rottenTomatoesScoreEl = document.createElement('p');
-            rottenTomatoesScoreEl.textContent = `Rotten Tomatoes Score: ${rottenTomatoesScore}`;
-            detailsEl.appendChild(rottenTomatoesScoreEl);
+            // create save button
+            let saveBtn = document.createElement('button');
+            saveBtn.textContent = 'Save to Watchlist';
+            detailsEl.appendChild(saveBtn);
+
+            saveBtn.addEventListener('click', function() {
+                saveItem(posterPath, data)
+            })
 
             // append the container itself to results area (for now)
             resultsArea.appendChild(detailsEl);
@@ -163,13 +234,17 @@ var getTVData = function(data, src) {
     let detailsEl = document.createElement('div');
     
     // pull relevant info
-    let imgUrl = src;
+    let fullUrl = `${imgBaseUrl}/${posterSize[3]}/${src}`
     let name = data.name;
     let overview = data.overview;
     let network = data.networks[0].name;
     let seasons = data.number_of_seasons;
 
     // create html elements to contain all that info, append those elements to details container
+    let imgEl = document.createElement('img');
+    imgEl.setAttribute('src', fullUrl);
+    detailsEl.appendChild(imgEl)
+
     let showNameEl = document.createElement('p');
     showNameEl.textContent = name;
     detailsEl.appendChild(showNameEl);
@@ -191,14 +266,13 @@ var getTVData = function(data, src) {
     saveBtn.textContent = 'Save to Watchlist';
     // click even listener for save button
     saveBtn.addEventListener('click', function() {
-        saveItem(imgUrl, data);
+        saveItem(src, data);
     })
     // append save button to details container
     detailsEl.appendChild(saveBtn);
     
     // append the details container to the end of the page (for now)
-    document.querySelector('main').appendChild(detailsEl)
-    console.log(detailsEl);
+    resultsArea.appendChild(detailsEl)
 }
 
 // https://api.themoviedb.org/3/trending/all/day?api_key=<<api_key>>
@@ -215,7 +289,7 @@ var getTopTen = function() {
             let results = data.results;
             console.log(results);
             // loop through results array
-            for (let i = 0; i < 10; i++) {
+            for (let i = 0; i < 20; i++) {
                 let imgBlock = document.createElement('img');
                 imgBlock.setAttribute('id', `movie${i+1}`);
                 
@@ -232,7 +306,7 @@ var getTopTen = function() {
                         // end of url for the poster
                         let posterPath = data.poster_path;
                         // full url for poster
-                        let fullUrl = `${imgBaseUrl}/${posterSize}/${posterPath}`
+                        let fullUrl = `${imgBaseUrl}/${posterSize[1]}/${posterPath}`;
                         // grab img element from html
                         // let imgBlock = document.querySelector(`#movie${i+1}`);
                         // set src attribute of imgBlock to full poster url
@@ -250,10 +324,10 @@ var getTopTen = function() {
                         imgBlock.addEventListener('click', function(e) {
                             if (e.target.dataset.mediatype === 'movie'){
                                 let imdbID = e.target.dataset.imdbid 
-                                getMovieData(imdbID);                            
+                                getMovieData(imdbID, posterPath);                            
                             }
                             else if (e.target.dataset.mediatype === 'tv') {
-                                getTVData(data, fullUrl);
+                                getTVData(data, posterPath);
                             }
                         })
                     })
@@ -333,8 +407,9 @@ var searchByGenre = function (genreDataId) {
 // 4. when the user clicks watchlist, the items saved in storage will be displayed again to the screen
 
 function saveItem(imgUrl, data) {
+    let fullPosterPath = `${imgBaseUrl}/${posterSize[1]}/${imgUrl}`;
     let itemObject = {
-        url: imgUrl,
+        url: fullPosterPath,
         data: data
     }
 
