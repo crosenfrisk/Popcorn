@@ -49,13 +49,12 @@ let resultsArea = document.querySelector('#movie-images');
 top10Btn.addEventListener("click", function () {
   getTopTen();
   // remove "genre" buttons if displayed from previous genre selector click.
-  removeGenres();
+  // removeGenres();
 });
 
 // event listener to pull genre options for user to select
 genreSelBtn.addEventListener("click", function () {
     loadGenres();
-    // if genres are already loaded, do not let user click genreSelBtn again
 });
 
 // even listener for watchlist, displays previously saved movies
@@ -226,6 +225,11 @@ var getMovieData = function(imdbID, posterPath) {
 
             // append the container itself to results area (for now)
             resultsArea.appendChild(detailsEl);
+                // append details of container to modal, remove above ^ (resultsArea.appendChild(detailsEl))
+                // var modalEl = document.createElement("div");
+                // modal.className= "modal-content";
+                // modalEl.appendChild(detailsEl);
+                // modalEl..appendChild(saveBtn);
         })
     })
 }
@@ -276,6 +280,12 @@ var getTVData = function(data, src) {
     
     // append the details container to the end of the page (for now)
     resultsArea.appendChild(detailsEl)
+    // append details of container to modal, remove above ^ (resultsArea.appendChild(detailsEl))
+      // var modalEl = document.createElement("div");
+      // modal.className= "modal-content";
+      // modalEl.appendChild(detailsEl);
+      // modalEl..appendChild(saveBtn);
+
 }
 
 // https://api.themoviedb.org/3/trending/all/day?api_key=<<api_key>>
