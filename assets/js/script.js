@@ -289,7 +289,7 @@ var getTopTen = function() {
             let results = data.results;
             console.log(results);
             // loop through results array
-            for (let i = 0; i < 20; i++) {
+            for (let i = 0; i < 10; i++) {
                 let imgBlock = document.createElement('img');
                 imgBlock.setAttribute('id', `movie${i+1}`);
                 
