@@ -167,19 +167,31 @@ var loadGenres = function () {
         
         var genreDataId = data.genres[i].id;
 
+        // var genreBtnEl = document.querySelectorAll(".genre");
+
         var button = document.createElement("button");
         console.log("button", button);
 
         button.setAttribute("id", data.genres[i].id);
-        button.setAttribute("class", data.genres[i].name);
+        button.setAttribute("name", data.genres[i].name);
+        button.className = "genre"
         button.textContent = data.genres[i].name;
-        console.log(button);
+        // console.log(button);
+
+         // var genreBtnEl = document.querySelectorAll(".genre");
+        // for (let i = 0; i < genreBtnEl.length; i++) {
+        //     genreBtnEl[i]. addEventListener("click", searchByGenre());
+        // }
+
+        // button.addEventListener("click", function(){
+        //     searchByGenre(genreDataId);
 
         button.addEventListener("click", function(){
             searchByGenre(genreDataId);
         });
-        parentDivEl.appendChild(button);
+        parentDivEl.append(button);
       }
+    //   event.target(genreSelBtn(stopPropagation());
       // Prevent default load if button is clicked more than once, limit display to one occurrence. Remove additional elements if necessary.
     });
   });
@@ -187,15 +199,17 @@ var loadGenres = function () {
 
 var searchByGenre = function (genreDataId) {
     console.log(genreDataId);
+    //   // Here the user will select ONE genre as a filter and
+      // on click, results of 10 movies for that genre will return to display.
     // event.target()
-    // fetch( theMovieDbUrl + "discover/movie?api_key=" + theMovieDbApiKey + "&with_genres=37&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate")
-    // .then(function (response){
-    // response.json().then(function (data) {
-    //   console.log(data);})})
+    fetch( theMovieDbUrl + "discover/movie?api_key=" + theMovieDbApiKey + "&with_genres=" + genreDataId+ "&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate")
+    .then(function (response){
+    response.json().then(function (data) {
+      console.log(data);})})
+    //   for (i =0;)
 }
 
-//   // Here the user will select ONE genre as a filter and
-// //        // on click, results of 10 movies for that genre will return to display.
+
 
 
 // TODO: Keyword search can filter request using Search, Discover, or Keyword API; clear input after submit -- Omar
