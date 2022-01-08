@@ -337,6 +337,9 @@ function saveItem(imgUrl, data) {
         url: imgUrl,
         data: data
     }
-    storageArray.push(itemObject);
-    localStorage.setItem('watchlist', JSON.stringify(storageArray));
-}
+
+    if (!storageArray.some(e => e.url === imgUrl)) {
+        storageArray.push(itemObject);
+        localStorage.setItem('watchlist', JSON.stringify(storageArray));       
+    }
+};
