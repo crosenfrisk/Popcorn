@@ -40,11 +40,14 @@ let resultsArea = document.querySelector('#movie-images');
 // event listener to pull trending movies
 top10Btn.addEventListener("click", function () {
   getTopTen();
+  // remove "genre" buttons if displayed from previous genre selector click.
+  removeGenres();
 });
 
 // event listener to pull genre options for user to select
 genreSelBtn.addEventListener("click", function () {
-  loadGenres();
+    loadGenres();
+    // if genres are already loaded, do not let user click genreSelBtn again
 });
 
 var getMovieData = function(imdbID) {
@@ -190,15 +193,13 @@ var getTopTen = function() {
   );
 };
 
-// TODO: Update top ten for movie && | show -- Colin
 // TODO: On click, show synopsis of movie or show -- use modal -- dismiss on click or swipe -- up for grabs!
 
 // TODO: Add button to movie results/posters for local storage, cueing save to watchlist -- up for grabs!
 
-// TODO: Gene selector -- using genre ids filter choices: let them choose from list using if() statement -- Claire
-
 // Fetch genre options from TMDB api, targeting genre ids
 var loadGenres = function () {
+  resultsArea.innerHTML = '';
   fetch(
     theMovieDbUrl +
       "genre/movie/list?api_key=" +
@@ -240,10 +241,20 @@ var loadGenres = function () {
         parentDivEl.append(button);
       }
     //   event.target(genreSelBtn(stopPropagation());
-      // Prevent default load if button is clicked more than once, limit display to one occurrence. Remove additional elements if necessary.
+      // Prevent default load if button is clicked more than once, limit display to one occurrence. Remove additional elements if necessary.      
     });
   });
 };
+
+function removeGenres(){
+    // Remove genre buttons from dynamic display
+    var parentDivEl = document.querySelector("#genre-list");
+    var removeGenreBtnsEl = document.getElementsByClassName("genre");
+    parentDivEl.remove(removeGenreBtnsEl);
+    // enable genreSelBtn to work again (some how I can't do both)
+}
+
+
 
 var searchByGenre = function (genreDataId) {
     console.log(genreDataId);
