@@ -387,7 +387,7 @@ var loadGenres = function () {
   ).then(function (response) {
     response.json().then(function (data) {
       console.log(data);
-    
+      resultsArea.innerHTML = '';
       // viewing genre ids from array as dynamic buttons on html
       var parentDivEl = document.querySelector("#genre-list");
 
@@ -431,8 +431,6 @@ var loadGenres = function () {
 //     // enable genreSelBtn to work again (some how I can't do both)
 // }
 
-
-}
 
 var searchByGenre = function (genreDataId) {
     resultsArea.innerHTML = '';
