@@ -51,7 +51,18 @@ let resultsArea = document.querySelector('#movie-images');
 
 // event listener for search button
 searchBtn.addEventListener('click', function() {
-    searchByKeyword(searchInputEl.value);
+    if (searchInputEl.value) {
+        searchByKeyword(searchInputEl.value);
+        searchInputEl.value = '';
+    }
+})
+
+document.addEventListener('keypress', function(e) {
+    console.log('a key was pressed');
+    if (e.charCode === 13 && searchInputEl.value) {
+        searchByKeyword(searchInputEl.value);
+        searchInputEl.value = '';
+    }
 })
 // event listener to pull trending movies
 top10Btn.addEventListener("click", function () {
