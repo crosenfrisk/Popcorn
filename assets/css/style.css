@@ -6,21 +6,21 @@
 
 /* #searchBtn{} */
 main {
-    
     height: auto;
     margin: auto;
 }
 
 header {
-    background-color: hsl(54, 30%, 51%);
-    border-bottom: solid 5px hsla(55, 90%, 49%, 0.315);
+    background-color: hsl(54, 95%, 42%);
+    border-bottom: solid 10px hsla(55, 12%, 40%, 0.315);
 }
-header h1, header div {
-    margin-left: 120px;
+.title, .subtitle {
+    
 }
 
-.serch {
-   
+.search {
+   margin-bottom: 20px;
+   height: 0px;
 }
 
 button-container {
@@ -38,6 +38,14 @@ button-container {
 #movie-images{
     justify-content: space-between;
     align-items: center;
+}
+
+footer {
+    background-color: tan;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 35px;
 }
 
 aboutPopcornBox{
