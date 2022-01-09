@@ -49,7 +49,9 @@ let resultsArea = document.querySelector('#movie-images');
 top10Btn.addEventListener("click", function () {
   getTopTen();
   // remove "genre" buttons if displayed from previous genre selector click.
-  // removeGenres();
+
+//   removeGenres();
+
 });
 
 // event listener to pull genre options for user to select
@@ -59,8 +61,9 @@ genreSelBtn.addEventListener("click", function () {
 
 // even listener for watchlist, displays previously saved movies
 watchlistBtn.addEventListener('click', function() {
-    // clear results area
+    // clear results area and genre buttons if they have been generated
     resultsArea.innerHTML = '';
+    document.querySelector("#genre-list").innerHTML = '';
     // if nothing in storage, display message
     if (storageArray.length === 0) {
         resultsArea.innerHTML = 'You have nothing saved to your Watchlist';
@@ -293,6 +296,8 @@ var getTVData = function(data, src) {
 
 var getTopTen = function() {                 
     resultsArea.innerHTML = '';
+    document.querySelector("#genre-list").innerHTML = '';
+
     // url pulls top 20 trending movies/shows for the day
     fetch(`${theMovieDbUrl}trending/all/day?api_key=${theMovieDbApiKey}`)
     .then(function(response) {
@@ -300,60 +305,75 @@ var getTopTen = function() {
         .then(function(data) {
             // data.results is the array of results
             let results = data.results;
-            console.log(results);
-            // loop through results array
-            for (let i = 0; i < 20; i++) {
-                let imgBlock = document.createElement('img');
-                imgBlock.setAttribute('id', `movie${i+1}`);
-                
-                // pull id for each index
-                let id = results[i].id;
-                // pull media type for each index (movie/tv show)
-                let mediaType = results[i].media_type;
-                // for each item, pull full entry from tmdb (to get url for poster)
-                fetch(`${theMovieDbUrl}${mediaType}/${id}?api_key=${theMovieDbApiKey}`)
-                .then(function(response) {
-                    response.json()
-                    .then(function(data) {
-                        console.log(data);
-                        // end of url for the poster
-                        let posterPath = data.poster_path;
-                        // full url for poster
-                        let fullUrl = `${imgBaseUrl}/${posterSize[1]}/${posterPath}`;
-                        // grab img element from html
-                        // let imgBlock = document.querySelector(`#movie${i+1}`);
-                        // set src attribute of imgBlock to full poster url
-                        imgBlock.setAttribute('src', fullUrl);
-                        if (mediaType === 'movie') {
-                            imgBlock.setAttribute('alt', `Poster for ${data.title}`)
-                        }
-                        if (mediaType === 'tv') {
-                            imgBlock.setAttribute('alt', `Poster for ${data.name}`)
-                        }
-                        imgBlock.setAttribute('data-imdbid', data.imdb_id);
-
-                        imgBlock.setAttribute('data-mediatype', mediaType);
-                        resultsArea.appendChild(imgBlock);
-                        imgBlock.addEventListener('click', function(e) {
-                            if (e.target.dataset.mediatype === 'movie'){
-                                let imdbID = e.target.dataset.imdbid 
-                                getMovieData(imdbID, posterPath);                            
-                            }
-                            else if (e.target.dataset.mediatype === 'tv') {
-                                getTVData(data, posterPath);
-                            }
-                        })
-                    })
-                })
-            }
-          ;
+            // run function to fill page with info from adults array
+            populateResultsArea(results);
         }
       );
     }
   );
 };
 
+
+function populateResultsArea(results) {
+        //    loop through results array
+        for (let i = 0; i < 10; i++) {
+        // create a block for each poster
+        let imgBlock = document.createElement('img');
+        // set id for each poster
+        imgBlock.setAttribute('id', `movie${i+1}`);
+        
+        // pull TMDB id for each index
+        let id = results[i].id;
+        // pull media type for each index (movie/tv show)
+        let mediaType = results[i].media_type;
+        if (!mediaType) {
+            mediaType = 'movie';
+        }
+        console.log(mediaType);
+        // for each item, pull full entry from tmdb (to get url for poster)
+        fetch(`${theMovieDbUrl}${mediaType}/${id}?api_key=${theMovieDbApiKey}`)
+        .then(function(response) {
+            response.json()
+            .then(function(data) {
+                console.log(data);
+                // end of url for the poster
+                let posterPath = data.poster_path;
+                // full url for poster
+                let fullUrl = `${imgBaseUrl}/${posterSize[1]}/${posterPath}`;
+                // set src attribute of imgBlock to full poster url
+                imgBlock.setAttribute('src', fullUrl);
+                // need to determine whether the item at this index is a movie or tv show to grab name/title
+                if (mediaType === 'movie') {
+                    imgBlock.setAttribute('alt', `Poster for ${data.title}`)
+                }
+                if (mediaType === 'tv') {
+                    imgBlock.setAttribute('alt', `Poster for ${data.name}`)
+                }
+                // set data attribute to be able to pull imdb_ids for movies
+                imgBlock.setAttribute('data-imdbid', data.imdb_id);
+
+                imgBlock.setAttribute('data-mediatype', mediaType);
+                // set data attribute for media type to pull correct data in future
+                resultsArea.appendChild(imgBlock);
+                // when images are clicked, more data will be returned for the item. Different process for movies and tv shows
+                imgBlock.addEventListener('click', function(e) {
+                    // if img clicked has is 'movie' mediatype, grab imdbID and pass to getMovieData function
+                    if (e.target.dataset.mediatype === 'movie'){
+                        let imdbID = e.target.dataset.imdbid 
+                        getMovieData(imdbID, posterPath);                            
+                    }
+                    // if img clicked is NOT a movie, take all data retrieved and pass to getTVData with url for poster
+                    else if (e.target.dataset.mediatype === 'tv') {
+                        getTVData(data, posterPath);
+                    }
+                })
+            })
+        })
+    };
+}
+
 // TODO: On click, show synopsis of movie or show -- use modal -- dismiss on click or swipe -- up for grabs! Working on it -- Claire
+
 
 // TODO: Add button to movie results/posters for local storage, cueing save to watchlist -- up for grabs! -- Colin
 
@@ -370,6 +390,7 @@ var loadGenres = function () {
     
       // viewing genre ids from array as dynamic buttons on html
       var parentDivEl = document.querySelector("#genre-list");
+
       parentDivEl.innerHTML="";
 
       for (var i = 0; i < data.genres.length; i++) {
@@ -390,12 +411,16 @@ var loadGenres = function () {
         button.addEventListener("click", function(event){
           searchByGenre(event.target.getAttribute('id'));
         });
-        parentDivEl.append(button);
-      }
-       
+
+        parentDivEl.appendChild(button);
+    }
+    //   event.target(genreSelBtn(stopPropagation());
+      // Prevent default load if button is clicked more than once, limit display to one occurrence. Remove additional elements if necessary.      
+
     });
   });
 };
+
 
 
 // function removeGenres(){
@@ -407,7 +432,10 @@ var loadGenres = function () {
 // }
 
 
+}
+
 var searchByGenre = function (genreDataId) {
+    resultsArea.innerHTML = '';
     console.log(genreDataId);
     //   // Here the user will select ONE genre as a filter and
       // on click, results of 10 movies for that genre will return to display.
@@ -415,7 +443,11 @@ var searchByGenre = function (genreDataId) {
     fetch( theMovieDbUrl + "discover/movie?api_key=" + theMovieDbApiKey + "&with_genres=" + genreDataId+ "&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate")
     .then(function (response){
     response.json().then(function (data) {
-      console.log(data);})})
+         // data.results is the array of results
+         let results = data.results;
+         // run function to fill page with info from adults array
+         populateResultsArea(results);    
+    })})
     //   for (i =0;)
 };
 
