@@ -8,67 +8,77 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.css">
     <title>Popcorn!</title>
 </head>
-  
 <body>
-    <header class="block has-background-info p-3">
-
-      <!--Jumbotron-->
-
-        <h1 class="has-text-white is-size-1 ml-5">Popcorn!</h1>
-        
-        <div class="has-text-right mr-5">
-            <input class="input m-5 py-5 nav-item" id="searchInput">
-            <button class="nav-item button is-big" id="searchBtn">Search</button>
-        </div>
-
-    </header>
 
     <main>
-       
-        <div class="container">
-            <section class="has-text-centered row has-background-success py-3" id="button-container">
-                <button class="button is-dark m-auto" id="top10Btn">Top Ten</button>
-                <button class="button is-dark m-auto" id="watchlist">Watchlist</button>
-                <button class="button is-dark m-auto" id="genreSel">Genre Selector</button>
-            </section>
-        </div>
+        <header class="block p-1">
+            <!--Jumbotron-->
+            <div>
+                <h1 class="title has-text-black is-size-1 m-5">Popcorn!</h1>
+                <div class="subtitle is-size-4 ml-5">If you want to choose a movie to spend nice time</div>
 
-        <div class="section">
-            <div class="container has-text-centered">
-                <div class="button nav-item">test3</div>
-                <div class="button nav-item">test2</div>
-                <div class="button nav-item">test3</div>
             </div>
-        </div>  
+            
+            <dive class="search level-right ">
+                <div class="field has-addons mr-5">
+                    <div class="control">
+                    <input class="input has-text-right" type="text" placeholder="Find your movie">
+                    </div>
+                    <div class="control">
+                    <a class="button is-info">Search</a>
+                    </div>
+                </div>
+            </dive>
+           
+        </header>
 
-        <div class="row has-text-centered">
-            <div id="genre-list"></div>
-            <div id="movie-images"><button class="modal-trigger" data-target="modal">
-                About
-              </button></div>
-        </div>
-     </div>
 
-     <div id="modal" class="modal">
-         <div class="modal-background"></div>
+        <main>
+            
+            <div class="columns is-centered">
+                <section class="column is-half has-text-centered row is-fluid py-2 is-rounded" id="button-container">
+                    <button class="button is-dark" id="top10Btn">Top Ten</button>
+                    <button class="button is-dark" id="myFav">Watchlist</button>
+                    <button class="button is-dark" id="genreSel">Genre Selector</button>
+                </section>
+            </div>
 
-         <div class="modal-content">
-             <div class="box">
-                 <!-- Not sure if we need these if they are already added dynamically from JS <p class="movieDetails"></p>
-                 <button class="saveToWatchlist"></button> -->
-             </div>
-             </div>
-             <button class="modal-close is large" area-label="modal-close"></button>
-     </div>
-
-     <div class="row">
-         <div id="aboutPopcornBox">
-             <!--This is where we describe how the app functions in simple terms for the user on the landing page, can disappear after function buttons are clicked-->
-            <p>We can decide if we want text here explaining the app or whatever</p>
-        </div>
-     </div>
-        
+            <div class="row has-text-centered">
+                <div id="genre-list"></div>
+                <div id="movie-images"><button class="modal-trigger" data-target="modal">
+                    About
+                  </button></div>
+            </div>
+         </div>
+    
+         <div id="modal" class="modal">
+             <div class="modal-background"></div>
+    
+             <div class="modal-content">
+                 <div class="box">
+                     <!-- Not sure if we need these if they are already added dynamically from JS <p class="movieDetails"></p>
+                     <button class="saveToWatchlist"></button> -->
+                 </div>
+                 </div>
+                 <button class="modal-close is large" area-label="modal-close"></button>
+         </div>
+    
+         <div class="row">
+             <div id="aboutPopcornBox">
+                 <!--This is where we describe how the app functions in simple terms for the user on the landing page, can disappear after function buttons are clicked-->
+                <p>We can decide if we want text here explaining the app or whatever</p>
+            </div>
+         </div>
+            
     </main>
+
+    <!-- footer -->
+    <footer class="footer has-text-centered has-background-warning p-0">
+        <p class="mt-1">
+        <strong>Popconre!</strong> by <a href="https://popconren.com">Colin, Claire, Omar, and Jake</a>. The content is fetched from <a href="http://www.themoviedb.org/">T M D B</a>.
+        </p>
+    </footer>
+    <!-- footer end -->
 </body>
 <script type='text/javascript' src='./assets/js/config.js'></script>
 <script src="assets/js/modal.js"></script>
