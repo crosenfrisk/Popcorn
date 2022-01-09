@@ -41,3 +41,7 @@ button-container {
     border: black 1px solid;
     width: 50%;
 }
+
+#movie-images img {
+    cursor: pointer;
+}
