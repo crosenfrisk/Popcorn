@@ -49,13 +49,14 @@ let resultsArea = document.querySelector('#movie-images');
 top10Btn.addEventListener("click", function () {
   getTopTen();
   // remove "genre" buttons if displayed from previous genre selector click.
+
 //   removeGenres();
+
 });
 
 // event listener to pull genre options for user to select
 genreSelBtn.addEventListener("click", function () {
     loadGenres();
-    // if genres are already loaded, do not let user click genreSelBtn again
 });
 
 // even listener for watchlist, displays previously saved movies
@@ -227,6 +228,11 @@ var getMovieData = function(imdbID, posterPath) {
 
             // append the container itself to results area (for now)
             resultsArea.appendChild(detailsEl);
+                // append details of container to modal, remove above ^ (resultsArea.appendChild(detailsEl))
+                // var modalEl = document.createElement("div");
+                // modal.className= "modal-content";
+                // modalEl.appendChild(detailsEl);
+                // modalEl..appendChild(saveBtn);
         })
     })
 }
@@ -277,6 +283,12 @@ var getTVData = function(data, src) {
     
     // append the details container to the end of the page (for now)
     resultsArea.appendChild(detailsEl)
+    // append details of container to modal, remove above ^ (resultsArea.appendChild(detailsEl))
+      // var modalEl = document.createElement("div");
+      // modal.className= "modal-content";
+      // modalEl.appendChild(detailsEl);
+      // modalEl..appendChild(saveBtn);
+
 }
 
 // https://api.themoviedb.org/3/trending/all/day?api_key=<<api_key>>
@@ -300,6 +312,7 @@ var getTopTen = function() {
     }
   );
 };
+
 
 function populateResultsArea(results) {
         //    loop through results array
@@ -358,13 +371,14 @@ function populateResultsArea(results) {
         })
     };
 }
-// TODO: On click, show synopsis of movie or show -- use modal -- dismiss on click or swipe -- up for grabs!
 
-// TODO: Add button to movie results/posters for local storage, cueing save to watchlist -- up for grabs!
+// TODO: On click, show synopsis of movie or show -- use modal -- dismiss on click or swipe -- up for grabs! Working on it -- Claire
+
+
+// TODO: Add button to movie results/posters for local storage, cueing save to watchlist -- up for grabs! -- Colin
 
 // Fetch genre options from TMDB api, targeting genre ids
 var loadGenres = function () {
-  resultsArea.innerHTML = '';
   fetch(
     theMovieDbUrl +
       "genre/movie/list?api_key=" +
@@ -376,9 +390,9 @@ var loadGenres = function () {
     
       // viewing genre ids from array as dynamic buttons on html
       var parentDivEl = document.querySelector("#genre-list");
-      parentDivEl.innerHTML = '';
-      
-        
+
+      parentDivEl.innerHTML="";
+
       for (var i = 0; i < data.genres.length; i++) {
         
         var genreDataId = data.genres[i].id;
@@ -394,34 +408,29 @@ var loadGenres = function () {
         button.textContent = data.genres[i].name;
         // console.log(button);
 
-         // var genreBtnEl = document.querySelectorAll(".genre");
-        // for (let i = 0; i < genreBtnEl.length; i++) {
-        //     genreBtnEl[i]. addEventListener("click", searchByGenre());
-        // }
-
-        // button.addEventListener("click", function(){
-        //     searchByGenre(genreDataId);
-
-        button.addEventListener("click", function(e){
-            searchByGenre(e.target.getAttribute('id'));
+        button.addEventListener("click", function(event){
+          searchByGenre(event.target.getAttribute('id'));
         });
+
         parentDivEl.appendChild(button);
     }
     //   event.target(genreSelBtn(stopPropagation());
       // Prevent default load if button is clicked more than once, limit display to one occurrence. Remove additional elements if necessary.      
+
     });
   });
 };
 
-function removeGenres(){
-    // Remove genre buttons from dynamic display
-    var parentDivEl = document.querySelector("#genre-list");
-    var removeGenreBtnsEl = document.getElementsByClassName("genre");
-    parentDivEl.remove(removeGenreBtnsEl);
-    // enable genreSelBtn to work again (some how I can't do both)
-};
 
-function getMovieImgs() {
+
+// function removeGenres(){
+//     // Remove genre buttons from dynamic display
+//     var parentDivEl = document.querySelector("#genre-list");
+//     var removeGenreBtnsEl = document.getElementsByClassName("genre");
+//     parentDivEl.remove(removeGenreBtnsEl);
+//     // enable genreSelBtn to work again (some how I can't do both)
+// }
+
 
 }
 

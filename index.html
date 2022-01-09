@@ -43,13 +43,27 @@
 
         <div class="row has-text-centered">
             <div id="genre-list"></div>
-            <div id="movie-images">
-            </div>
+            <div id="movie-images"><button class="modal-trigger" data-target="modal">
+                About
+              </button></div>
         </div>
+     </div>
+
+     <div id="modal" class="modal">
+         <div class="modal-background"></div>
+
+         <div class="modal-content">
+             <div class="box">
+                 <!-- Not sure if we need these if they are already added dynamically from JS <p class="movieDetails"></p>
+                 <button class="saveToWatchlist"></button> -->
+             </div>
+             </div>
+             <button class="modal-close is large" area-label="modal-close"></button>
      </div>
 
      <div class="row">
          <div id="aboutPopcornBox">
+             <!--This is where we describe how the app functions in simple terms for the user on the landing page, can disappear after function buttons are clicked-->
             <p>We can decide if we want text here explaining the app or whatever</p>
         </div>
      </div>
@@ -57,5 +71,6 @@
     </main>
 </body>
 <script type='text/javascript' src='./assets/js/config.js'></script>
+<script src="assets/js/modal.js"></script>
 <script src="assets/js/script.js"></script>
 </html>
