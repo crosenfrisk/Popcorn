@@ -51,7 +51,23 @@ let resultsArea = document.querySelector('#movie-images');
 
 // event listener for search button
 searchBtn.addEventListener('click', function() {
-    searchByKeyword(searchInputEl.value);
+    if (searchInputEl.value) {
+        searchByKeyword(searchInputEl.value);
+        searchInputEl.value = '';
+    }
+})
+
+// when enter is pressed
+document.addEventListener('keypress', function(e) {
+    // if the key pressed is 13 (enter) and there is any text in the input box
+    if (e.charCode === 13 && searchInputEl.value) {
+        resultsArea.innerHTML = '';
+        document.querySelector("#genre-list").innerHTML = '';
+        // run the search function
+        searchByKeyword(searchInputEl.value);
+        // reset input area to be blank
+        searchInputEl.value = '';
+    }
 })
 // event listener to pull trending movies
 top10Btn.addEventListener("click", function () {
