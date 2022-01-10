@@ -43,7 +43,7 @@ let searchInputEl = document.querySelector('#searchInput');
 // grabbing buttons from html
 let top10Btn = document.querySelector("#top10Btn");
 let genreSelBtn = document.querySelector("#genreSel");
-let watchlistBtn = document.querySelector("#watchlist");
+let watchlistBtn = document.querySelector("#watchList");
 let searchBtn = document.querySelector('#searchBtn');
 
 // grab results area for display
@@ -71,7 +71,10 @@ document.addEventListener('keypress', function(e) {
 })
 // event listener to pull trending movies
 top10Btn.addEventListener("click", function () {
+  // clear "genre" buttons if displayed from previous genre selector click.
+  resultsArea.innerHTML = ''; // not working as expected
   getTopTen();
+
   // remove "genre" buttons if displayed from previous genre selector click.
 
 //   removeGenres();
@@ -366,12 +369,20 @@ function populateResultsArea(results) {
             response.json()
             .then(function(data) {
                 console.log(data);
-                // end of url for the poster
-                let posterPath = data.poster_path;
-                // full url for poster
-                let fullUrl = `${imgBaseUrl}/${posterSize[1]}/${posterPath}`;
-                // set src attribute of imgBlock to full poster url
-                imgBlock.setAttribute('src', fullUrl);
+                if (data.poster_path === null) {
+                    imgBlock.setAttribute('class', 'dummy-poster')
+                    imgBlock.setAttribute('src', 'assets/images/dummy-poster.png')
+                    console.log('null poster path');
+                }
+                else {
+                    // end of url for the poster
+                    let posterPath = data.poster_path;
+                    // full url for poster
+                    let fullUrl = `${imgBaseUrl}/${posterSize[1]}/${posterPath}`;
+                    // set src attribute of imgBlock to full poster url
+                    imgBlock.setAttribute('src', fullUrl);
+
+                }
                 // need to determine whether the item at this index is a movie or tv show to grab name/title for alt tags
                 if (mediaType === 'movie') {
                     imgBlock.setAttribute('alt', `Poster for ${data.title}`)
