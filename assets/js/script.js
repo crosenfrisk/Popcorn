@@ -1,25 +1,25 @@
-// base url for api calls
+// base url and api keys for both apis from config file
 var theMovieDbUrl = "https://api.themoviedb.org/3/";
-// api key pulled from config file
 var theMovieDbApiKey = config.theMovieDbApiKey;
-var omdbAPIKey = config.omdbAPIKey;
 var omdbBaseUrl = 'http://www.omdbapi.com/?apikey='
+var omdbAPIKey = config.omdbAPIKey;
 
 // placeholder for data that will be pulled from getConfigInfo
-// poster urls are -- imgBaseUrl/posterSize/[poster_path]
 let imgBaseUrl = null;
-let configData = null;
+// poster urls are -- imgBaseUrl/posterSize/[poster_path]
 let posterSize = null;
+let configData = null;
 
 // array to store watchlist items
 let storageArray = [];
 
-// if there is a watchlist in storage, set those items to the value of the storage array. If there are no items the storageArray will be empty
+// if there is a watchlist in storage, set those items to the value of the storage array. If there are no items the storageArray will be empty until items are added
 if (localStorage.watchlist) {
     storageArray = JSON.parse(localStorage.watchlist)
 }
 // get configuration data from TMDB api
 var getConfigInfo = function() {
+    // fetch config data from TMDB API - it includes info we'll need to get urls for posters
     fetch('https://api.themoviedb.org/3/configuration?api_key=' + theMovieDbApiKey)
     .then(function(response) {
         response.json()
@@ -37,21 +37,48 @@ var getConfigInfo = function() {
 // get the config data after document loads
 document.addEventListener("DOMContentLoaded", getConfigInfo);
 
+// grab input element for searches
+let searchInputEl = document.querySelector('#searchInput');
+
 // grabbing buttons from html
 let top10Btn = document.querySelector("#top10Btn");
 let genreSelBtn = document.querySelector("#genreSel");
-let watchlistBtn = document.querySelector("#watchlist");
+let watchlistBtn = document.querySelector("#watchList");
+let searchBtn = document.querySelector('#searchBtn');
 
 // grab results area for display
 let resultsArea = document.querySelector('#movie-images');
 
+// event listener for search button
+searchBtn.addEventListener('click', function() {
+    if (searchInputEl.value) {
+        searchByKeyword(searchInputEl.value);
+        searchInputEl.value = '';
+    }
+})
+
+// when enter is pressed
+document.addEventListener('keypress', function(e) {
+    // if the key pressed is 13 (enter) and there is any text in the input box
+    if (e.charCode === 13 && searchInputEl.value) {
+        resultsArea.innerHTML = '';
+        document.querySelector("#genre-list").innerHTML = '';
+        // run the search function
+        searchByKeyword(searchInputEl.value);
+        // reset input area to be blank
+        searchInputEl.value = '';
+    }
+})
 // event listener to pull trending movies
 top10Btn.addEventListener("click", function () {
   // clear "genre" buttons if displayed from previous genre selector click.
   resultsArea.innerHTML = ''; // not working as expected
   getTopTen();
- 
-  // removeGenres();
+
+  // remove "genre" buttons if displayed from previous genre selector click.
+
+//   removeGenres();
+
 });
 
 // event listener to pull genre options for user to select
@@ -61,8 +88,9 @@ genreSelBtn.addEventListener("click", function () {
 
 // even listener for watchlist, displays previously saved movies
 watchlistBtn.addEventListener('click', function() {
-    // clear results area
+    // clear results area and genre buttons if they have been generated
     resultsArea.innerHTML = '';
+    document.querySelector("#genre-list").innerHTML = '';
     // if nothing in storage, display message
     if (storageArray.length === 0) {
         resultsArea.innerHTML = 'You have nothing saved to your Watchlist';
@@ -70,7 +98,7 @@ watchlistBtn.addEventListener('click', function() {
         for (let i = 0; i < storageArray.length; i++) {
             // check to see if movie or tv show - if tv show, it will NOT have property imdbID
             if (!storageArray[i].data.imdbID) {
-                // create a div to hold all the info for each item in watch list
+            // create a div to hold all the info for each item in watch list
             let itemContainer = document.createElement('div');
 
             // create img element
@@ -105,6 +133,7 @@ watchlistBtn.addEventListener('click', function() {
 
             // add whole container to results area
             resultsArea.appendChild(itemContainer);
+            // else statements is for items WITH imdbID, meaning they are type 'movie'
             } else {
 
                 let detailsEl = document.createElement('div');
@@ -185,7 +214,8 @@ var getMovieData = function(imdbID, posterPath) {
             let director = data.Director;
             let runTime = data.Runtime;
 
-           let fullPosterPath = `${imgBaseUrl}/${posterSize[3]}/${posterPath}`;
+            // construct url for poster from different pieces of data collected from TMDB API
+            let fullPosterPath = `${imgBaseUrl}/${posterSize[3]}/${posterPath}`;
 
             // create html elements to hold all that data, append them to container
             let imgEl = document.createElement('img');
@@ -213,7 +243,7 @@ var getMovieData = function(imdbID, posterPath) {
             detailsEl.appendChild(directorEl);
 
             let runTimeEl = document.createElement('p');
-            runTimeEl.textContent = `Running Time:${runTime}`;
+            runTimeEl.textContent = `Running Time: ${runTime}`;
             detailsEl.appendChild(runTimeEl);            
 
             // create save button
@@ -221,6 +251,7 @@ var getMovieData = function(imdbID, posterPath) {
             saveBtn.textContent = 'Save to Watchlist';
             detailsEl.appendChild(saveBtn);
 
+            // data for this item will be saved to watchlist on click
             saveBtn.addEventListener('click', function() {
                 saveItem(posterPath, data)
             })
@@ -229,8 +260,9 @@ var getMovieData = function(imdbID, posterPath) {
             resultsArea.appendChild(detailsEl);
                 // append details of container to modal, remove above ^ (resultsArea.appendChild(detailsEl))
                 // var modalEl = document.createElement("div");
-                // modal.className= "modal-content";
+                // modalEl.className = "modal-content";
                 // modalEl.appendChild(detailsEl);
+                // resultsArea.appendChild(modalEl);
                 // modalEl..appendChild(saveBtn);
         })
     })
@@ -295,6 +327,8 @@ var getTVData = function(data, src) {
 
 var getTopTen = function() {                 
     resultsArea.innerHTML = '';
+    document.querySelector("#genre-list").innerHTML = '';
+
     // url pulls top 20 trending movies/shows for the day
     fetch(`${theMovieDbUrl}trending/all/day?api_key=${theMovieDbApiKey}`)
     .then(function(response) {
@@ -302,60 +336,78 @@ var getTopTen = function() {
         .then(function(data) {
             // data.results is the array of results
             let results = data.results;
-            console.log(results);
-            // loop through results array
-            for (let i = 0; i < 20; i++) {
-                let imgBlock = document.createElement('img');
-                imgBlock.setAttribute('id', `movie${i+1}`);
-                
-                // pull id for each index
-                let id = results[i].id;
-                // pull media type for each index (movie/tv show)
-                let mediaType = results[i].media_type;
-                // for each item, pull full entry from tmdb (to get url for poster)
-                fetch(`${theMovieDbUrl}${mediaType}/${id}?api_key=${theMovieDbApiKey}`)
-                .then(function(response) {
-                    response.json()
-                    .then(function(data) {
-                        console.log(data);
-                        // end of url for the poster
-                        let posterPath = data.poster_path;
-                        // full url for poster
-                        let fullUrl = `${imgBaseUrl}/${posterSize[1]}/${posterPath}`;
-                        // grab img element from html
-                        // let imgBlock = document.querySelector(`#movie${i+1}`);
-                        // set src attribute of imgBlock to full poster url
-                        imgBlock.setAttribute('src', fullUrl);
-                        if (mediaType === 'movie') {
-                            imgBlock.setAttribute('alt', `Poster for ${data.title}`)
-                        }
-                        if (mediaType === 'tv') {
-                            imgBlock.setAttribute('alt', `Poster for ${data.name}`)
-                        }
-                        imgBlock.setAttribute('data-imdbid', data.imdb_id);
-
-                        imgBlock.setAttribute('data-mediatype', mediaType);
-                        resultsArea.appendChild(imgBlock);
-                        imgBlock.addEventListener('click', function(e) {
-                            if (e.target.dataset.mediatype === 'movie'){
-                                let imdbID = e.target.dataset.imdbid 
-                                getMovieData(imdbID, posterPath);                            
-                            }
-                            else if (e.target.dataset.mediatype === 'tv') {
-                                getTVData(data, posterPath);
-                            }
-                        })
-                    })
-                })
-            }
-          ;
+            // run function to fill page with info from results array
+            populateResultsArea(results);
         }
       );
     }
   );
 };
 
+
+function populateResultsArea(results) {
+        //    loop through results array
+        for (let i = 0; i < 10; i++) {
+        // create a block for each poster
+        let imgBlock = document.createElement('img');
+        // set id for each poster
+        imgBlock.setAttribute('id', `movie${i+1}`);
+        
+        // pull TMDB id for each index
+        let id = results[i].id;
+        // pull media type for each index (movie/tv show)
+        let mediaType = results[i].media_type;
+        // this is a bit of a hack - items receieved from search by genre are only movies so media type is not given
+        // SO if there is NO media type, it will be set to movie
+        if (!mediaType) {
+            mediaType = 'movie';
+        }
+        console.log(mediaType);
+        // for each item, pull full entry from tmdb (to get url for poster)
+        fetch(`${theMovieDbUrl}${mediaType}/${id}?api_key=${theMovieDbApiKey}`)
+        .then(function(response) {
+            response.json()
+            .then(function(data) {
+                console.log(data);
+                // end of url for the poster
+                let posterPath = data.poster_path;
+                // full url for poster
+                let fullUrl = `${imgBaseUrl}/${posterSize[1]}/${posterPath}`;
+                // set src attribute of imgBlock to full poster url
+                imgBlock.setAttribute('src', fullUrl);
+                // need to determine whether the item at this index is a movie or tv show to grab name/title for alt tags
+                if (mediaType === 'movie') {
+                    imgBlock.setAttribute('alt', `Poster for ${data.title}`)
+                }
+                if (mediaType === 'tv') {
+                    imgBlock.setAttribute('alt', `Poster for ${data.name}`)
+                }
+                // set data attribute to be able to pull imdb_ids for movies
+                imgBlock.setAttribute('data-imdbid', data.imdb_id);
+
+                // set data attribute for media type to pull correct data in future
+                imgBlock.setAttribute('data-mediatype', mediaType);
+                // append that image to the results area
+                resultsArea.appendChild(imgBlock);
+                // when images are clicked, more data will be returned for the item. Different process for movies and tv shows
+                imgBlock.addEventListener('click', function(e) {
+                    // if img clicked has is 'movie' mediatype, grab imdbID and pass to getMovieData function
+                    if (e.target.dataset.mediatype === 'movie'){
+                        let imdbID = e.target.dataset.imdbid 
+                        getMovieData(imdbID, posterPath);                            
+                    }
+                    // if img clicked is NOT a movie, take all data retrieved and pass to getTVData with url for poster
+                    else if (e.target.dataset.mediatype === 'tv') {
+                        getTVData(data, posterPath);
+                    }
+                })
+            })
+        })
+    };
+}
+
 // TODO: On click, show synopsis of movie or show -- use modal -- dismiss on click or swipe -- up for grabs! Working on it -- Claire
+
 
 // TODO: Add button to movie results/posters for local storage, cueing save to watchlist -- up for grabs! -- Colin
 
@@ -369,9 +421,10 @@ var loadGenres = function () {
   ).then(function (response) {
     response.json().then(function (data) {
       console.log(data);
-    
+      resultsArea.innerHTML = '';
       // viewing genre ids from array as dynamic buttons on html
       var parentDivEl = document.querySelector("#genre-list");
+
       parentDivEl.innerHTML="";
 
       for (var i = 0; i < data.genres.length; i++) {
@@ -392,12 +445,16 @@ var loadGenres = function () {
         button.addEventListener("click", function(event){
           searchByGenre(event.target.getAttribute('id'));
         });
-        parentDivEl.append(button);
-      }
-       
+
+        parentDivEl.appendChild(button);
+    }
+    //   event.target(genreSelBtn(stopPropagation());
+      // Prevent default load if button is clicked more than once, limit display to one occurrence. Remove additional elements if necessary.      
+
     });
   });
 };
+
 
 
 // function removeGenres(){
@@ -410,6 +467,7 @@ var loadGenres = function () {
 
 
 var searchByGenre = function (genreDataId) {
+    resultsArea.innerHTML = '';
     console.log(genreDataId);
     //   // Here the user will select ONE genre as a filter and
       // on click, results of 10 movies for that genre will return to display.
@@ -417,11 +475,27 @@ var searchByGenre = function (genreDataId) {
     fetch( theMovieDbUrl + "discover/movie?api_key=" + theMovieDbApiKey + "&with_genres=" + genreDataId+ "&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate")
     .then(function (response){
     response.json().then(function (data) {
-      console.log(data);})})
+         // data.results is the array of results
+         let results = data.results;
+         // run function to fill page with info from adults array
+         populateResultsArea(results);    
+    })})
     //   for (i =0;)
 };
 
 
+// https://api.themoviedb.org/3/search/keyword?api_key=<<api_key>>&page=1
+function searchByKeyword (input) {
+    let keywordUrl = `${theMovieDbUrl}search/movie?api_key=${theMovieDbApiKey}&query=${input}`;
+    fetch(keywordUrl)
+    .then(function (response) {
+        response.json()
+        .then(function (data) {
+            let results = data.results;
+            populateResultsArea(results);
+        })
+    })
+}
 
 
 // TODO: Keyword search can filter request using Search, Discover, or Keyword API; clear input after submit -- Omar
