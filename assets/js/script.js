@@ -354,7 +354,7 @@ function populateResultsArea(results) {
         let id = results[i].id;
         // pull media type for each index (movie/tv show)
         let mediaType = results[i].media_type;
-        // this is a bit of a hack - items receieved from search by genre are only movies so media type is not given
+        // this is a bit of a hack - items received from search by genre are only movies so media type is not given
         // SO if there is NO media type, it will be set to movie
         if (!mediaType) {
             mediaType = 'movie';
