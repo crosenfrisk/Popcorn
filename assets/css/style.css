@@ -1,5 +1,7 @@
  /* Add root/body rules :)  */
-
+/* * {
+    box-sizing: border-box;
+} */
 /* header h1{} */
 
 /* #searchInput{} */
