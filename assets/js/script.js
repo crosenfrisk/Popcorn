@@ -111,8 +111,8 @@ watchlistBtn.addEventListener('click', function() {
             // grab the other data
             let name = storageArray[i].data.name;
             let overview = storageArray[i].data.overview;
-            let network = storageArray[i].data.networks[0].name;
-            let seasons = storageArray[i].data.number_of_seasons;
+            let network = 'Network: ' + storageArray[i].data.networks[0].name;
+            let seasons = 'Number of Seasons: ' + storageArray[i].data.number_of_seasons;
 
             // create html elements to contain all that info, append those elements to details container
             let showNameEl = document.createElement('p');
@@ -140,9 +140,23 @@ watchlistBtn.addEventListener('click', function() {
 
                 // pull all relevant data from response
                 let title = storageArray[i].data.Title;
-                let rating = storageArray[i].data.Rated;
+
+                let rating = '';
+                if (storageArray[i].data.Rated === 'N/A') {
+                    rating = 'Not rated'
+                } else {
+                    rating = storageArray[i].data.Rated
+                }
+                
                 let genres = storageArray[i].data.Genre;
-                let plot = storageArray[i].data.Plot;
+
+                let plot = '';
+                if (storageArray[i].data.Plot === 'N/A') {
+                    plot = 'No synopsis available';
+                } else {
+                    plot = storageArray[i].data.Plot
+                }
+                
                 let director = storageArray[i].data.Director;
                 let runTime = storageArray[i].data.Runtime;
     
