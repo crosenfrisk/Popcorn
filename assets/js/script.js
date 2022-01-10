@@ -366,12 +366,20 @@ function populateResultsArea(results) {
             response.json()
             .then(function(data) {
                 console.log(data);
-                // end of url for the poster
-                let posterPath = data.poster_path;
-                // full url for poster
-                let fullUrl = `${imgBaseUrl}/${posterSize[1]}/${posterPath}`;
-                // set src attribute of imgBlock to full poster url
-                imgBlock.setAttribute('src', fullUrl);
+                if (data.poster_path === null) {
+                    imgBlock.setAttribute('class', 'dummy-poster')
+                    imgBlock.setAttribute('src', 'assets/images/dummy-poster.png')
+                    console.log('null poster path');
+                }
+                else {
+                    // end of url for the poster
+                    let posterPath = data.poster_path;
+                    // full url for poster
+                    let fullUrl = `${imgBaseUrl}/${posterSize[1]}/${posterPath}`;
+                    // set src attribute of imgBlock to full poster url
+                    imgBlock.setAttribute('src', fullUrl);
+
+                }
                 // need to determine whether the item at this index is a movie or tv show to grab name/title for alt tags
                 if (mediaType === 'movie') {
                     imgBlock.setAttribute('alt', `Poster for ${data.title}`)
