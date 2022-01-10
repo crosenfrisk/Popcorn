@@ -214,8 +214,16 @@ var getMovieData = function(imdbID, posterPath) {
             let director = data.Director;
             let runTime = data.Runtime;
 
-            // construct url for poster from different pieces of data collected from TMDB API
-            let fullPosterPath = `${imgBaseUrl}/${posterSize[3]}/${posterPath}`;
+            let fullPosterPath = ''
+
+            if (posterPath === 'assets/images/dummy-poster.png') {
+                fullPosterPath = 'assets/images/dummy-poster.png';
+            }
+            else {
+                // construct url for poster from different pieces of data collected from TMDB API
+                fullPosterPath = `${imgBaseUrl}/${posterSize[3]}/${posterPath}`;
+            }
+
 
             // create html elements to hold all that data, append them to container
             let imgEl = document.createElement('img');
@@ -369,14 +377,17 @@ function populateResultsArea(results) {
             response.json()
             .then(function(data) {
                 console.log(data);
+                let posterPath = (data.poster_path || 'assets/images/dummy-poster.png')
                 if (data.poster_path === null) {
                     imgBlock.setAttribute('class', 'dummy-poster')
-                    imgBlock.setAttribute('src', 'assets/images/dummy-poster.png')
+                    
+                    imgBlock.setAttribute('src', posterPath)
                     console.log('null poster path');
+                    
                 }
                 else {
                     // end of url for the poster
-                    let posterPath = data.poster_path;
+                    
                     // full url for poster
                     let fullUrl = `${imgBaseUrl}/${posterSize[1]}/${posterPath}`;
                     // set src attribute of imgBlock to full poster url
@@ -518,7 +529,13 @@ function searchByKeyword (input) {
 // 4. when the user clicks watchlist, the items saved in storage will be displayed again to the screen
 
 function saveItem(imgUrl, data) {
-    let fullPosterPath = `${imgBaseUrl}/${posterSize[1]}/${imgUrl}`;
+    let fullPosterPath = '';
+    if (imgUrl === 'assets/images/dummy-poster.png') {
+        fullPosterPath = imgUrl;
+    }
+    else {
+        fullPosterPath = `${imgBaseUrl}/${posterSize[1]}/${imgUrl}`;
+    }
     let itemObject = {
         url: fullPosterPath,
         data: data
