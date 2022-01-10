@@ -5,26 +5,18 @@
 /* #searchInput{} */
 
 /* #searchBtn{} */
-main {
-    height: auto;
-    margin: auto;
+body {
+    background-image: url("/assets/images/bg-body.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 }
 
 header {
-    background-color: hsl(54, 95%, 42%);
-    border-bottom: solid 10px hsla(55, 12%, 40%, 0.315);
-}
-.title, .subtitle {
-    
-}
+    background-image: url("/assets/images/bg-1.jpeg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 
-.search {
-   margin-bottom: 20px;
-   height: 0px;
-}
-
-body {
-    background-image: src="assets\images\red-striped-background.jpg";
+   
 }
 
 button-container {
@@ -44,19 +36,11 @@ button-container {
     align-items: center;
 }
 
-footer {
-    background-color: tan;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 35px;
-}
-
-aboutPopcornBox{
+#aboutPopcornBox{
     margin-top: 5px;
-    margin-right: px;
+    margin-right: 150px;
     margin-bottom: 5px;
-    margin-left: px;
+    margin-left: 300px;
     text-align: justify;
     border: black 1px solid;
     width: 50%;
