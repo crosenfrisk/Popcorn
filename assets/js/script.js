@@ -71,7 +71,10 @@ document.addEventListener('keypress', function(e) {
 })
 // event listener to pull trending movies
 top10Btn.addEventListener("click", function () {
+  // clear "genre" buttons if displayed from previous genre selector click.
+  resultsArea.innerHTML = ''; // not working as expected
   getTopTen();
+
   // remove "genre" buttons if displayed from previous genre selector click.
 
 //   removeGenres();
