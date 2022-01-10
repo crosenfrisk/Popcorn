@@ -1,0 +1,47 @@
+ /* Add root/body rules :)  */
+
+/* header h1{} */
+
+/* #searchInput{} */
+
+/* #searchBtn{} */
+body {
+    background-image: url("/assets/images/bg-body.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+header {
+    background-image: url("/assets/images/bg-1.jpeg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+
+   
+}
+
+button-container {
+    /*border: 1px solid black;*/
+    margin-top: 5px;
+    margin-right: 150px;
+    margin-bottom: 5px;
+    margin-left: 150px;
+    padding: 5px;
+    width: 80%;
+    flex-wrap: wrap;
+    position: flex;
+}
+
+#movie-images{
+    justify-content: space-between;
+    align-items: center;
+}
+
+#aboutPopcornBox{
+    margin-top: 5px;
+    margin-right: 150px;
+    margin-bottom: 5px;
+    margin-left: 300px;
+    text-align: justify;
+    border: black 1px solid;
+    width: 50%;
+}
