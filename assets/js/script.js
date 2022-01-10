@@ -204,65 +204,81 @@ var getMovieData = function(imdbID, posterPath) {
             console.log(data);
             // make a container to put all the details
             let detailsEl = document.createElement('div');
-
-
-            // pull all relevant data from response
-            let title = data.Title;
-            let rating = data.Rated;
-            let genres = data.Genre;
-            let plot = data.Plot;
-            let director = data.Director;
-            let runTime = data.Runtime;
-
-            let fullPosterPath = ''
-
-            if (posterPath === 'assets/images/dummy-poster.png') {
-                fullPosterPath = 'assets/images/dummy-poster.png';
+            if (data.Response === 'False') {
+                detailsEl.textContent = 'No more information for this title';
             }
+
             else {
-                // construct url for poster from different pieces of data collected from TMDB API
-                fullPosterPath = `${imgBaseUrl}/${posterSize[3]}/${posterPath}`;
+
+                // pull all relevant data from response
+                let title = data.Title;
+                let rating = '';
+                if (data.Rated === 'N/A') {
+                    rating = 'Not rated';
+                } else {
+                    rating = data.Rated;
+                }
+                let genres = data.Genre;
+
+                let plot = '';
+                if (data.Plot === 'N/A') {
+                    plot = 'No synopsis available'
+                } else {
+                    plot = data.Plot;
+                }
+                let director = data.Director;
+                let runTime = data.Runtime;
+    
+                let fullPosterPath = ''
+    
+                if (posterPath === 'assets/images/dummy-poster.png') {
+                    fullPosterPath = 'assets/images/dummy-poster.png';
+                }
+                else {
+                    // construct url for poster from different pieces of data collected from TMDB API
+                    fullPosterPath = `${imgBaseUrl}/${posterSize[3]}/${posterPath}`;
+                }
+    
+    
+                // create html elements to hold all that data, append them to container
+                let imgEl = document.createElement('img');
+                imgEl.setAttribute('src', fullPosterPath);
+                detailsEl.appendChild(imgEl);
+    
+                let titleEl = document.createElement('p');
+                titleEl.textContent = title;
+                detailsEl.appendChild(titleEl);
+    
+                let ratingEl = document.createElement('p');
+                ratingEl.textContent = rating;
+                detailsEl.appendChild(ratingEl);
+    
+                let genresEl = document.createElement('p');
+                genresEl.textContent = genres;
+                detailsEl.appendChild(genresEl);
+    
+                let plotEl = document.createElement('p');
+                plotEl.textContent = plot;
+                detailsEl.appendChild(plotEl);
+    
+                let directorEl = document.createElement('p');
+                directorEl.textContent = `Director: ${director}`;
+                detailsEl.appendChild(directorEl);
+    
+                let runTimeEl = document.createElement('p');
+                runTimeEl.textContent = `Running Time: ${runTime}`;
+                detailsEl.appendChild(runTimeEl);            
+    
+                // create save button
+                let saveBtn = document.createElement('button');
+                saveBtn.textContent = 'Save to Watchlist';
+                detailsEl.appendChild(saveBtn);
+    
+                // data for this item will be saved to watchlist on click
+                saveBtn.addEventListener('click', function() {
+                    saveItem(posterPath, data)
+                })
             }
-
-
-            // create html elements to hold all that data, append them to container
-            let imgEl = document.createElement('img');
-            imgEl.setAttribute('src', fullPosterPath);
-            detailsEl.appendChild(imgEl);
-
-            let titleEl = document.createElement('p');
-            titleEl.textContent = title;
-            detailsEl.appendChild(titleEl);
-
-            let ratingEl = document.createElement('p');
-            ratingEl.textContent = rating;
-            detailsEl.appendChild(ratingEl);
-
-            let genresEl = document.createElement('p');
-            genresEl.textContent = genres;
-            detailsEl.appendChild(genresEl);
-
-            let plotEl = document.createElement('p');
-            plotEl.textContent = plot;
-            detailsEl.appendChild(plotEl);
-
-            let directorEl = document.createElement('p');
-            directorEl.textContent = `Director: ${director}`;
-            detailsEl.appendChild(directorEl);
-
-            let runTimeEl = document.createElement('p');
-            runTimeEl.textContent = `Running Time: ${runTime}`;
-            detailsEl.appendChild(runTimeEl);            
-
-            // create save button
-            let saveBtn = document.createElement('button');
-            saveBtn.textContent = 'Save to Watchlist';
-            detailsEl.appendChild(saveBtn);
-
-            // data for this item will be saved to watchlist on click
-            saveBtn.addEventListener('click', function() {
-                saveItem(posterPath, data)
-            })
 
             // append the container itself to results area (for now)
             resultsArea.appendChild(detailsEl);
@@ -303,11 +319,11 @@ var getTVData = function(data, src) {
     detailsEl.appendChild(showOverviewEl);
 
     let showNetworkEl = document.createElement('p');
-    showNetworkEl.textContent = network;
+    showNetworkEl.textContent = 'Network: ' + network;
     detailsEl.appendChild(showNetworkEl);
 
     let showSeasonsEl = document.createElement('p');
-    showSeasonsEl.textContent = seasons;
+    showSeasonsEl.textContent = 'Number of seasons: ' + seasons;
     detailsEl.appendChild(showSeasonsEl);
 
     // create save button
