@@ -43,7 +43,7 @@ let searchInputEl = document.querySelector('#searchInput');
 // grabbing buttons from html
 let top10Btn = document.querySelector("#top10Btn");
 let genreSelBtn = document.querySelector("#genreSel");
-let watchlistBtn = document.querySelector("#watchlist");
+let watchlistBtn = document.querySelector("#watchList");
 let searchBtn = document.querySelector('#searchBtn');
 
 // grab results area for display
