@@ -16,6 +16,15 @@ h1 em {
     color: #fcf4e0;
 }
 
+header .img {
+    /* display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; */
+    position: fixed;
+    margin-left: 400px;
+    float: right;
+}
+
 .search {
    margin-bottom: 20px;
    height: 0px;
