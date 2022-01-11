@@ -224,6 +224,7 @@ var getMovieData = function(imdbID, posterPath) {
             console.log(data);
             // make a container to put all the details
             let detailsEl = document.createElement('div');
+
             if (data.Response === 'False') {
                 detailsEl.textContent = 'No more information for this title';
             }
@@ -291,8 +292,11 @@ var getMovieData = function(imdbID, posterPath) {
     
                 // create save button
                 let saveBtn = document.createElement('button');
+                saveBtn.classList = 'saveButton';
                 saveBtn.textContent = 'Save to Watchlist';
                 detailsEl.appendChild(saveBtn);
+
+
     
                 // data for this item will be saved to watchlist on click
                 saveBtn.addEventListener('click', function() {
@@ -348,6 +352,7 @@ var getTVData = function(data, src) {
 
     // create save button
     let saveBtn = document.createElement('button');
+    saveBtn.classList = 'saveButton';
     saveBtn.textContent = 'Save to Watchlist';
     // click even listener for save button
     saveBtn.addEventListener('click', function() {
