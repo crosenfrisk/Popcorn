@@ -210,6 +210,9 @@ watchlistBtn.addEventListener('click', function() {
             storageArray = [];
             resultsArea.innerHTML = 'Your watchlist has been cleared';
         })
+
+        // Create button to clear individual item from watchlist
+
     }
 })
 
@@ -289,14 +292,21 @@ var getMovieData = function(imdbID, posterPath) {
     
                 let runTimeEl = document.createElement('p');
                 runTimeEl.textContent = `Running Time: ${runTime}`;
-                detailsEl.appendChild(runTimeEl);            
+                detailsEl.appendChild(runTimeEl);       
+                
+                // create id to dynamically identify div from others in watchlist
+                // var removeItemEl = document.createElement("button");
+                // removeItemEl.className = "button";
+                // removeItemEl.textContent = "Remove Item from Watchlist"; //or "X"
+                // removeItemEl.id = data.genres.id;
+                // console.log(data.genres.id);
+                // console.log("testing", removeItemEl);
     
                 // create save button
                 let saveBtn = document.createElement('button');
                 saveBtn.classList = 'saveButton';
                 saveBtn.textContent = 'Save to Watchlist';
                 detailsEl.appendChild(saveBtn);
-
 
     
                 // data for this item will be saved to watchlist on click
@@ -305,14 +315,9 @@ var getMovieData = function(imdbID, posterPath) {
                 })
             }
 
-            // append the container itself to results area (for now)
+            // append the container itself to modal
             document.querySelector('.modal-content').appendChild(detailsEl);
-                // append details of container to modal, remove above ^ (resultsArea.appendChild(detailsEl))
-                // var modalEl = document.createElement("div");
-                // modalEl.className = "modal-content";
-                // modalEl.appendChild(detailsEl);
-                // resultsArea.appendChild(modalEl);
-                // modalEl..appendChild(saveBtn);
+
         })
     })
 }
