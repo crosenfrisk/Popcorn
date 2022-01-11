@@ -59,7 +59,7 @@ Claire acted as SCRUM master, lead communicator. She created the initial reposit
 [Bulma](https://bulma.io/)
 Used for styling our CSS
 
-[DrawIO] (https://app.diagrams.net)
+[Draw.io](https://app.diagrams.net)
 Used for creation of wireframes
 
 [Canva](https://www.canva.com/)
