@@ -77,8 +77,11 @@ Used for the creation of dummy movie poster for "missing" posters.
 ## Server-Side APIs:
 
 USED: 
-* [The Movie DB](https://developers.themoviedb.org) -- for the movie posters, genres, descriptions. 
-* [OMDB](https://www.omdbapi.com/) -- for descriptions and posters of TV shows.
+* [The Movie DB](https://developers.themoviedb.org) -- for the movie posters, genres, descriptions. Allows more comprehensive ways to search for recommendations.
+Endpoints used - Configuration, Genres, Search, Trending
+
+* [OMDB](https://www.omdbapi.com/) -- for in depth details for movies.
+Endpoints used - Search by IMDB ID
 
 CONSULTED:
 * [IMDB](https://imdb-api.com) -- referenced but not used.
