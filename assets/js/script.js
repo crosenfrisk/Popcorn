@@ -253,8 +253,8 @@ var getMovieData = function(imdbID, posterPath) {
     
                 let fullPosterPath = ''
     
-                if (posterPath === 'assets/images/dummyposterupgrade.png') {
-                    fullPosterPath = 'assets/images/dummyposterupgrade.png';
+                if (posterPath === 'assets/images/dummyposterupgrade.jpg') {
+                    fullPosterPath = 'assets/images/dummyposterupgrade.jpg';
                 }
                 else {
                     // construct url for poster from different pieces of data collected from TMDB API
@@ -375,7 +375,8 @@ var getTVData = function(data, src) {
 // https://api.themoviedb.org/3/trending/all/day?api_key=<<api_key>>
 // fetch movie data from TMDB API
 
-var getTopTen = function() {                 
+var getTopTen = function() {         
+// Prevent default load if button is clicked more than once, limit display to one occurrence. Remove additional elements if necessary.          
     resultsArea.innerHTML = '';
     document.querySelector("#genre-list").innerHTML = '';
 
@@ -422,7 +423,7 @@ function populateResultsArea(results) {
             response.json()
             .then(function(data) {
                 console.log(data);
-                let posterPath = (data.poster_path || 'assets/images/dummyposterupgrade.png')
+                let posterPath = (data.poster_path || 'assets/images/dummyposterupgrade.jpg')
                 containerDiv.appendChild(imgBlock);
                 if (data.poster_path === null) {
                     imgBlock.setAttribute('class', 'dummy-poster')
@@ -480,11 +481,6 @@ function populateResultsArea(results) {
     };
 }
 
-// TODO: On click, show synopsis of movie or show -- use modal -- dismiss on click or swipe -- up for grabs! Working on it -- Claire
-
-
-// TODO: Add button to movie results/posters for local storage, cueing save to watchlist -- up for grabs! -- Colin
-
 // Fetch genre options from TMDB api, targeting genre ids
 var loadGenres = function () {
   fetch(
@@ -521,23 +517,11 @@ var loadGenres = function () {
         });
 
         parentDivEl.appendChild(button);
-    }
-    //   event.target(genreSelBtn(stopPropagation());
-      // Prevent default load if button is clicked more than once, limit display to one occurrence. Remove additional elements if necessary.      
+    }   
 
     });
   });
 };
-
-
-
-// function removeGenres(){
-//     // Remove genre buttons from dynamic display
-//     var parentDivEl = document.querySelector("#genre-list");
-//     var removeGenreBtnsEl = document.getElementsByClassName("genre");
-//     parentDivEl.remove(removeGenreBtnsEl);
-//     // enable genreSelBtn to work again (some how I can't do both)
-// }
 
 
 var searchByGenre = function (genreDataId) {
@@ -554,7 +538,6 @@ var searchByGenre = function (genreDataId) {
          // run function to fill page with info from adults array
          populateResultsArea(results);    
     })})
-    //   for (i =0;)
 };
 
 
@@ -585,7 +568,7 @@ function searchByKeyword (input) {
 
 function saveItem(imgUrl, data) {
     let fullPosterPath = '';
-    if (imgUrl === 'assets/images/dummyposterupgrade.png') {
+    if (imgUrl === 'assets/images/dummyposterupgrade.jpg') {
         fullPosterPath = imgUrl;
     }
     else {
