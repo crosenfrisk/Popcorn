@@ -84,10 +84,6 @@ top10Btn.addEventListener("click", function () {
   resultsArea.innerHTML = ''; // not working as expected
   getTopTen();
 
-  // remove "genre" buttons if displayed from previous genre selector click.
-
-//   removeGenres();
-
 });
 
 // event listener to pull genre options for user to select
@@ -325,14 +321,6 @@ var getMovieData = function(imdbID, posterPath) {
                 let runTimeEl = document.createElement('p');
                 runTimeEl.textContent = `Running Time: ${runTime}`;
                 detailsEl.appendChild(runTimeEl);       
-                
-                // create id to dynamically identify div from others in watchlist
-                // var removeItemEl = document.createElement("button");
-                // removeItemEl.className = "button";
-                // removeItemEl.textContent = "Remove Item from Watchlist"; //or "X"
-                // removeItemEl.id = data.genres.id;
-                // console.log(data.genres.id);
-                // console.log("testing", removeItemEl);
     
                 // create save button
                 let saveBtn = document.createElement('button');
@@ -399,13 +387,8 @@ var getTVData = function(data, src) {
     // append save button to details container
     detailsEl.appendChild(saveBtn);
     
-    // append the details container to the end of the page (for now)
+    // append the details container to modal
     modalContentArea.appendChild(detailsEl)
-    // append details of container to modal, remove above ^ (resultsArea.appendChild(detailsEl))
-      // var modalEl = document.createElement("div");
-      // modal.className= "modal-content";
-      // modalEl.appendChild(detailsEl);
-      // modalEl..appendChild(saveBtn);
 
 }
 
