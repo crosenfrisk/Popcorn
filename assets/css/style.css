@@ -42,7 +42,7 @@ button-container {
 
 footer {
     background-color: tan;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
     height: 35px;
