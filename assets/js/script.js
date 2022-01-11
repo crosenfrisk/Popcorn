@@ -199,6 +199,7 @@ watchlistBtn.addEventListener('click', function() {
                 resultsArea.appendChild(detailsEl);
             }
         }
+        
         // create button to clear watchlist
         let clearBtn = document.createElement('button');
         clearBtn.textContent = 'Clear Watchlist';
