@@ -252,8 +252,8 @@ var getMovieData = function(imdbID, posterPath) {
     
                 let fullPosterPath = ''
     
-                if (posterPath === 'assets/images/dummy-poster.png') {
-                    fullPosterPath = 'assets/images/dummy-poster.png';
+                if (posterPath === 'assets/images/dummyposterupgrade.png') {
+                    fullPosterPath = 'assets/images/dummyposterupgrade.png';
                 }
                 else {
                     // construct url for poster from different pieces of data collected from TMDB API
@@ -397,6 +397,9 @@ var getTopTen = function() {
 function populateResultsArea(results) {
         //    loop through results array
         for (let i = 0; i < 10; i++) {
+            // container for each item
+            let containerDiv = document.createElement('div');
+            containerDiv.setAttribute('class', 'poster-container');
         // create a block for each poster
         let imgBlock = document.createElement('img');
         // set id for each poster
@@ -418,12 +421,18 @@ function populateResultsArea(results) {
             response.json()
             .then(function(data) {
                 console.log(data);
-                let posterPath = (data.poster_path || 'assets/images/dummy-poster.png')
+                let posterPath = (data.poster_path || 'assets/images/dummyposterupgrade.png')
+                containerDiv.appendChild(imgBlock);
                 if (data.poster_path === null) {
                     imgBlock.setAttribute('class', 'dummy-poster')
-                    
-                    imgBlock.setAttribute('src', posterPath)
+                    imgBlock.setAttribute('src', posterPath);
                     console.log('null poster path');
+
+                    // overlay title on dummy image
+                    let overlayTitleEl = document.createElement('p');
+                    overlayTitleEl.textContent = data.title;
+                    overlayTitleEl.setAttribute('class', 'overlay-title')
+                    containerDiv.appendChild(overlayTitleEl);
                     
                 }
                 else {
@@ -447,8 +456,11 @@ function populateResultsArea(results) {
 
                 // set data attribute for media type to pull correct data in future
                 imgBlock.setAttribute('data-mediatype', mediaType);
+
+                // // append imgBlock to containerDiv
+                // containerDiv.appendChild(imgBlock)
                 // append that image to the results area
-                resultsArea.appendChild(imgBlock);
+                resultsArea.appendChild(containerDiv);
                 // when images are clicked, more data will be returned for the item. Different process for movies and tv shows
                 imgBlock.addEventListener('click', function(e) {
                     itemModal.classList.add('is-active');
@@ -572,7 +584,7 @@ function searchByKeyword (input) {
 
 function saveItem(imgUrl, data) {
     let fullPosterPath = '';
-    if (imgUrl === 'assets/images/dummy-poster.png') {
+    if (imgUrl === 'assets/images/dummyposterupgrade.png') {
         fullPosterPath = imgUrl;
     }
     else {
