@@ -29,8 +29,6 @@
                 </dive>
             
             </header>
-
-            <main>
                 
                 <div class="columns is-centered">
                     <section class="column is-half has-text-centered row is-fluid py-2 is-rounded" id="button-container">
@@ -52,17 +50,7 @@
                 </div>
                 
         
-            <div class="row">
-                <div id="aboutPopcornBox">
-                    <!--This is where we describe how the app functions in simple terms for the user on the landing page, can disappear after function buttons are clicked-->
-                    <p>We can decide if we want text here explaining the app or whatever</p>
-                </div>
-            </div>
-
             <!--Modal of about us and how the app works-->
-            
-                
-        </main>
 
         <div class="modal">
             <div class="modal-background"></div>
@@ -73,19 +61,40 @@
                 <p>Click outside this box to go back to the main page</p>
                 <p>Have a nice time</p> -->
             </div>
-        </div>
 
-        <!-- footer -->
-        <footer class="footer has-text-centered has-background-warning p-0">
-            <p class="mt-1">
-            <strong>Popconre!</strong> by <a href="https://popconren.com">Colin, Claire, Omar, and Jake</a>. The content is fetched from <a href="http://www.themoviedb.org/">T M D B</a>.
-            </p>
-        </footer>
-        <!-- footer end -->
+         </div>
+    
+         <div id="modal" class="modal">
+             <div class="modal-background"></div>
+    
+             <div class="modal-content">
+                 <div class="box">
+                     <!-- Not sure if we need these if they are already added dynamically from JS <p class="movieDetails"></p>
+                     <button class="saveToWatchlist"></button> -->
+                 </div>
+                 </div>
+                 <button class="modal-close is large" area-label="modal-close"></button>
+         </div>
+    
+         <!-- <div class="row">
+             <div id="aboutPopcornBox">
+                 <!--This is where we describe how the app functions in simple terms for the user on the landing page, can disappear after function buttons are clicked-->
+                <p>We can decide if we want text here explaining the app or whatever</p>
+            </div>
+         </div> -->
+            
+    </main>
 
-        <script type='text/javascript' src='assets/js/config.js'></script>
-        <script src="assets/js/script.js"></script>
-        <script src="assets/js/modal.js"></script>
-    </body>
+    <!-- footer -->
+    <footer class="footer has-text-centered has-background-warning p-0">
+        <p class="mt-1">
+        <strong>Popcorn!</strong> by <a href="https://crosenfrisk.github.io/Popcorn/">Colin, Claire, Omar, and Jake</a>. The content is fetched from <a href="http://www.themoviedb.org/">TMDB</a> and <a href="https://www.omdbapi.com/"> OMDB</a>.
+        </p>
+    </footer>
+    <!-- footer end -->
+</body>
+<script type='text/javascript' src='./assets/js/config.js'></script>
+<script src="assets/js/modal.js"></script>
+<script src="assets/js/script.js"></script>
 
 </html>
