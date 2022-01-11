@@ -20,10 +20,10 @@
                 <dive class="search level-right ">
                     <div class="field has-addons mr-5">
                         <div class="control">
-                        <input class="input has-text-right" type="text" placeholder="Find your movie">
+                        <input class="input has-text-right" type="text" placeholder="Find your movie" id="searchInput">
                         </div>
                         <div class="control">
-                        <a class="button is-info">Search</a>
+                        <a class="button is-info" id="searchBtn">Search</a>
                         </div>
                     </div>
                 </dive>
@@ -35,12 +35,20 @@
                 <div class="columns is-centered">
                     <section class="column is-half has-text-centered row is-fluid py-2 is-rounded" id="button-container">
                         <button class="button is-dark" id="top10Btn">Top Ten</button>
-                        <button class="button is-dark" id="myFav">Watchlist</button>
+                        <button class="button is-dark" id="watchList">Watchlist</button>
                         <button class="button is-dark" id="genreSel">Genre Selector</button>
                         <button class="button is-dark" id="about">This App</button>
                     </section>
                 </div>
 
+                <div id="main-area" class="has-text-centered">
+                    <div id="genre-list">
+
+                    </div>
+                    <div id="movie-images">
+    
+                    </div>
+                </div>
                 
         
             <div class="row">
@@ -57,12 +65,12 @@
 
         <div class="modal">
             <div class="modal-background"></div>
-            <div class="modal-content has-text-white has-background-info p-5">
-                <h3 class="title has-text-white p-5 mb-5">How the app works</h3>
+            <div class="modal-content has-text-white has-background-info p-5" id="modal-content-area">
+                <!-- <h3 class="title has-text-white p-5 mb-5">How the app works</h3>
                 <p>You can search for the movie you want to watch by clickig on buttons 'Top Ten' or 'Watchlist' after you choose it and 'Genre Select.</p>
                 <p>After the search result presented to you you can click once on any of the movies to read its details</p>
                 <p>Click outside this box to go back to the main page</p>
-                <p>Have a nice time</p>
+                <p>Have a nice time</p> -->
             </div>
         </div>
 
@@ -74,7 +82,7 @@
         </footer>
         <!-- footer end -->
 
-        <script type='text/javascript' src='config.js'></script>
+        <script type='text/javascript' src='assets/js/config.js'></script>
         <script src="assets/js/script.js"></script>
         <script src="assets/js/modal.js"></script>
     </body>

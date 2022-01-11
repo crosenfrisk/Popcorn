@@ -49,6 +49,11 @@ let searchBtn = document.querySelector('#searchBtn');
 // grab results area for display
 let resultsArea = document.querySelector('#movie-images');
 
+// access modal for item data
+const itemModalBg = document.querySelector('.modal-background');
+const itemModal = document.querySelector('.modal');
+
+
 // event listener for search button
 searchBtn.addEventListener('click', function() {
     if (searchInputEl.value) {
@@ -209,6 +214,7 @@ watchlistBtn.addEventListener('click', function() {
 
 // called if media_type is 'movie', calls OMDB API for movie details
 var getMovieData = function(imdbID, posterPath) {
+    modalContentArea.innerHTML = '';
     console.log(imdbID, 'this is a movie');
     // fetch using imdbID passed as argument
     fetch(`${omdbBaseUrl}${omdbAPIKey}&i=${imdbID}`)
@@ -218,6 +224,7 @@ var getMovieData = function(imdbID, posterPath) {
             console.log(data);
             // make a container to put all the details
             let detailsEl = document.createElement('div');
+
             if (data.Response === 'False') {
                 detailsEl.textContent = 'No more information for this title';
             }
@@ -285,8 +292,11 @@ var getMovieData = function(imdbID, posterPath) {
     
                 // create save button
                 let saveBtn = document.createElement('button');
+                saveBtn.classList = 'saveButton';
                 saveBtn.textContent = 'Save to Watchlist';
                 detailsEl.appendChild(saveBtn);
+
+
     
                 // data for this item will be saved to watchlist on click
                 saveBtn.addEventListener('click', function() {
@@ -295,7 +305,7 @@ var getMovieData = function(imdbID, posterPath) {
             }
 
             // append the container itself to results area (for now)
-            resultsArea.appendChild(detailsEl);
+            document.querySelector('.modal-content').appendChild(detailsEl);
                 // append details of container to modal, remove above ^ (resultsArea.appendChild(detailsEl))
                 // var modalEl = document.createElement("div");
                 // modalEl.className = "modal-content";
@@ -308,7 +318,7 @@ var getMovieData = function(imdbID, posterPath) {
 
 // get details for tv shows, using data passes as argument from other function
 var getTVData = function(data, src) {
-
+    modalContentArea.innerHTML = '';
     // create container for all details
     let detailsEl = document.createElement('div');
     
@@ -342,6 +352,7 @@ var getTVData = function(data, src) {
 
     // create save button
     let saveBtn = document.createElement('button');
+    saveBtn.classList = 'saveButton';
     saveBtn.textContent = 'Save to Watchlist';
     // click even listener for save button
     saveBtn.addEventListener('click', function() {
@@ -351,7 +362,7 @@ var getTVData = function(data, src) {
     detailsEl.appendChild(saveBtn);
     
     // append the details container to the end of the page (for now)
-    resultsArea.appendChild(detailsEl)
+    modalContentArea.appendChild(detailsEl)
     // append details of container to modal, remove above ^ (resultsArea.appendChild(detailsEl))
       // var modalEl = document.createElement("div");
       // modal.className= "modal-content";
@@ -440,6 +451,7 @@ function populateResultsArea(results) {
                 resultsArea.appendChild(imgBlock);
                 // when images are clicked, more data will be returned for the item. Different process for movies and tv shows
                 imgBlock.addEventListener('click', function(e) {
+                    itemModal.classList.add('is-active');
                     // if img clicked has is 'movie' mediatype, grab imdbID and pass to getMovieData function
                     if (e.target.dataset.mediatype === 'movie'){
                         let imdbID = e.target.dataset.imdbid 
