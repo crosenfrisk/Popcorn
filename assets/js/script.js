@@ -460,6 +460,7 @@ function populateResultsArea(results) {
             response.json()
             .then(function(data) {
                 console.log(data);
+
                 let posterPath = (data.poster_path || 'assets/images/dummyposterupgrade.jpg')
                 containerDiv.appendChild(imgBlock);
                 if (data.poster_path === null) {
