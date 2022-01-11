@@ -1,26 +1,51 @@
- /* Add root/body rules :)  */
+:root {
+    background-color: #fcf4e0;
+}
 
-/* header h1{} */
-
-/* #searchInput{} */
-
-/* #searchBtn{} */
 main {
     height: auto;
     margin: auto;
 }
 
 header {
-    background-color: hsl(54, 95%, 42%);
-    border-bottom: solid 10px hsla(55, 12%, 40%, 0.315);
+    background-color: #F85D5D;
+    border-bottom: solid 3px hsla(55, 12%, 40%, 0.315);
 }
+
+h1 em {
+    color: #fcf4e0;
+}
+
+header div {
+    position: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.image-h {
+    /* display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; */
+    position: fixed;
+    margin-left: 4px;
+    float: right;
+}
+
 
 .search {
    margin-bottom: 20px;
    height: 0px;
 }
 
-button-container {
+body {
+    background-color: #fcf4e0;
+}
+
+html {
+    background-color: #fcf4e0;
+}
+
+.button-container {
     /*border: 1px solid black;*/
     margin-top: 5px;
     margin-right: 150px;
@@ -80,13 +105,6 @@ footer {
     height: 35px;
 }
 
-
-aboutPopcornBox{
-    margin-top: 5px;
-    margin-right: px;
-    margin-bottom: 5px;
-    margin-left: px;
-    text-align: justify;
-    border: black 1px solid;
-    width: 50%;
+footer p strong{
+font-style: italic;
 }
