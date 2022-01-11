@@ -1,7 +1,6 @@
- /* Add root/body rules :)  */
-/* * {
-    box-sizing: border-box;
-} */
+:root {
+    background-color: #fcf4e0;
+}
 
 main {
     height: auto;
