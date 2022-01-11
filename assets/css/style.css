@@ -22,6 +22,14 @@ h1 em {
    height: 0px;
 }
 
+body {
+    background-color: #fcf4e0;
+}
+
+html {
+    background-color: #fcf4e0;
+}
+
 .button-container {
     /*border: 1px solid black;*/
     margin-top: 5px;
@@ -68,7 +76,7 @@ h1 em {
     border-radius: 10px;
 }
 
-.about img {
+.aboutimg {
     width: 200px;
     float: right;
     margin-left: 10px;
