@@ -49,6 +49,11 @@ let searchBtn = document.querySelector('#searchBtn');
 // grab results area for display
 let resultsArea = document.querySelector('#movie-images');
 
+// access modal for item data
+const itemModalBg = document.querySelector('.modal-background');
+const itemModal = document.querySelector('.modal');
+
+
 // event listener for search button
 searchBtn.addEventListener('click', function() {
     if (searchInputEl.value) {
@@ -111,8 +116,8 @@ watchlistBtn.addEventListener('click', function() {
             // grab the other data
             let name = storageArray[i].data.name;
             let overview = storageArray[i].data.overview;
-            let network = storageArray[i].data.networks[0].name;
-            let seasons = storageArray[i].data.number_of_seasons;
+            let network = 'Network: ' + storageArray[i].data.networks[0].name;
+            let seasons = 'Number of Seasons: ' + storageArray[i].data.number_of_seasons;
 
             // create html elements to contain all that info, append those elements to details container
             let showNameEl = document.createElement('p');
@@ -140,9 +145,23 @@ watchlistBtn.addEventListener('click', function() {
 
                 // pull all relevant data from response
                 let title = storageArray[i].data.Title;
-                let rating = storageArray[i].data.Rated;
+
+                let rating = '';
+                if (storageArray[i].data.Rated === 'N/A') {
+                    rating = 'Not rated'
+                } else {
+                    rating = storageArray[i].data.Rated
+                }
+                
                 let genres = storageArray[i].data.Genre;
-                let plot = storageArray[i].data.Plot;
+
+                let plot = '';
+                if (storageArray[i].data.Plot === 'N/A') {
+                    plot = 'No synopsis available';
+                } else {
+                    plot = storageArray[i].data.Plot
+                }
+                
                 let director = storageArray[i].data.Director;
                 let runTime = storageArray[i].data.Runtime;
     
@@ -195,6 +214,7 @@ watchlistBtn.addEventListener('click', function() {
 
 // called if media_type is 'movie', calls OMDB API for movie details
 var getMovieData = function(imdbID, posterPath) {
+    modalContentArea.innerHTML = '';
     console.log(imdbID, 'this is a movie');
     // fetch using imdbID passed as argument
     fetch(`${omdbBaseUrl}${omdbAPIKey}&i=${imdbID}`)
@@ -205,59 +225,87 @@ var getMovieData = function(imdbID, posterPath) {
             // make a container to put all the details
             let detailsEl = document.createElement('div');
 
+            if (data.Response === 'False') {
+                detailsEl.textContent = 'No more information for this title';
+            }
 
-            // pull all relevant data from response
-            let title = data.Title;
-            let rating = data.Rated;
-            let genres = data.Genre;
-            let plot = data.Plot;
-            let director = data.Director;
-            let runTime = data.Runtime;
+            else {
 
-            // construct url for poster from different pieces of data collected from TMDB API
-            let fullPosterPath = `${imgBaseUrl}/${posterSize[3]}/${posterPath}`;
+                // pull all relevant data from response
+                let title = data.Title;
+                let rating = '';
+                if (data.Rated === 'N/A') {
+                    rating = 'Not rated';
+                } else {
+                    rating = data.Rated;
+                }
+                let genres = data.Genre;
 
-            // create html elements to hold all that data, append them to container
-            let imgEl = document.createElement('img');
-            imgEl.setAttribute('src', fullPosterPath);
-            detailsEl.appendChild(imgEl);
+                let plot = '';
+                if (data.Plot === 'N/A') {
+                    plot = 'No synopsis available'
+                } else {
+                    plot = data.Plot;
+                }
+                let director = data.Director;
+                let runTime = data.Runtime;
+    
+                let fullPosterPath = ''
+    
+                if (posterPath === 'assets/images/dummyposterupgrade.png') {
+                    fullPosterPath = 'assets/images/dummyposterupgrade.png';
+                }
+                else {
+                    // construct url for poster from different pieces of data collected from TMDB API
+                    fullPosterPath = `${imgBaseUrl}/${posterSize[3]}/${posterPath}`;
+                }
+    
+    
+                // create html elements to hold all that data, append them to container
+                let imgEl = document.createElement('img');
+                imgEl.setAttribute('src', fullPosterPath);
+                detailsEl.appendChild(imgEl);
+    
+                let titleEl = document.createElement('p');
+                titleEl.textContent = title;
+                detailsEl.appendChild(titleEl);
+    
+                let ratingEl = document.createElement('p');
+                ratingEl.textContent = rating;
+                detailsEl.appendChild(ratingEl);
+    
+                let genresEl = document.createElement('p');
+                genresEl.textContent = genres;
+                detailsEl.appendChild(genresEl);
+    
+                let plotEl = document.createElement('p');
+                plotEl.textContent = plot;
+                detailsEl.appendChild(plotEl);
+    
+                let directorEl = document.createElement('p');
+                directorEl.textContent = `Director: ${director}`;
+                detailsEl.appendChild(directorEl);
+    
+                let runTimeEl = document.createElement('p');
+                runTimeEl.textContent = `Running Time: ${runTime}`;
+                detailsEl.appendChild(runTimeEl);            
+    
+                // create save button
+                let saveBtn = document.createElement('button');
+                saveBtn.classList = 'saveButton';
+                saveBtn.textContent = 'Save to Watchlist';
+                detailsEl.appendChild(saveBtn);
 
-            let titleEl = document.createElement('p');
-            titleEl.textContent = title;
-            detailsEl.appendChild(titleEl);
 
-            let ratingEl = document.createElement('p');
-            ratingEl.textContent = rating;
-            detailsEl.appendChild(ratingEl);
-
-            let genresEl = document.createElement('p');
-            genresEl.textContent = genres;
-            detailsEl.appendChild(genresEl);
-
-            let plotEl = document.createElement('p');
-            plotEl.textContent = plot;
-            detailsEl.appendChild(plotEl);
-
-            let directorEl = document.createElement('p');
-            directorEl.textContent = `Director: ${director}`;
-            detailsEl.appendChild(directorEl);
-
-            let runTimeEl = document.createElement('p');
-            runTimeEl.textContent = `Running Time: ${runTime}`;
-            detailsEl.appendChild(runTimeEl);            
-
-            // create save button
-            let saveBtn = document.createElement('button');
-            saveBtn.textContent = 'Save to Watchlist';
-            detailsEl.appendChild(saveBtn);
-
-            // data for this item will be saved to watchlist on click
-            saveBtn.addEventListener('click', function() {
-                saveItem(posterPath, data)
-            })
+    
+                // data for this item will be saved to watchlist on click
+                saveBtn.addEventListener('click', function() {
+                    saveItem(posterPath, data)
+                })
+            }
 
             // append the container itself to results area (for now)
-            resultsArea.appendChild(detailsEl);
+            document.querySelector('.modal-content').appendChild(detailsEl);
                 // append details of container to modal, remove above ^ (resultsArea.appendChild(detailsEl))
                 // var modalEl = document.createElement("div");
                 // modalEl.className = "modal-content";
@@ -270,7 +318,7 @@ var getMovieData = function(imdbID, posterPath) {
 
 // get details for tv shows, using data passes as argument from other function
 var getTVData = function(data, src) {
-
+    modalContentArea.innerHTML = '';
     // create container for all details
     let detailsEl = document.createElement('div');
     
@@ -295,15 +343,16 @@ var getTVData = function(data, src) {
     detailsEl.appendChild(showOverviewEl);
 
     let showNetworkEl = document.createElement('p');
-    showNetworkEl.textContent = network;
+    showNetworkEl.textContent = 'Network: ' + network;
     detailsEl.appendChild(showNetworkEl);
 
     let showSeasonsEl = document.createElement('p');
-    showSeasonsEl.textContent = seasons;
+    showSeasonsEl.textContent = 'Number of seasons: ' + seasons;
     detailsEl.appendChild(showSeasonsEl);
 
     // create save button
     let saveBtn = document.createElement('button');
+    saveBtn.classList = 'saveButton';
     saveBtn.textContent = 'Save to Watchlist';
     // click even listener for save button
     saveBtn.addEventListener('click', function() {
@@ -313,7 +362,7 @@ var getTVData = function(data, src) {
     detailsEl.appendChild(saveBtn);
     
     // append the details container to the end of the page (for now)
-    resultsArea.appendChild(detailsEl)
+    modalContentArea.appendChild(detailsEl)
     // append details of container to modal, remove above ^ (resultsArea.appendChild(detailsEl))
       // var modalEl = document.createElement("div");
       // modal.className= "modal-content";
@@ -348,6 +397,9 @@ var getTopTen = function() {
 function populateResultsArea(results) {
         //    loop through results array
         for (let i = 0; i < 10; i++) {
+            // container for each item
+            let containerDiv = document.createElement('div');
+            containerDiv.setAttribute('class', 'poster-container');
         // create a block for each poster
         let imgBlock = document.createElement('img');
         // set id for each poster
@@ -357,7 +409,7 @@ function populateResultsArea(results) {
         let id = results[i].id;
         // pull media type for each index (movie/tv show)
         let mediaType = results[i].media_type;
-        // this is a bit of a hack - items receieved from search by genre are only movies so media type is not given
+        // this is a bit of a hack - items received from search by genre are only movies so media type is not given
         // SO if there is NO media type, it will be set to movie
         if (!mediaType) {
             mediaType = 'movie';
@@ -369,12 +421,29 @@ function populateResultsArea(results) {
             response.json()
             .then(function(data) {
                 console.log(data);
-                // end of url for the poster
-                let posterPath = data.poster_path;
-                // full url for poster
-                let fullUrl = `${imgBaseUrl}/${posterSize[1]}/${posterPath}`;
-                // set src attribute of imgBlock to full poster url
-                imgBlock.setAttribute('src', fullUrl);
+                let posterPath = (data.poster_path || 'assets/images/dummyposterupgrade.png')
+                containerDiv.appendChild(imgBlock);
+                if (data.poster_path === null) {
+                    imgBlock.setAttribute('class', 'dummy-poster')
+                    imgBlock.setAttribute('src', posterPath);
+                    console.log('null poster path');
+
+                    // overlay title on dummy image
+                    let overlayTitleEl = document.createElement('p');
+                    overlayTitleEl.textContent = data.title;
+                    overlayTitleEl.setAttribute('class', 'overlay-title')
+                    containerDiv.appendChild(overlayTitleEl);
+                    
+                }
+                else {
+                    // end of url for the poster
+                    
+                    // full url for poster
+                    let fullUrl = `${imgBaseUrl}/${posterSize[1]}/${posterPath}`;
+                    // set src attribute of imgBlock to full poster url
+                    imgBlock.setAttribute('src', fullUrl);
+
+                }
                 // need to determine whether the item at this index is a movie or tv show to grab name/title for alt tags
                 if (mediaType === 'movie') {
                     imgBlock.setAttribute('alt', `Poster for ${data.title}`)
@@ -387,10 +456,14 @@ function populateResultsArea(results) {
 
                 // set data attribute for media type to pull correct data in future
                 imgBlock.setAttribute('data-mediatype', mediaType);
+
+                // // append imgBlock to containerDiv
+                // containerDiv.appendChild(imgBlock)
                 // append that image to the results area
-                resultsArea.appendChild(imgBlock);
+                resultsArea.appendChild(containerDiv);
                 // when images are clicked, more data will be returned for the item. Different process for movies and tv shows
                 imgBlock.addEventListener('click', function(e) {
+                    itemModal.classList.add('is-active');
                     // if img clicked has is 'movie' mediatype, grab imdbID and pass to getMovieData function
                     if (e.target.dataset.mediatype === 'movie'){
                         let imdbID = e.target.dataset.imdbid 
@@ -510,7 +583,13 @@ function searchByKeyword (input) {
 // 4. when the user clicks watchlist, the items saved in storage will be displayed again to the screen
 
 function saveItem(imgUrl, data) {
-    let fullPosterPath = `${imgBaseUrl}/${posterSize[1]}/${imgUrl}`;
+    let fullPosterPath = '';
+    if (imgUrl === 'assets/images/dummyposterupgrade.png') {
+        fullPosterPath = imgUrl;
+    }
+    else {
+        fullPosterPath = `${imgBaseUrl}/${posterSize[1]}/${imgUrl}`;
+    }
     let itemObject = {
         url: fullPosterPath,
         data: data
