@@ -1,4 +1,5 @@
-main {
+:root {
+    background-color: rgba(128, 128, 128, 0.199);
     height: auto;
     margin: auto;
 }
@@ -46,8 +47,16 @@ button-container {
     border-radius: 1rem;
 }
 
+.modal-content{
+    background: -webkit-linear-gradient(right, #D75D5D, #e0d52e);
+    border-radius:1pc;
+    width: 300px;
+    
+}
+
 .modal img {
     float: right;
+    width: 200x;
 }
 
 .modal p {
@@ -55,10 +64,12 @@ button-container {
 }
 
 .saveButton {
-    margin: 30px;
-    background-color: rgba(255, 255, 0, 0.849);
+    margin: 0 50px 20px 50px;
+    background: -webkit-linear-gradient(right, #D75D5D, #e0d52e);
     padding: 5px;
-    border-radius: 10px;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 0;
 }
 
 .aboutimg {
@@ -80,9 +91,6 @@ footer p strong{
     }
     
     /* styles for save button in modal */
-    .saveButton {
-        
-    }
     
 /* styles for genre buttons */
 .genre {
@@ -98,7 +106,7 @@ footer p strong{
 
 .clear-watchlist{
     margin: 2px;
-    background-color: #1DA1F2;
+    background: -webkit-linear-gradient(right, #D75D5D, #e0d52e);
     padding: 5px;
     border-radius: 5px;
     width: 200px;
@@ -112,10 +120,10 @@ footer p strong{
 /* styles for button to remove a single item */
 .remove-item {
     margin: 2px;
-    background-color: #1DA1F2;
+    background-color: rgb(252, 244, 224);
     padding: 5px;
     border-radius: 5px;
-    color: white;
+    color:v black;
    
 }
     
@@ -137,6 +145,11 @@ footer p strong{
     #main-area {
         margin: 0 0px;
     }
+.modal img {
+    float: right;
+    width: 200x;
+}
+
     footer {
         background-color: tan;
         position: fixed;
