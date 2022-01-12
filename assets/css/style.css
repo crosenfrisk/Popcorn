@@ -101,3 +101,24 @@ footer {
 footer p strong{
 font-style: italic;
 }
+
+/* styles for save button in modal */
+.saveButton {
+    
+}
+
+/* styles for genre buttons */
+.genre {
+
+}
+
+/* styles for clear watch list button */
+
+.clear-watchlist{
+    
+}
+
+/* styles for button to remove a single item */
+.remove-item {
+
+}
