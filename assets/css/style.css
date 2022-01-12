@@ -1,5 +1,5 @@
 :root {
-    background-color: rgba(128, 128, 128, 0.199);
+    background-color: rgba(128, 128, 128, 0.096);
     height: auto;
     margin: auto;
 }
@@ -7,6 +7,10 @@
 header {
     background: -webkit-linear-gradient(right, #D75D5D, #e0d52e);
     border-bottom: solid 10px hsla(55, 12%, 40%, 0.315);
+}
+header img {
+    float: center;
+    margin-bottom: 10px;
 }
 
 .search {
@@ -95,10 +99,10 @@ footer p strong{
 /* styles for genre buttons */
 .genre {
     margin: 2px;
-    background-color: #1DA1F2;
+    background-color: rgba(128, 128, 128, 0.096);
     padding: 5px;
     border-radius: 5px;
-    color:white;
+    color:hsl(204, 86%, 53%);
     
 }
 
