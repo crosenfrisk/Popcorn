@@ -114,26 +114,26 @@ if (storageArray.length === 0) {
 
         // grab the other data
         let name = storageArray[i].data.name;
-        let overview = storageArray[i].data.overview;
-        let network = 'Network: ' + storageArray[i].data.networks[0].name;
-        let seasons = 'Number of Seasons: ' + storageArray[i].data.number_of_seasons;
+        // let overview = storageArray[i].data.overview;
+        // let network = 'Network: ' + storageArray[i].data.networks[0].name;
+        // let seasons = 'Number of Seasons: ' + storageArray[i].data.number_of_seasons;
 
         // create html elements to contain all that info, append those elements to details container
         let showNameEl = document.createElement('p');
         showNameEl.textContent = name;
         itemContainer.appendChild(showNameEl);
 
-        let showOverviewEl = document.createElement('p');
-        showOverviewEl.textContent = overview;
-        itemContainer.appendChild(showOverviewEl);
+        // let showOverviewEl = document.createElement('p');
+        // showOverviewEl.textContent = overview;
+        // itemContainer.appendChild(showOverviewEl);
 
-        let showNetworkEl = document.createElement('p');
-        showNetworkEl.textContent = network;
-        itemContainer.appendChild(showNetworkEl);
+        // let showNetworkEl = document.createElement('p');
+        // showNetworkEl.textContent = network;
+        // itemContainer.appendChild(showNetworkEl);
 
-        let showSeasonsEl = document.createElement('p');
-        showSeasonsEl.textContent = seasons;
-        itemContainer.appendChild(showSeasonsEl);
+        // let showSeasonsEl = document.createElement('p');
+        // showSeasonsEl.textContent = seasons;
+        // itemContainer.appendChild(showSeasonsEl);
 
         // create a button, when clicked it will remove that item from local storage
         let removeBtn = document.createElement('button');
@@ -157,24 +157,24 @@ if (storageArray.length === 0) {
             // pull all relevant data from response
             let title = storageArray[i].data.Title;
 
-            let rating = '';
-            if (storageArray[i].data.Rated === 'N/A') {
-                rating = 'Not rated'
-            } else {
-                rating = storageArray[i].data.Rated
-            }
+            // let rating = '';
+            // if (storageArray[i].data.Rated === 'N/A') {
+            //     rating = 'Not rated'
+            // } else {
+            //     rating = storageArray[i].data.Rated
+            // }
             
-            let genres = storageArray[i].data.Genre;
+            // let genres = storageArray[i].data.Genre;
 
-            let plot = '';
-            if (storageArray[i].data.Plot === 'N/A') {
-                plot = 'No synopsis available';
-            } else {
-                plot = storageArray[i].data.Plot
-            }
+            // let plot = '';
+            // if (storageArray[i].data.Plot === 'N/A') {
+            //     plot = 'No synopsis available';
+            // } else {
+            //     plot = storageArray[i].data.Plot
+            // }
             
-            let director = storageArray[i].data.Director;
-            let runTime = storageArray[i].data.Runtime;
+            // let director = storageArray[i].data.Director;
+            // let runTime = storageArray[i].data.Runtime;
 
             // create html elements to hold all that data, append them to container
             let imgEl = document.createElement('img');
@@ -185,25 +185,25 @@ if (storageArray.length === 0) {
             titleEl.textContent = title;
             detailsEl.appendChild(titleEl);
 
-            let ratingEl = document.createElement('p');
-            ratingEl.textContent = rating;
-            detailsEl.appendChild(ratingEl);
+            // let ratingEl = document.createElement('p');
+            // ratingEl.textContent = rating;
+            // detailsEl.appendChild(ratingEl);
 
-            let genresEl = document.createElement('p');
-            genresEl.textContent = genres;
-            detailsEl.appendChild(genresEl);
+            // let genresEl = document.createElement('p');
+            // genresEl.textContent = genres;
+            // detailsEl.appendChild(genresEl);
 
-            let plotEl = document.createElement('p');
-            plotEl.textContent = plot;
-            detailsEl.appendChild(plotEl);
+            // let plotEl = document.createElement('p');
+            // plotEl.textContent = plot;
+            // detailsEl.appendChild(plotEl);
 
-            let directorEl = document.createElement('p');
-            directorEl.textContent = `Director: ${director}`;
-            detailsEl.appendChild(directorEl);
+            // let directorEl = document.createElement('p');
+            // directorEl.textContent = `Director: ${director}`;
+            // detailsEl.appendChild(directorEl);
 
-            let runTimeEl = document.createElement('p');
-            runTimeEl.textContent = `Running Time:${runTime}`;
-            detailsEl.appendChild(runTimeEl);
+            // let runTimeEl = document.createElement('p');
+            // runTimeEl.textContent = `Running Time:${runTime}`;
+            // detailsEl.appendChild(runTimeEl);
 
             // create a button, when clicked it will remove that item from local storage
             let removeBtn = document.createElement('button');
