@@ -462,87 +462,90 @@ var getTopTen = function() {
 function populateResultsArea(results) {
         //    loop through results array
         for (let i = 0; i < 10; i++) {
-            // container for each item
-            let containerDiv = document.createElement('div');
-            containerDiv.setAttribute('class', 'poster-container');
-        // create a block for each poster
-        let imgBlock = document.createElement('img');
-        // set id for each poster
-        imgBlock.setAttribute('id', `movie${i+1}`);
-        
-        // pull TMDB id for each index
-        let id = results[i].id;
-        // pull media type for each index (movie/tv show)
-        let mediaType = results[i].media_type;
-        // this is a bit of a hack - items received from search by genre are only movies so media type is not given
-        // SO if there is NO media type, it will be set to movie
-        if (!mediaType) {
-            mediaType = 'movie';
-        }
-        console.log(mediaType);
-        // for each item, pull full entry from tmdb (to get url for poster)
-        fetch(`${theMovieDbUrl}${mediaType}/${id}?api_key=${theMovieDbApiKey}`)
-        .then(function(response) {
-            response.json()
-            .then(function(data) {
-                console.log(data);
+            if (!(results[i].media_type === 'person')) {
 
-                let posterPath = (data.poster_path || 'assets/images/dummyposterupgrade.jpg')
-                containerDiv.appendChild(imgBlock);
-                if (data.poster_path === null) {
-                    imgBlock.setAttribute('class', 'dummy-poster')
-                    imgBlock.setAttribute('src', posterPath);
-                    console.log('null poster path');
-
-                    // overlay title on dummy image
-                    let overlayTitleEl = document.createElement('p');
-                    overlayTitleEl.textContent = data.title;
-                    overlayTitleEl.setAttribute('class', 'overlay-title')
-                    containerDiv.appendChild(overlayTitleEl);
-                    
-                }
-                else {
-                    // end of url for the poster
-                    
-                    // full url for poster
-                    let fullUrl = `${imgBaseUrl}/${posterSize[1]}/${posterPath}`;
-                    // set src attribute of imgBlock to full poster url
-                    imgBlock.setAttribute('src', fullUrl);
-
-                }
-                // need to determine whether the item at this index is a movie or tv show to grab name/title for alt tags
-                if (mediaType === 'movie') {
-                    imgBlock.setAttribute('alt', `Poster for ${data.title}`)
-                }
-                if (mediaType === 'tv') {
-                    imgBlock.setAttribute('alt', `Poster for ${data.name}`)
-                }
-                // set data attribute to be able to pull imdb_ids for movies
-                imgBlock.setAttribute('data-imdbid', data.imdb_id);
-
-                // set data attribute for media type to pull correct data in future
-                imgBlock.setAttribute('data-mediatype', mediaType);
-
-                // // append imgBlock to containerDiv
-                // containerDiv.appendChild(imgBlock)
-                // append that image to the results area
-                resultsArea.appendChild(containerDiv);
-                // when images are clicked, more data will be returned for the item. Different process for movies and tv shows
-                imgBlock.addEventListener('click', function(e) {
-                    itemModal.classList.add('is-active');
-                    // if img clicked has is 'movie' mediatype, grab imdbID and pass to getMovieData function
-                    if (e.target.dataset.mediatype === 'movie'){
-                        let imdbID = e.target.dataset.imdbid 
-                        getMovieData(imdbID, posterPath);                            
+                // container for each item
+                let containerDiv = document.createElement('div');
+                containerDiv.setAttribute('class', 'poster-container');
+            // create a block for each poster
+            let imgBlock = document.createElement('img');
+            // set id for each poster
+            imgBlock.setAttribute('id', `movie${i+1}`);
+            
+            // pull TMDB id for each index
+            let id = results[i].id;
+            // pull media type for each index (movie/tv show)
+            let mediaType = results[i].media_type;
+            // this is a bit of a hack - items received from search by genre are only movies so media type is not given
+            // SO if there is NO media type, it will be set to movie
+            if (!mediaType) {
+                mediaType = 'movie';
+            }
+            console.log(mediaType);
+            // for each item, pull full entry from tmdb (to get url for poster)
+            fetch(`${theMovieDbUrl}${mediaType}/${id}?api_key=${theMovieDbApiKey}`)
+            .then(function(response) {
+                response.json()
+                .then(function(data) {
+                    console.log(data);
+    
+                    let posterPath = (data.poster_path || 'assets/images/dummyposterupgrade.jpg')
+                    containerDiv.appendChild(imgBlock);
+                    if (data.poster_path === null) {
+                        imgBlock.setAttribute('class', 'dummy-poster')
+                        imgBlock.setAttribute('src', posterPath);
+                        console.log('null poster path');
+    
+                        // overlay title on dummy image
+                        let overlayTitleEl = document.createElement('p');
+                        overlayTitleEl.textContent = data.title;
+                        overlayTitleEl.setAttribute('class', 'overlay-title')
+                        containerDiv.appendChild(overlayTitleEl);
+                        
                     }
-                    // if img clicked is NOT a movie, take all data retrieved and pass to getTVData with url for poster
-                    else if (e.target.dataset.mediatype === 'tv') {
-                        getTVData(data, posterPath);
+                    else {
+                        // end of url for the poster
+                        
+                        // full url for poster
+                        let fullUrl = `${imgBaseUrl}/${posterSize[1]}/${posterPath}`;
+                        // set src attribute of imgBlock to full poster url
+                        imgBlock.setAttribute('src', fullUrl);
+    
                     }
+                    // need to determine whether the item at this index is a movie or tv show to grab name/title for alt tags
+                    if (mediaType === 'movie') {
+                        imgBlock.setAttribute('alt', `Poster for ${data.title}`)
+                    }
+                    if (mediaType === 'tv') {
+                        imgBlock.setAttribute('alt', `Poster for ${data.name}`)
+                    }
+                    // set data attribute to be able to pull imdb_ids for movies
+                    imgBlock.setAttribute('data-imdbid', data.imdb_id);
+    
+                    // set data attribute for media type to pull correct data in future
+                    imgBlock.setAttribute('data-mediatype', mediaType);
+    
+                    // // append imgBlock to containerDiv
+                    // containerDiv.appendChild(imgBlock)
+                    // append that image to the results area
+                    resultsArea.appendChild(containerDiv);
+                    // when images are clicked, more data will be returned for the item. Different process for movies and tv shows
+                    imgBlock.addEventListener('click', function(e) {
+                        itemModal.classList.add('is-active');
+                        // if img clicked has is 'movie' mediatype, grab imdbID and pass to getMovieData function
+                        if (e.target.dataset.mediatype === 'movie'){
+                            let imdbID = e.target.dataset.imdbid 
+                            getMovieData(imdbID, posterPath);                            
+                        }
+                        // if img clicked is NOT a movie, take all data retrieved and pass to getTVData with url for poster
+                        else if (e.target.dataset.mediatype === 'tv') {
+                            getTVData(data, posterPath);
+                        }
+                    })
                 })
             })
-        })
-    };
+        };
+            }
 }
 
 var loadGenres = function () {
