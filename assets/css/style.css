@@ -1,28 +1,11 @@
-:root {
-    background-color: #fcf4e0;
-}
-
 main {
     height: auto;
     margin: auto;
 }
 
 header {
-    background-color: #F85D5D;
-    border-bottom: solid 3px hsla(55, 12%, 40%, 0.315);
-}
-
-h1 em {
-    color: #fcf4e0;
-}
-
-header .img {
-    /* display: flex;
-    flex-direction: row;
-    flex-wrap: wrap; */
-    position: fixed;
-    margin-left: 400px;
-    float: right;
+    background: -webkit-linear-gradient(right, #D75D5D, #e0d52e);
+    border-bottom: solid 10px hsla(55, 12%, 40%, 0.315);
 }
 
 .search {
@@ -30,15 +13,7 @@ header .img {
    height: 0px;
 }
 
-body {
-    background-color: #fcf4e0;
-}
-
-html {
-    background-color: #fcf4e0;
-}
-
-.button-container {
+button-container {
     /*border: 1px solid black;*/
     margin-top: 5px;
     margin-right: 150px;
@@ -51,7 +26,9 @@ html {
 }
  
 #main-area {
-    margin: 0 200px;
+    margin: 0 200px 0px 200px;
+    padding: 0 0 100px 0;
+
     
 }
 
@@ -99,30 +76,71 @@ footer {
 }
 
 footer p strong{
-font-style: italic;
-}
-
-/* styles for save button in modal */
-.saveButton {
+    font-style: italic;
+    }
     
-}
-
+    /* styles for save button in modal */
+    .saveButton {
+        
+    }
+    
 /* styles for genre buttons */
 .genre {
-
+    margin: 2px;
+    background-color: #1DA1F2;
+    padding: 5px;
+    border-radius: 5px;
+    color:white;
 }
 
 /* styles for clear watch list button */
 
 .clear-watchlist{
-    
+    margin: 2px;
+    background-color: #1DA1F2;
+    padding: 5px;
+    border-radius: 5px;
+    width: 200px;
+    height: 40px;
+    position:fixed;
+    bottom: 0;
+    margin: 30px 0 50px 0;
+    font-size: 16px;
 }
-
+    
 /* styles for button to remove a single item */
 .remove-item {
-
+    margin: 2px;
+    background-color: #1DA1F2;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+   
 }
+    
 
-.already-saved-text {
-    margin-top: 1em;
+/* Media Query for small screen Moble*/
+
+@media only screen and (max-width: 600px) {
+ 
+    #movie-images{
+    gap: 2vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    background-color: rgb(252, 244, 224);
+    padding: 15px 0;
+    border-radius: 1rem;
+    } 
+
+    #main-area {
+        margin: 0 0px;
+    }
+    footer {
+        background-color: tan;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 35px;
+    }
 }

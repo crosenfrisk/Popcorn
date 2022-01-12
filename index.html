@@ -7,19 +7,17 @@
         <link rel="stylesheet" href="assets/css/style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.css">
         <title>Popcorn!</title>
-        <link rel="shortcut icon" type="image/jpg" href="assets/images/popcornfavicon.png"/>
     </head>
     <body>
         <main>
             <header class="block p-1">
                 <!--Jumbotron-->
                 <div>
-                    <h1 class="title is-size-1 m-5"><em>Popcorn!</em></h1>
-                    <img class="image has-ratio" height="200px" width="200px" src="assets/images/popcornfavicon.png" alt="popcorn icon">
-                    <div class="subtitle is-size-4 ml-5">Movie & Show Suggestions <em>for You.</em></div>
+                    <h1 class="title has-text-black is-size-1 m-5">Popcorn!</h1>
+                    <div class="subtitle is-size-4 ml-5">If you want to choose a movie to spend nice time</div>
                 </div>
                 
-                <div class="search level-right ">
+                <dive class="search level-right ">
                     <div class="field has-addons mr-5">
                         <div class="control">
                             <input class="input has-text-right" type="text" placeholder="Find your movie" id="searchInput">
@@ -28,16 +26,18 @@
                             <a class="button is-info" id="searchBtn">Search</a>
                         </div>
                     </div>
-                </div>
+                </dive>
             
             </header>
+
+            <main>
                 
                 <div class="columns is-centered">
                     <section class="column is-half has-text-centered row is-fluid py-2 is-rounded" id="button-container">
-                        <button class="button is-dark" id="top10Btn">Top Ten</button>
-                        <button class="button is-dark" id="watchList">Watchlist</button>
-                        <button class="button is-dark" id="genreSel">Genre Selector</button>
-                        <button class="button is-dark" id="about">About App</button>
+                        <button class="button sbtn is-dark" id="top10Btn">Top Ten</button>
+                        <button class="button sbtn is-dark" id="watchList">Watchlist</button>
+                        <button class="button sbtn is-dark" id="genreSel">Genre Selector</button>
+                        <button class="button sbtn is-dark" id="about">This App</button>
                     </section>
                 </div>
 
@@ -50,39 +50,35 @@
     
                     </div>
                 </div>
-                
-        
-            <!--Modal of about us and how the app works-->
+            
+
+               
+        </main>
+
+        <!--Modal of about us and how the app works-->
 
         <div class="modal">
             <div class="modal-background"></div>
-            <div class="modal-content has-text-white has-background-info p-5" id="modal-content-area"></div>
-         </div>
-    
-         <div id="modal" class="modal">
-             <div class="modal-background"></div>
-    
-             <div class="modal-content">
-                 <div class="box">
-                     <!-- Not sure if we need these if they are already added dynamically from JS <p class="movieDetails"></p>
-                     <button class="saveToWatchlist"></button> -->
-                 </div>
-                 </div>
-                 <button class="modal-close is large" area-label="modal-close"></button>
-         </div>
-            
-    </main>
+            <div class="modal-content has-text-white has-background-info p-5" id="modal-content-area">
+                <!-- <h3 class="title has-text-white p-5 mb-5">How the app works</h3>
+                <p>You can search for the movie you want to watch by clickig on buttons 'Top Ten' or 'Watchlist' after you choose it and 'Genre Select.</p>
+                <p>After the search result presented to you you can click once on any of the movies to read its details</p>
+                <p>Click outside this box to go back to the main page</p>
+                <p>Have a nice time</p> -->
+            </div>
+        </div>
 
-    <!-- footer -->
-    <footer class="footer has-text-centered has-background-warning p-0">
-        <p class="mt-1">
-        <strong>Popcorn!</strong> by <a href="https://crosenfrisk.github.io/Popcorn/">Colin, Claire, Omar, and Jake</a>. The content is fetched from <a href="http://www.themoviedb.org/">TMDB</a> and <a href="https://www.omdbapi.com/"> OMDB</a>.
-        </p>
-    </footer>
-    <!-- footer end -->
-</body>
-<script type='text/javascript' src='./assets/js/config.js'></script>
-<script src="assets/js/modal.js"></script>
-<script src="assets/js/script.js"></script>
+        <!-- footer -->
+        <footer class="footer has-text-centered has-background-warning p-0">
+            <p class="mt-1">
+            <strong>Popconre!</strong> by <a href="https://popconren.com">Colin, Claire, Omar, and Jake</a>. The content is fetched from <a href="http://www.themoviedb.org/">T M D B</a>.
+            </p>
+        </footer>
+        <!-- footer end -->
+
+        <script type='text/javascript' src='assets/js/config.js'></script>
+        <script src="assets/js/script.js"></script>
+        <script src="assets/js/modal.js"></script>
+    </body>
 
 </html>
