@@ -272,7 +272,7 @@ watchlistBtn.addEventListener('click', function() {
     })
 
 // called if media_type is 'movie', calls OMDB API for movie details
-var getMovieData = function(imdbID, posterPath) {
+var getMovieData = function(imdbID, posterPath, id) {
     modalContentArea.innerHTML = '';
     console.log(imdbID, 'this is a movie');
     // fetch using imdbID passed as argument
@@ -412,29 +412,47 @@ var getTVData = function(data, src) {
     let showSeasonsEl = document.createElement('p');
     showSeasonsEl.textContent = 'Number of seasons: ' + seasons;
     detailsEl.appendChild(showSeasonsEl);
-
-    console.log('hit it');
     
-    if (!storageArray.some(e => e.data.id === data.id)) {
-        // create save button
-        let saveBtn = document.createElement('button');
-        saveBtn.classList = 'saveButton';
-        saveBtn.textContent = 'Save to Watchlist';
-        // click even listener for save button
-        saveBtn.addEventListener('click', function() {
-            saveItem(src, data);
+    // set up watch provider for tv
+    fetch(`https://api.themoviedb.org/3/tv/${data.id}/watch/providers?api_key=${theMovieDbApiKey}`)
+    .then(function(response) {
+        response.json()
+        .then(function(data) {
+            console.log(data);
+            if (data.results.US) {
+                if (data.results.US.flatrate){
+                    let provider = data.results.US.flatrate[0].provider_name;
+                    let providerEl = document.createElement('p');
+                    providerEl.textContent = 'Watch on: ' + provider;
+                    detailsEl.appendChild(providerEl);
+                }
+            }
+            if (!storageArray.some(e => e.data.id === data.id)) {
+                // create save button
+                let saveBtn = document.createElement('button');
+                saveBtn.classList = 'saveButton';
+                saveBtn.textContent = 'Save to Watchlist';
+                // click even listener for save button
+                saveBtn.addEventListener('click', function() {
+                    saveItem(src, data);
+                })
+                // append save button to details container
+                detailsEl.appendChild(saveBtn);
+            } else {
+                let savedTextEl = document.createElement('p');
+                savedTextEl.textContent = 'Saved to Watchlist';
+                savedTextEl.setAttribute('class', 'already-saved-text')
+                detailsEl.appendChild(savedTextEl);
+            }
+        
+            // append the details container to modal
+            modalContentArea.appendChild(detailsEl);
+        
+        
+        
         })
-        // append save button to details container
-        detailsEl.appendChild(saveBtn);
-    } else {
-        let savedTextEl = document.createElement('p');
-        savedTextEl.textContent = 'Saved to Watchlist';
-        savedTextEl.setAttribute('class', 'already-saved-text')
-        detailsEl.appendChild(savedTextEl);
-    }
-    console.log(detailsEl);
-    // append the details container to modal
-    modalContentArea.appendChild(detailsEl);
+    })
+
 
 }
 
@@ -649,3 +667,30 @@ function saveItem(imgUrl, data) {
 
 
 };
+
+function watchProvidersForOneItem(id) {
+    fetch(`https://api.themoviedb.org/3/tv/${id}/watch/providers?api_key=${theMovieDbApiKey}`)
+    .then(function(response) {
+        response.json()
+        .then(function(data) {
+            console.log(data);
+            if (data.results.US) {
+                if (data.results.US.flatrate){
+                    console.log(data.results.US.flatrate[0].provider_name);
+                }
+            }
+        })
+    })
+}
+
+let testID1 = '425909';
+let testID2 = '438695';
+let testID3 = '634649';
+let testID4 = '85552';
+let testID5 = '624860';
+let testID6 = '1429';
+let testID7 = '460458';
+let testID8 = '568124';
+let testID9 = '115036';
+
+watchProvidersForOneItem(testID9);
