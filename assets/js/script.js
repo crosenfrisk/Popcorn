@@ -364,6 +364,11 @@ var getMovieData = function(imdbID, posterPath) {
                     saveBtn.addEventListener('click', function() {
                         saveItem(posterPath, data)
                     })
+                } else {
+                    let savedTextEl = document.createElement('p');
+                    savedTextEl.textContent = 'Saved to Watchlist';
+                    savedTextEl.setAttribute('class', 'already-saved-text')
+                    detailsEl.appendChild(savedTextEl);
                 }
             }
 
@@ -421,6 +426,11 @@ var getTVData = function(data, src) {
         })
         // append save button to details container
         detailsEl.appendChild(saveBtn);
+    } else {
+        let savedTextEl = document.createElement('p');
+        savedTextEl.textContent = 'Saved to Watchlist';
+        savedTextEl.setAttribute('class', 'already-saved-text')
+        detailsEl.appendChild(savedTextEl);
     }
     console.log(detailsEl);
     // append the details container to modal
