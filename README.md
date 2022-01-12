@@ -53,7 +53,12 @@ Claire acted as SCRUM master, lead communicator. She created the initial reposit
 
 ## View The Project
 
-[Screenshot of Project](https://crosenfrisk.github.io/Popcorn/)
+![Screenshot of Project](/assets/images/screenshot1.png)
+
+[Link to Deployed Project](https://crosenfrisk.github.io/Popcorn/)
+
+
+
 ## Technologies Used
 
 [Bulma](https://bulma.io/)
