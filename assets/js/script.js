@@ -664,33 +664,5 @@ function saveItem(imgUrl, data) {
             console.log('This item is a TV show and IS in storage');
         }
     }
-
-
 };
 
-function watchProvidersForOneItem(id) {
-    fetch(`https://api.themoviedb.org/3/tv/${id}/watch/providers?api_key=${theMovieDbApiKey}`)
-    .then(function(response) {
-        response.json()
-        .then(function(data) {
-            console.log(data);
-            if (data.results.US) {
-                if (data.results.US.flatrate){
-                    console.log(data.results.US.flatrate[0].provider_name);
-                }
-            }
-        })
-    })
-}
-
-let testID1 = '425909';
-let testID2 = '438695';
-let testID3 = '634649';
-let testID4 = '85552';
-let testID5 = '624860';
-let testID6 = '1429';
-let testID7 = '460458';
-let testID8 = '568124';
-let testID9 = '115036';
-
-watchProvidersForOneItem(testID9);
