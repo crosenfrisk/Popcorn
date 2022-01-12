@@ -4,7 +4,7 @@ main {
 }
 
 header {
-    background-color: hsl(54, 95%, 42%);
+    background: -webkit-linear-gradient(right, #D75D5D, #e0d52e);
     border-bottom: solid 10px hsla(55, 12%, 40%, 0.315);
 }
 
@@ -74,12 +74,27 @@ footer {
 }
 
 
-aboutPopcornBox{
-    margin-top: 5px;
-    margin-right: px;
-    margin-bottom: 5px;
-    margin-left: px;
-    text-align: justify;
-    border: black 1px solid;
-    width: 50%;
+@media only screen and (max-width: 600px) {
+ 
+
+    #movie-images{
+    gap: 2vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    background-color: rgb(252, 244, 224);
+    padding: 15px 0;
+    border-radius: 1rem;
+    } 
+
+    #main-area {
+        margin: 0 0px;
+    }
+    footer {
+        background-color: tan;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 35px;
+    }
 }
