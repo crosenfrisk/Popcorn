@@ -42,7 +42,7 @@ By the end of Week 1 we had our app functioning as desired, so we moved on to im
 
 ## Who Did What
 
-Claire acted as SCRUM master, lead communicator. She created the initial repository and files in VSC for the main branch and created the develop branch. She created the wireframe images for Desktop, Tablet, and Mobile as listed in the images folder using `Draw.io`. Claire assisted with JavaScript by creating the `loadGenres()` function and the `searchByGenres()` function. She created the `modal.js` file, designed the `dummyposter.png` for missing poster results, wrote the `about.html` content, and took the lead on creating the presentation using `docs.google.com/presentation`.
+Claire acted as SCRUM master, lead communicator. She created the initial repository and files in VSC for the main branch and created the develop branch. She created the wireframe images for Desktop, Tablet, and Mobile as listed in the images folder using `Draw.io`. Claire assisted with JavaScript by creating the `loadGenres()` function and the `searchByGenres()` function. She created the `modal.js` file, designed the `dummyposter.png` for missing poster results, wrote the `about.html` content, and took the lead on creating the presentation using `docs.google.com/presentation`. Created favicon and implemented initial CSS (color changes) as placeholder for CSS from teammates in preparation for presentation. Shared idea of "how-to" remove single item from watchlist, which was then designed by Colin.
 
 <!-- Colin wrote the majority of the JavaScript functions for Top 10, Watchlist, and even created the Keyword search function. He used the API to help pull results for movie and show descriptions, cleaned up errors, and offered to support CSS design.  Colin, you can write more here, totally whatever you want to say -->
 
@@ -53,13 +53,18 @@ Claire acted as SCRUM master, lead communicator. She created the initial reposit
 
 ## View The Project
 
-[Screenshot of Project](https://crosenfrisk.github.io/Popcorn/)
+![Screenshot of Project](/assets/images/screenshot1.png)
+
+[Link to Deployed Project](https://crosenfrisk.github.io/Popcorn/)
+
+
+
 ## Technologies Used
 
 [Bulma](https://bulma.io/)
 Used for styling our CSS
 
-[DrawIO] (https://app.diagrams.net)
+[Draw.io](https://app.diagrams.net)
 Used for creation of wireframes
 
 [Canva](https://www.canva.com/)
