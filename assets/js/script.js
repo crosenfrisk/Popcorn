@@ -142,6 +142,7 @@ if (storageArray.length === 0) {
         // create a button, when clicked it will remove that item from local storage
         let removeBtn = document.createElement('button');
         removeBtn.textContent = 'Remove';
+        removeBtn.setAttribute('class', 'remove-item');
         itemContainer.appendChild(removeBtn);
 
         removeBtn.addEventListener('click', function(e) {
@@ -211,6 +212,7 @@ if (storageArray.length === 0) {
             // create a button, when clicked it will remove that item from local storage
             let removeBtn = document.createElement('button');
             removeBtn.textContent = 'Remove';
+            removeBtn.setAttribute('class', 'remove-item');
             detailsEl.appendChild(removeBtn);
 
             removeBtn.addEventListener('click', function(e) {
@@ -228,6 +230,7 @@ if (storageArray.length === 0) {
     // create button to clear watchlist
     let clearBtn = document.createElement('button');
     clearBtn.textContent = 'Clear Watchlist';
+    clearBtn.setAttribute('class', 'clear-watchlist');
     resultsArea.appendChild(clearBtn);
 
     clearBtn.addEventListener('click', function() {
