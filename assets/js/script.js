@@ -272,7 +272,7 @@ watchlistBtn.addEventListener('click', function() {
     })
 
 // called if media_type is 'movie', calls OMDB API for movie details
-var getMovieData = function(imdbID, posterPath, id) {
+var getMovieData = function(imdbID, posterPath) {
     modalContentArea.innerHTML = '';
     console.log(imdbID, 'this is a movie');
     // fetch using imdbID passed as argument
@@ -381,6 +381,7 @@ var getMovieData = function(imdbID, posterPath, id) {
 
 // get details for tv shows, using data passes as argument from other function
 var getTVData = function(data, src) {
+   let dataObject = data;
     modalContentArea.innerHTML = '';
     // create container for all details
     let detailsEl = document.createElement('div');
@@ -395,7 +396,7 @@ var getTVData = function(data, src) {
     // create html elements to contain all that info, append those elements to details container
     let imgEl = document.createElement('img');
     imgEl.setAttribute('src', fullUrl);
-    detailsEl.appendChild(imgEl)
+    detailsEl.appendChild(imgEl);
 
     let showNameEl = document.createElement('p');
     showNameEl.textContent = name;
@@ -434,7 +435,7 @@ var getTVData = function(data, src) {
                 saveBtn.textContent = 'Save to Watchlist';
                 // click even listener for save button
                 saveBtn.addEventListener('click', function() {
-                    saveItem(src, data);
+                    saveItem(src, dataObject);
                 })
                 // append save button to details container
                 detailsEl.appendChild(saveBtn);
