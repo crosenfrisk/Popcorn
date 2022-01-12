@@ -109,6 +109,16 @@ if (storageArray.length === 0) {
         let posterEl = document.createElement('img');
         // set src attribute to url for the poster for the item at that index
         posterEl.setAttribute('src', storageArray[i].url)
+
+        posterEl.addEventListener('click', function() {
+            let fullUrl = storageArray[i].url;
+            let split = fullUrl.split('/');
+            let src = split[split.length-1];
+            console.log(src);
+            getTVData(storageArray[i].data, src);
+            itemModal.classList.add('is-active');
+            // getTVData(storageArray[i].data,)
+        })
         // add poster to item container
         itemContainer.appendChild(posterEl);
 
@@ -379,19 +389,23 @@ var getTVData = function(data, src) {
     showSeasonsEl.textContent = 'Number of seasons: ' + seasons;
     detailsEl.appendChild(showSeasonsEl);
 
-    // create save button
-    let saveBtn = document.createElement('button');
-    saveBtn.classList = 'saveButton';
-    saveBtn.textContent = 'Save to Watchlist';
-    // click even listener for save button
-    saveBtn.addEventListener('click', function() {
-        saveItem(src, data);
-    })
-    // append save button to details container
-    detailsEl.appendChild(saveBtn);
+    console.log('hit it');
     
+    if (!storageArray.some(e => e.data.id === data.id)) {
+        // create save button
+        let saveBtn = document.createElement('button');
+        saveBtn.classList = 'saveButton';
+        saveBtn.textContent = 'Save to Watchlist';
+        // click even listener for save button
+        saveBtn.addEventListener('click', function() {
+            saveItem(src, data);
+        })
+        // append save button to details container
+        detailsEl.appendChild(saveBtn);
+    }
+    console.log(detailsEl);
     // append the details container to modal
-    modalContentArea.appendChild(detailsEl)
+    modalContentArea.appendChild(detailsEl);
 
 }
 
