@@ -61,3 +61,18 @@ aboutPopcornBox{
     border: black 1px solid;
     width: 50%;
 }
+
+/* MEDIA QUERY FOR SMALLER DISPLAYS*/
+@media screen and (max-width: 980px) {
+
+}
+
+/* MEDIA QUERY FOR TABLETS */
+@media screen and (max-width: 576px) {
+
+}
+
+/* MEDIA QUERY FOR MOBILE PHONES */
+@media screen and (max-width: 300px) {
+    
+}
