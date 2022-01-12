@@ -26,7 +26,9 @@ button-container {
 }
  
 #main-area {
-    margin: 0 200px;
+    margin: 0 200px 0px 200px;
+    padding: 0 0 100px 0;
+
     
 }
 
@@ -73,10 +75,55 @@ footer {
     height: 35px;
 }
 
+footer p strong{
+    font-style: italic;
+    }
+    
+    /* styles for save button in modal */
+    .saveButton {
+        
+    }
+    
+/* styles for genre buttons */
+.genre {
+    margin: 2px;
+    background-color: #1DA1F2;
+    padding: 5px;
+    border-radius: 5px;
+    color:white;
+    
+}
+
+/* styles for clear watch list button */
+
+.clear-watchlist{
+    margin: 2px;
+    background-color: #1DA1F2;
+    padding: 5px;
+    border-radius: 5px;
+    width: 200px;
+    height: 40px;
+    position:fixed;
+    bottom: 0;
+    margin: 30px 0 50px 0;
+    font-size: 16px;
+}
+    
+/* styles for button to remove a single item */
+.remove-item {
+    margin: 2px;
+    background-color: #1DA1F2;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+   
+}
+    
+
+/* Media Query for small screen Moble*/
 
 @media only screen and (max-width: 600px) {
  
-
     #movie-images{
     gap: 2vw;
     display: flex;

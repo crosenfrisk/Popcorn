@@ -109,35 +109,45 @@ if (storageArray.length === 0) {
         let posterEl = document.createElement('img');
         // set src attribute to url for the poster for the item at that index
         posterEl.setAttribute('src', storageArray[i].url)
+
+        posterEl.addEventListener('click', function() {
+            let fullUrl = storageArray[i].url;
+            let split = fullUrl.split('/');
+            let src = split[split.length-1];
+            console.log(src);
+            getTVData(storageArray[i].data, src);
+            itemModal.classList.add('is-active');
+        })
         // add poster to item container
         itemContainer.appendChild(posterEl);
 
         // grab the other data
         let name = storageArray[i].data.name;
-        let overview = storageArray[i].data.overview;
-        let network = 'Network: ' + storageArray[i].data.networks[0].name;
-        let seasons = 'Number of Seasons: ' + storageArray[i].data.number_of_seasons;
+        // let overview = storageArray[i].data.overview;
+        // let network = 'Network: ' + storageArray[i].data.networks[0].name;
+        // let seasons = 'Number of Seasons: ' + storageArray[i].data.number_of_seasons;
 
         // create html elements to contain all that info, append those elements to details container
         let showNameEl = document.createElement('p');
         showNameEl.textContent = name;
         itemContainer.appendChild(showNameEl);
 
-        let showOverviewEl = document.createElement('p');
-        showOverviewEl.textContent = overview;
-        itemContainer.appendChild(showOverviewEl);
+        // let showOverviewEl = document.createElement('p');
+        // showOverviewEl.textContent = overview;
+        // itemContainer.appendChild(showOverviewEl);
 
-        let showNetworkEl = document.createElement('p');
-        showNetworkEl.textContent = network;
-        itemContainer.appendChild(showNetworkEl);
+        // let showNetworkEl = document.createElement('p');
+        // showNetworkEl.textContent = network;
+        // itemContainer.appendChild(showNetworkEl);
 
-        let showSeasonsEl = document.createElement('p');
-        showSeasonsEl.textContent = seasons;
-        itemContainer.appendChild(showSeasonsEl);
+        // let showSeasonsEl = document.createElement('p');
+        // showSeasonsEl.textContent = seasons;
+        // itemContainer.appendChild(showSeasonsEl);
 
         // create a button, when clicked it will remove that item from local storage
         let removeBtn = document.createElement('button');
         removeBtn.textContent = 'Remove';
+        removeBtn.setAttribute('class', 'remove-item');
         itemContainer.appendChild(removeBtn);
 
         removeBtn.addEventListener('click', function(e) {
@@ -156,57 +166,73 @@ if (storageArray.length === 0) {
             // pull all relevant data from response
             let title = storageArray[i].data.Title;
 
-            let rating = '';
-            if (storageArray[i].data.Rated === 'N/A') {
-                rating = 'Not rated'
-            } else {
-                rating = storageArray[i].data.Rated
-            }
+            // let rating = '';
+            // if (storageArray[i].data.Rated === 'N/A') {
+            //     rating = 'Not rated'
+            // } else {
+            //     rating = storageArray[i].data.Rated
+            // }
             
-            let genres = storageArray[i].data.Genre;
+            // let genres = storageArray[i].data.Genre;
 
-            let plot = '';
-            if (storageArray[i].data.Plot === 'N/A') {
-                plot = 'No synopsis available';
-            } else {
-                plot = storageArray[i].data.Plot
-            }
+            // let plot = '';
+            // if (storageArray[i].data.Plot === 'N/A') {
+            //     plot = 'No synopsis available';
+            // } else {
+            //     plot = storageArray[i].data.Plot
+            // }
             
-            let director = storageArray[i].data.Director;
-            let runTime = storageArray[i].data.Runtime;
+            // let director = storageArray[i].data.Director;
+            // let runTime = storageArray[i].data.Runtime;
 
             // create html elements to hold all that data, append them to container
             let imgEl = document.createElement('img');
             imgEl.setAttribute('src', storageArray[i].url);
             detailsEl.appendChild(imgEl);
 
+            imgEl.addEventListener('click', function() {
+                console.log('click');
+                let fullUrl = storageArray[i].url;
+                let split = fullUrl.split('/');
+                let src = split[split.length-1];
+                console.log(src);
+                getMovieData(storageArray[i].data.imdbID, src);
+                itemModal.classList.add('is-active');
+            })
+
+            
+
+
+
+
             let titleEl = document.createElement('p');
             titleEl.textContent = title;
             detailsEl.appendChild(titleEl);
 
-            let ratingEl = document.createElement('p');
-            ratingEl.textContent = rating;
-            detailsEl.appendChild(ratingEl);
+            // let ratingEl = document.createElement('p');
+            // ratingEl.textContent = rating;
+            // detailsEl.appendChild(ratingEl);
 
-            let genresEl = document.createElement('p');
-            genresEl.textContent = genres;
-            detailsEl.appendChild(genresEl);
+            // let genresEl = document.createElement('p');
+            // genresEl.textContent = genres;
+            // detailsEl.appendChild(genresEl);
 
-            let plotEl = document.createElement('p');
-            plotEl.textContent = plot;
-            detailsEl.appendChild(plotEl);
+            // let plotEl = document.createElement('p');
+            // plotEl.textContent = plot;
+            // detailsEl.appendChild(plotEl);
 
-            let directorEl = document.createElement('p');
-            directorEl.textContent = `Director: ${director}`;
-            detailsEl.appendChild(directorEl);
+            // let directorEl = document.createElement('p');
+            // directorEl.textContent = `Director: ${director}`;
+            // detailsEl.appendChild(directorEl);
 
-            let runTimeEl = document.createElement('p');
-            runTimeEl.textContent = `Running Time:${runTime}`;
-            detailsEl.appendChild(runTimeEl);
+            // let runTimeEl = document.createElement('p');
+            // runTimeEl.textContent = `Running Time:${runTime}`;
+            // detailsEl.appendChild(runTimeEl);
 
             // create a button, when clicked it will remove that item from local storage
             let removeBtn = document.createElement('button');
             removeBtn.textContent = 'Remove';
+            removeBtn.setAttribute('class', 'remove-item');
             detailsEl.appendChild(removeBtn);
 
             removeBtn.addEventListener('click', function(e) {
@@ -224,6 +250,7 @@ if (storageArray.length === 0) {
     // create button to clear watchlist
     let clearBtn = document.createElement('button');
     clearBtn.textContent = 'Clear Watchlist';
+    clearBtn.setAttribute('class', 'clear-watchlist');
     resultsArea.appendChild(clearBtn);
 
     clearBtn.addEventListener('click', function() {
@@ -322,17 +349,27 @@ var getMovieData = function(imdbID, posterPath) {
                 runTimeEl.textContent = `Running Time: ${runTime}`;
                 detailsEl.appendChild(runTimeEl);       
     
-                // create save button
-                let saveBtn = document.createElement('button');
-                saveBtn.classList = 'saveButton';
-                saveBtn.textContent = 'Save to Watchlist';
-                detailsEl.appendChild(saveBtn);
 
+                if (!storageArray.some(e => e.data.imdbID === data.imdbID)) {
+                    console.log('doo doo doo');
+                    // create save button
+                    let saveBtn = document.createElement('button');
+                    saveBtn.classList = 'saveButton';
+                    saveBtn.textContent = 'Save to Watchlist';
+                    detailsEl.appendChild(saveBtn);
+                    
     
-                // data for this item will be saved to watchlist on click
-                saveBtn.addEventListener('click', function() {
-                    saveItem(posterPath, data)
-                })
+        
+                    // data for this item will be saved to watchlist on click
+                    saveBtn.addEventListener('click', function() {
+                        saveItem(posterPath, data)
+                    })
+                } else {
+                    let savedTextEl = document.createElement('p');
+                    savedTextEl.textContent = 'Saved to Watchlist';
+                    savedTextEl.setAttribute('class', 'already-saved-text')
+                    detailsEl.appendChild(savedTextEl);
+                }
             }
 
             // append the container itself to modal
@@ -376,25 +413,32 @@ var getTVData = function(data, src) {
     showSeasonsEl.textContent = 'Number of seasons: ' + seasons;
     detailsEl.appendChild(showSeasonsEl);
 
-    // create save button
-    let saveBtn = document.createElement('button');
-    saveBtn.classList = 'saveButton';
-    saveBtn.textContent = 'Save to Watchlist';
-    // click even listener for save button
-    saveBtn.addEventListener('click', function() {
-        saveItem(src, data);
-    })
-    // append save button to details container
-    detailsEl.appendChild(saveBtn);
+    console.log('hit it');
     
+    if (!storageArray.some(e => e.data.id === data.id)) {
+        // create save button
+        let saveBtn = document.createElement('button');
+        saveBtn.classList = 'saveButton';
+        saveBtn.textContent = 'Save to Watchlist';
+        // click even listener for save button
+        saveBtn.addEventListener('click', function() {
+            saveItem(src, data);
+        })
+        // append save button to details container
+        detailsEl.appendChild(saveBtn);
+    } else {
+        let savedTextEl = document.createElement('p');
+        savedTextEl.textContent = 'Saved to Watchlist';
+        savedTextEl.setAttribute('class', 'already-saved-text')
+        detailsEl.appendChild(savedTextEl);
+    }
+    console.log(detailsEl);
     // append the details container to modal
-    modalContentArea.appendChild(detailsEl)
+    modalContentArea.appendChild(detailsEl);
 
 }
 
-// https://api.themoviedb.org/3/trending/all/day?api_key=<<api_key>>
 // fetch movie data from TMDB API
-
 var getTopTen = function() {         
 // Prevent default load if button is clicked more than once, limit display to one occurrence. Remove additional elements if necessary.          
     resultsArea.innerHTML = '';
@@ -414,7 +458,6 @@ var getTopTen = function() {
     }
   );
 };
-
 
 function populateResultsArea(results) {
         //    loop through results array
@@ -502,7 +545,6 @@ function populateResultsArea(results) {
     };
 }
 
-// Fetch genre options from TMDB api, targeting genre ids
 var loadGenres = function () {
   fetch(
     theMovieDbUrl +
@@ -544,7 +586,6 @@ var loadGenres = function () {
   });
 };
 
-
 var searchByGenre = function (genreDataId) {
     resultsArea.innerHTML = '';
     console.log(genreDataId);
@@ -561,8 +602,6 @@ var searchByGenre = function (genreDataId) {
     })})
 };
 
-
-// https://api.themoviedb.org/3/search/keyword?api_key=<<api_key>>&page=1
 function searchByKeyword (input) {
     let keywordUrl = `${theMovieDbUrl}search/movie?api_key=${theMovieDbApiKey}&query=${input}`;
     fetch(keywordUrl)
@@ -574,18 +613,6 @@ function searchByKeyword (input) {
         })
     })
 }
-
-
-// TODO: Keyword search can filter request using Search, Discover, or Keyword API; clear input after submit -- Omar
-
-// TODO: Jake and Omar on CSS and Bulma framework
-
-
-// watch list functionality pseudo-code
-// 1. when an image is clicked, the details for the image will show on the screen.
-// 2. create a button among the details that when clicked, will save the id/imdb id to make calls again with that information
-// 3. that data will be stored in an array in local storage
-// 4. when the user clicks watchlist, the items saved in storage will be displayed again to the screen
 
 function saveItem(imgUrl, data) {
     let fullPosterPath = '';
