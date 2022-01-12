@@ -603,7 +603,7 @@ var searchByGenre = function (genreDataId) {
 };
 
 function searchByKeyword (input) {
-    let keywordUrl = `${theMovieDbUrl}search/movie?api_key=${theMovieDbApiKey}&query=${input}`;
+    let keywordUrl = `${theMovieDbUrl}search/multi?api_key=${theMovieDbApiKey}&query=${input}`;
     fetch(keywordUrl)
     .then(function (response) {
         response.json()
