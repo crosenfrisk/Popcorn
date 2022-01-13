@@ -363,7 +363,13 @@ var getMovieData = function(imdbID, posterPath) {
         
                     // data for this item will be saved to watchlist on click
                     saveBtn.addEventListener('click', function() {
-                        saveItem(posterPath, data)
+                        saveItem(posterPath, data);
+
+                        // remove the save button, repalce with an element telling the user the item was saved
+                        detailsEl.removeChild(detailsEl.lastChild);
+                        let savedEl = document.createElement('p');
+                        savedEl.textContent = 'Saved to Watchlist';
+                        detailsEl.appendChild(savedEl);
                     })
                 } else {
                     let savedTextEl = document.createElement('p');
@@ -436,7 +442,14 @@ var getTVData = function(data, src) {
                 saveBtn.textContent = 'Save to Watchlist';
                 // click even listener for save button
                 saveBtn.addEventListener('click', function() {
+                    // save the item to the watchlist
                     saveItem(src, dataObject);
+
+                    // remove the save button, replace with a new element telling user the item was saved
+                    detailsEl.removeChild(detailsEl.lastChild);
+                    let savedEl = document.createElement('p');
+                    savedEl.textContent = 'Saved to Watchlist';
+                    detailsEl.appendChild(savedEl);
                 })
                 // append save button to details container
                 detailsEl.appendChild(saveBtn);
