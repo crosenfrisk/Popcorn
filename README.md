@@ -48,12 +48,12 @@ Colin mostly worked on the JavaScript file, handling DOM manipulation, fetch req
 
 <!-- Omar took on studying Bulma, a CSS framework like Bootstrap, to help design the look and flow of our application. He tied our modal to our JS. He also offered to do the Keyword search JS, so the function that works is a mix of his and Colin's work. Omar, please write whatever you'd like to say here!-->
 
-<!-- Jake felt the most confident in CSS. He designed the background, chose colors, stylized buttons, and make sure everything was mobile responsive using media queries. Jake, please feel free to add more details here! -->
+<!-- Jake felt the most confident working with CSS. He helped make sure our page was responsive for mobile and tablet users with specialized media queries. Jake, please feel free to add more details here! -->
 
 
 ## View The Project
 
-![Screenshot of Project](/assets/images/screenshot1.png)
+![Screenshot of Project](/assets/images/screenshot2.png)
 
 [Link to Deployed Project](https://crosenfrisk.github.io/Popcorn/)
 
