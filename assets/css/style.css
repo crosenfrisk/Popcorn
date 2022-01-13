@@ -125,6 +125,65 @@ footer p strong{
    
 }
     
+
+@media only screen and (max-width: 1441px) {
+    main{
+        background-color: #fcf4e0;
+    }
+
+    img.image{
+        max-width: 50%;
+        float: right;
+    }
+
+    .column-search {
+        max-width: 400px;
+     }
+
+     .poster-container{
+         max-width: 25%;
+     }
+}
+
+@media only screen and (max-width: 1200px) {
+    main{
+        background-color: #fcf4e0;
+    }
+
+    img.image{
+        max-width: 50%;
+        float: right;
+    }
+
+    .button-is-info-is-rounded {
+        font-size: 1.25rem;
+    }
+
+    .column-search {
+        max-width: 400px;
+     }
+
+     .poster-container{
+         max-width: 100%;
+     }
+
+}
+
+@media only screen and (max-width: 1025px) {
+    main{
+        background-color: #fcf4e0;
+    }
+
+    img.image{
+        max-width: 50%;
+        float: right;
+    }
+
+    .column-search {
+        max-width: 400px;
+     }
+}
+
 @media only screen and (max-width: 768px) {
     img.image{
         max-width: 50%;
