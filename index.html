@@ -10,16 +10,19 @@
     </head>
     <body>
         <main>
-            <header class="block p-1">
+            <header class="columns block p-1">
                 <!--Jumbotron-->
-                <div>
-                    <h1 class="title has-text-info is-size-1 m-5">Popcorn!</h1>
+                <div class="column is-two-fifth">
+                    <h1 class="title has-text-info-dark is-size-1 m-5">Popcorn!</h1>
                     <div class="subtitle is-size-4 ml-5">If you want to choose a movie to spend nice time</div>
+                </div>
+                    
+                <div class="column is-one-third h-img">
                     <img class="image has-ratio level-right" height="100px" width="100px" src="assets/images/popcornfavicon.png" alt="popcorn icon">
                 </div>
                 
-                <dive class="search level-right ">
-                    <div class="field has-addons mr-5">
+                <div class="column search is-one-fifth">
+                    <div class="field has-addons">
                         <div class="control">
                         <input class="input has-text-right" type="text" placeholder="Find your movie" id="searchInput">
                         </div>
@@ -27,18 +30,18 @@
                         <a class="button is-info" id="searchBtn">Search</a>
                         </div>
                     </div>
-                </dive>
+                </div>
             
             </header>
 
             <main>
                 
-                <div class="columns is-centered">
-                    <section class="column is-half has-text-centered row is-fluid py-2 is-rounded" id="button-container">
-                        <button class="button sbtn is-info" id="top10Btn">Top Ten</button>
-                        <button class="button sbtn is-info" id="watchList">Watchlist</button>
-                        <button class="button sbtn is-info" id="genreSel">Genre Selector</button>
-                        <button class="button sbtn is-info" id="about">This App</button>
+                <div class="columns is-centered m">
+                    <section class="column is-two-third has-text-centered row is-fluid is-rounded" id="button-container">
+                        <button class="button sbtn is-info mb-2" id="top10Btn">Top Ten</button>
+                        <button class="button sbtn is-info mb-2" id="watchList">Watchlist</button>
+                        <button class="button sbtn is-info mb-2" id="genreSel">Genre Selector</button>
+                        <button class="button sbtn is-info mb-2" id="about">This App</button>
                     </section>
                 </div>
 
