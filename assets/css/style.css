@@ -168,8 +168,9 @@ footer p strong{
 
 @media only screen and (max-width: 375px) {
  
-    header.columns {
-        height: 12em;
+    header.columns-block {
+        height: 8em;
+        padding: 3px;
     }
 
     h1.title {
@@ -193,20 +194,21 @@ footer p strong{
     main {
         background-color: #fcf4e0;}
 
-     .column-Search{
+     .control{
         position: relative;
-        max-width: 80%;
+        max-width: 100%;
     }
 
     #button-container{
         position: relative;
-        padding: 75px;
+        padding: 8px;
         margin-top: 50px;
-        justify-content: space-around;
+        max-width: 99%;
+        justify-content: center;
     }
 
     .button-is-info-is-rounded {
-        font-size: 2em;
+        font-size: 5em;
     }
 
     #main-area h2{
