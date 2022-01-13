@@ -10,7 +10,7 @@ Movies and Film Suggestions for You!
 * [View-the-Project](#View-The-Project)
 * [Technologies Used](#Technologies-Used) | * [Server-Side APIs](#Server-Side-APIs)
 * [Credits](Credits)
-* [License](License)
+* [MIT-License](#MIT-License)
 
 ## Description
 
@@ -74,8 +74,6 @@ Used for the creation of dummy movie poster for "missing" posters.
 
 **GitHub** for our repository and Kanban board.
 
-**Screencastify** video screen recorder, for application demo.
-
 **Slack** for ongoing communication.
 
 
@@ -95,9 +93,24 @@ CONSULTED:
 
 
 ## Credits
-<!-- * OMDB for their open source API. We used: Discover, Keywords, Genres, and ________ -->
-* Canva for poster creation.
-* Draw.io for wireframe design.
-* Bulma for CSS framework.
 
-## License
+* Bulma for CSS framework.
+* Canva for "dummyposter" creation.
+* Draw.io for wireframe designs.
+* Google Docs for group 
+* OMDB for their open source APIs: Discover, Keywords, Genres, and Trending to help direct results for our users.
+* TMDB for their open source API for information specific to television shows.
+* Slack for group communications.
+* Zoom for group meetings.
+
+🎉 @nightmarefails for hosting office hours and sharing feedback.
+
+## MIT License
+
+Copyright &copy;2022 Omar Asamari, Colin Bares, Jake Radermacher, and Claire Rosenfrisk.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
