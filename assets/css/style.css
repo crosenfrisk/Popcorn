@@ -126,7 +126,7 @@ footer p strong{
 }
     
 
-/* Media Query for small screen Moble*/
+/* Media Query for small screen Mobile*/
 
 @media only screen and (max-width: 600px) {
  
@@ -142,6 +142,81 @@ footer p strong{
 
     #main-area {
         margin: 0 0px;
+    }
+
+    .modal-content{
+        background: -webkit-linear-gradient(right, #D75D5D, #e0d52e);
+        border-radius:0;
+        width: 300px;    
+    }
+
+    .modal img {
+        float: right;
+        width: 200px;
+    }
+
+    .clear-watchlist{
+       
+        margin: 40px auto 70px auto;
+        font-size: 16px;
+    }
+    
+    footer p {
+        margin: 15px;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+ 
+    header.columns {
+        height: 12em;
+    }
+
+    h1.title {
+     font-size: 3em;
+    }
+
+    .subtitle{
+        font-size: 1em;
+    }
+
+    img.image{
+        max-width: 25%;
+        float: right;
+    }
+
+     .column-Search{
+        position: relative;
+        margin-top: 5px;
+        justify-content: space-around;
+        padding: 10px;
+    }
+
+    #button-container{
+        position: relative;
+        padding: 10px;
+        margin-top: 125px;
+        margin-left: 20px;
+        justify-content: space-evenly;
+        max-width: 85%;
+    }
+
+    #main-area h2{
+        font-size: 2em;
+    }
+
+    #movie-images{
+    gap: 2vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    background-color: rgb(252, 244, 224);
+    padding: 15px 0;
+    border-radius: 1rem;
+    } 
+
+    #main-area {
+        margin: 0 2px;
     }
 
     .modal-content{
