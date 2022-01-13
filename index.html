@@ -10,51 +10,49 @@
     </head>
     <body>
         <main>
-            <header class="columns block p-1">
+            <header class="columns p-1">
                 <!--Jumbotron-->
-
-                <div class="column is-two-fifth">
-                    <h1 class="title has-text-info-dark is-size-1 m-5">Popcorn!</h1>
-                    <div class="subtitle is-size-4 ml-5">If you want to choose a movie to spend nice time</div>
+                <div class="column is-three-quarter">
+                    <h1 class="title has-text-info-dark is-size-1">Popcorn!</h1>
+                    <img class="image img-h" height="100px" width="100px" src="assets/images/transparentPopcornIcon.png" alt="popcorn icon">
+                    <div class="subtitle is-size-4 ml-5">Movie and Show Suggestions</div>
                 </div>
-                    
-                <div class="column is-one-third h-img mt-5">
-                    <img class="image has-ratio level-right" height="100px" width="100px" src="assets/images/transparentPopcornIcon.png" alt="popcorn icon">
-                </div>
-                
-                <div class="column search is-one-fifth">
+                <div class="search column is-one-quarter">
                     <div class="field has-addons">
                         <div class="control">
-                            <input class="input has-text-right" type="text" placeholder="Find your movie" id="searchInput">
+                        <input class="input has-text-right" type="text" placeholder="Find your movie" id="searchInput">
                         </div>
                         <div class="control">
-                            <a class="button is-info" id="searchBtn">Search</a>
+                        <a class="button is-info" id="searchBtn">Search</a>
                         </div>
                     </div>
-                </div>
             
+                </div>  
+
             </header>
 
-            <main>
+
+            
+
                 
-                <div class="columns is-centered">
-                    <section class="column buttons are-small is-two-third has-text-centered" id="button-container">
-                        <button class="button is-info is-rounded" id="top10Btn">Top Ten</button>
-                        <button class="button is-info is-rounded" id="watchList">Watchlist</button>
-                        <button class="button is-info is-rounded" id="genreSel">Genre Selector</button>
-                        <button class="button is-info is-rounded" id="about">This App</button>
-                    </section>
+            <div class=" is-centered">
+                <section class="column buttons are-small is-two-third has-text-centered" id="button-container">
+                    <button class="button is-info is-rounded" id="top10Btn">Top Ten</button>
+                    <button class="button is-info is-rounded" id="watchList">Watchlist</button>
+                    <button class="button is-info is-rounded" id="genreSel">Genre Selector</button>
+                    <button class="button is-info is-rounded" id="about">This App</button>
+                </section>
+            </div>
+
+            <div id="main-area" class="has-text-centered">
+
+                <div id="genre-list">
+
                 </div>
+                <div id="movie-images">
 
-                <div id="main-area" class="has-text-centered">
-
-                    <div id="genre-list">
-
-                    </div>
-                    <div id="movie-images">
-    
-                    </div>
                 </div>
+            </div>
             
 
                
@@ -78,7 +76,6 @@
             <p class="mt-1">
 
             <strong>Popcorn!</strong> by <a href="https://crosenfrisk.github.io/Popcorn/">Colin, Claire, Omar, and Jake</a>. The content is fetched from <a href="http://www.themoviedb.org/">TMDB</a> and <a href="https://www.omdbapi.com/"> OMDB</a>.
-
             </p>
         </footer>
         <!-- footer end -->
