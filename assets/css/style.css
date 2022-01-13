@@ -251,6 +251,30 @@ footer p strong{
     }
 }
 
+@media only screen and (max-width: 393px) {
+ 
+    h1.title {
+     font-size: 3em;
+    }
+
+    .subtitle{
+        font-size: 1em;
+    }
+
+    img.image{
+        max-width: 25%;
+        float: right;
+    }
+
+    .column-Search{
+        padding: 0px;
+    }
+
+    main {
+        background-color: #fcf4e0;
+    }
+
+
 @media only screen and (max-width: 320px) {
  
     header.columns {
