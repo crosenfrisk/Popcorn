@@ -166,6 +166,91 @@ footer p strong{
     }
 }
 
+@media only screen and (max-width: 375px) {
+ 
+    header.columns {
+        height: 12em;
+    }
+
+    h1.title {
+     font-size: 3em;
+    }
+
+    .subtitle{
+        font-size: 1em;
+    }
+
+    img.image{
+        max-width: 30%;
+        float: right;
+    }
+
+    .columns-is-centered {
+        background-color: #fcf4e0;
+        padding: 0px;
+    }
+
+    main {
+        background-color: #fcf4e0;}
+
+     .column-Search{
+        position: relative;
+        max-width: 80%;
+    }
+
+    #button-container{
+        position: relative;
+        padding: 75px;
+        margin-top: 50px;
+        justify-content: space-around;
+    }
+
+    .button-is-info-is-rounded {
+        font-size: 2em;
+    }
+
+    #main-area h2{
+        margin-top: 0px;
+        padding: 0px;
+        font-size: 2em;
+    }
+
+    #movie-images{
+    gap: 2vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    background-color: rgb(252, 244, 224);
+    padding: 15px 0;
+    border-radius: 1rem;
+    } 
+
+    #main-area {
+        margin: 0 2px;
+    }
+
+    .modal-content{
+        background: -webkit-linear-gradient(right, #D75D5D, #e0d52e);
+        border-radius:0;
+        width: 300px;    
+    }
+
+    .modal img {
+        float: right;
+        width: 200px;
+    }
+
+    .clear-watchlist{
+       
+        margin: 40px auto 70px auto;
+        font-size: 16px;
+    }
+    
+    footer p {
+        margin: 15px;
+    }
+}
+
 @media only screen and (max-width: 320px) {
  
     header.columns {
