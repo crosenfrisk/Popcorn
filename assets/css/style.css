@@ -13,7 +13,7 @@ header {
     margin: 70px 20px 0 auto;
 }
 
-button-container {
+.button-container {
     /*border: 1px solid black;*/
     width: 80%;
     flex-wrap: wrap;
@@ -125,6 +125,19 @@ footer p strong{
    
 }
     
+@media only screen and (max-width: 768px) {
+    img.image{
+        max-width: 50%;
+        float: right;
+    }
+
+    .control {
+       max-width: 50%;
+       position: relative;
+       align-items: center;
+    }
+
+}
 
 /* Media Query for small screen Mobile*/
 
@@ -142,6 +155,10 @@ footer p strong{
 
     #main-area {
         margin: 0 0px;
+    }
+
+    main {
+        background-color: #fcf4e0;
     }
 
     .modal-content{
@@ -166,7 +183,7 @@ footer p strong{
     }
 }
 
-@media only screen and (max-width: 375px) {
+@media only screen and (max-width: 360px) {
  
     header.columns-block {
         height: 8em;
@@ -350,4 +367,5 @@ footer p strong{
     footer p {
         margin: 15px;
     }
+}
 }
