@@ -25,6 +25,12 @@ button-container {
     padding: 0 0 100px 0;  
 }
 
+#main-area h2 {
+    font-size: 3em;
+    margin-bottom: .5em;
+    width: 100%;
+}
+
 #genre-list {
     margin-bottom: 20px;
 }
