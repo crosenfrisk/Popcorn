@@ -10,15 +10,20 @@
     </head>
     <body>
         <main>
-            <header class="block p-1">
+            <header class="columns block p-1">
                 <!--Jumbotron-->
-                <div>
-                    <h1 class="title has-text-black is-size-1 m-5">Popcorn!</h1>
-                    <div class="subtitle is-size-4 ml-5">Movie and Show Suggestions<em> for You.</em></div>
+
+                <div class="column is-two-fifth">
+                    <h1 class="title has-text-info-dark is-size-1 m-5">Popcorn!</h1>
+                    <div class="subtitle is-size-4 ml-5">If you want to choose a movie to spend nice time</div>
+                </div>
+                    
+                <div class="column is-one-third h-img mt-5">
+                    <img class="image has-ratio level-right" height="100px" width="100px" src="assets/images/transparentPopcornIcon.png" alt="popcorn icon">
                 </div>
                 
-                <dive class="search level-right ">
-                    <div class="field has-addons mr-5">
+                <div class="column search is-one-fifth">
+                    <div class="field has-addons">
                         <div class="control">
                             <input class="input has-text-right" type="text" placeholder="Find your movie" id="searchInput">
                         </div>
@@ -26,18 +31,18 @@
                             <a class="button is-info" id="searchBtn">Search</a>
                         </div>
                     </div>
-                </dive>
+                </div>
             
             </header>
 
             <main>
                 
                 <div class="columns is-centered">
-                    <section class="column is-half has-text-centered row is-fluid py-2 is-rounded" id="button-container">
-                        <button class="button sbtn is-dark" id="top10Btn">Top Ten</button>
-                        <button class="button sbtn is-dark" id="watchList">Watchlist</button>
-                        <button class="button sbtn is-dark" id="genreSel">Genre Selector</button>
-                        <button class="button sbtn is-dark" id="about">This App</button>
+                    <section class="column buttons are-small is-two-third has-text-centered" id="button-container">
+                        <button class="button is-info is-rounded" id="top10Btn">Top Ten</button>
+                        <button class="button is-info is-rounded" id="watchList">Watchlist</button>
+                        <button class="button is-info is-rounded" id="genreSel">Genre Selector</button>
+                        <button class="button is-info is-rounded" id="about">This App</button>
                     </section>
                 </div>
 
@@ -59,7 +64,7 @@
 
         <div class="modal">
             <div class="modal-background"></div>
-            <div class="modal-content has-text-white has-background-info p-5" id="modal-content-area">
+            <div class="modal-content has-text-info-dark p-5" id="modal-content-area">
                 <!-- <h3 class="title has-text-white p-5 mb-5">How the app works</h3>
                 <p>You can search for the movie you want to watch by clickig on buttons 'Top Ten' or 'Watchlist' after you choose it and 'Genre Select.</p>
                 <p>After the search result presented to you you can click once on any of the movies to read its details</p>
@@ -71,7 +76,9 @@
         <!-- footer -->
         <footer class="footer has-text-centered has-background-warning p-0">
             <p class="mt-1">
-            <strong>Popcorn!</strong> by <a href="https://crosenfrisk.github.io/Popcorn/">Colin, Claire, Omar, and Jake</a>. The content is fetched from <a href="http://www.themoviedb.org/">TMDB</a> and <a href="https://www.omdbapi.com/">OMDB</a>.
+
+            <strong>Popcorn!</strong> by <a href="https://crosenfrisk.github.io/Popcorn/">Colin, Claire, Omar, and Jake</a>. The content is fetched from <a href="http://www.themoviedb.org/">TMDB</a> and <a href="https://www.omdbapi.com/"> OMDB</a>.
+
             </p>
         </footer>
         <!-- footer end -->
