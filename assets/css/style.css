@@ -353,7 +353,7 @@ footer p strong{
     }
 
 
-@media only screen and (max-width: 320px) {
+@media only screen and (max-width: 360px) {
  
     header.columns {
         height: 12em;
