@@ -20,36 +20,39 @@
                 <div class="search column is-one-quarter">
                     <div class="field has-addons">
                         <div class="control">
-                            <input class="input" type="text" placeholder="Find a repository">
+                        <input class="input has-text-right" type="text" placeholder="Find your movie" id="searchInput">
                         </div>
                         <div class="control">
-                            <a class="button is-info">Search</a>
+                        <a class="button is-info" id="searchBtn">Search</a>
                         </div>
                     </div>
+            
                 </div>  
 
             </header>
 
-            <main>
+
+            
+
                 
-                <div class=" is-centered">
-                    <section class="column buttons are-small is-two-third has-text-centered" id="button-container">
-                        <button class="button is-info is-rounded" id="top10Btn">Top Ten</button>
-                        <button class="button is-info is-rounded" id="watchList">Watchlist</button>
-                        <button class="button is-info is-rounded" id="genreSel">Genre Selector</button>
-                        <button class="button is-info is-rounded" id="about">This App</button>
-                    </section>
+            <div class=" is-centered">
+                <section class="column buttons are-small is-two-third has-text-centered" id="button-container">
+                    <button class="button is-info is-rounded" id="top10Btn">Top Ten</button>
+                    <button class="button is-info is-rounded" id="watchList">Watchlist</button>
+                    <button class="button is-info is-rounded" id="genreSel">Genre Selector</button>
+                    <button class="button is-info is-rounded" id="about">This App</button>
+                </section>
+            </div>
+
+            <div id="main-area" class="has-text-centered">
+
+                <div id="genre-list">
+
                 </div>
+                <div id="movie-images">
 
-                <div id="main-area" class="has-text-centered">
-
-                    <div id="genre-list">
-
-                    </div>
-                    <div id="movie-images">
-    
-                    </div>
                 </div>
+            </div>
             
 
                
@@ -71,6 +74,7 @@
         <!-- footer -->
         <footer class="footer has-text-centered has-background-warning p-0">
             <p class="mt-1">
+
             <strong>Popcorn!</strong> by <a href="https://crosenfrisk.github.io/Popcorn/">Colin, Claire, Omar, and Jake</a>. The content is fetched from <a href="http://www.themoviedb.org/">TMDB</a> and <a href="https://www.omdbapi.com/"> OMDB</a>.
             </p>
         </footer>
