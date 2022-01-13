@@ -49,6 +49,7 @@ let top10Btn = document.querySelector("#top10Btn");
 let genreSelBtn = document.querySelector("#genreSel");
 let watchlistBtn = document.querySelector("#watchList");
 let searchBtn = document.querySelector('#searchBtn');
+let mainAreaEl = document.querySelector('#main-area');
 
 // grab results area for display
 let resultsArea = document.querySelector('#movie-images');
@@ -463,6 +464,10 @@ var getTopTen = function() {
     resultsArea.innerHTML = '';
     document.querySelector("#genre-list").innerHTML = '';
 
+    // add heading
+    let heading = document.createElement('h2');
+    heading.textContent = `Today's Top Ten`;
+    resultsArea.appendChild(heading);
     // url pulls top 20 trending movies/shows for the day
     fetch(`${theMovieDbUrl}trending/all/day?api_key=${theMovieDbApiKey}`)
     .then(function(response) {
@@ -667,3 +672,4 @@ function saveItem(imgUrl, data) {
     }
 };
 
+window.addEventListener('DOMContentLoaded', getTopTen());
