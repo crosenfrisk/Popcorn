@@ -137,6 +137,11 @@ footer p strong{
     cursor: pointer;
 }
 
+/* heading in about modal */
+#modal-content-area h3{
+    margin: 0;
+}
+
 /* Media Query for small screen Moble*/
 
 @media only screen and (max-width: 600px) {
