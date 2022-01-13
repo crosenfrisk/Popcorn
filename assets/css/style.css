@@ -132,6 +132,10 @@ footer p strong{
    
 }
     
+/* make mouse pointer hover on posters */
+#movie-images img {
+    cursor: pointer;
+}
 
 /* Media Query for small screen Moble*/
 
