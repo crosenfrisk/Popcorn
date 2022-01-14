@@ -8,8 +8,7 @@ header {
     height: auto;
 }
 
-.title, 
-.subtitle {
+.title, .subtitle {
     float: left;
     margin: 10px 0 0 30px;
 }
