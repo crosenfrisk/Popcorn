@@ -1,12 +1,11 @@
 :root {
-    background-color: rgba(128, 128, 128, 0.096);   
+    background-color: #fcf4e0;
 }
 
 header {
     background: -webkit-linear-gradient(right, #D75D5D, #e0d52e);
     border-bottom: solid 10px hsla(55, 12%, 40%, 0.315);
     height: auto;
-  
 }
 
 .title, .subtitle {
@@ -17,10 +16,21 @@ header {
 .search {
     position: relative;
     margin-top: 85px;
-    
+    float: right;
 }
 
-button-container {
+.input-has-text-right {
+   position: relative;
+   width: fit-content;
+   float: right;
+}
+
+#searchBtn{
+    position: relative;
+    float: right;
+}
+
+.button-container {
     /*border: 1px solid black;*/
     width: 80%;
     flex-wrap: wrap;
