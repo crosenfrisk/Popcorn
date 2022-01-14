@@ -4,13 +4,16 @@ Movies and Film Suggestions for You!
 ## Table of Contents
 
 * [Description](#Description)
-* [Process](#Process) | * [Challenges](#Challenges)
+* [Process](#Process) 
+* [Challenges](#Challenges)
 * [Implementation](#Implementation)
-* [Who-Did-What](#Who-Did-What)
-* [View-the-Project](#View-The-Project)
-* [Technologies Used](#Technologies-Used) | * [Server-Side APIs](#Server-Side-APIs)
+* [Who Did What](#Who-Did-What)
+* [View the Project](#View-The-Project)
+* [Future Enhancements](#Future-Enhancements)
+* [Technologies Used](#Technologies-Used) 
+* [Server-Side APIs](#Server-Side-APIs)
 * [Credits](Credits)
-* [License](License)
+* [MIT License](#MIT-License)
 
 ## Description
 
@@ -21,7 +24,7 @@ When a user clicks on a poster image, they can read the synopses of any movie or
 
 ## Process
 
-We wanted our application to provide a solution to a problem we feel is relevant to people of all ages in our society who grapple with indecision when it comes to at-home entertainment. Having spent the last two years at home during a global pandemic, streaming services have become a top form of entertainment when going out is less of a possibility. However, the more time we spend at home, the less we might feel we have options, or that we've "seen everything." Streaming services frequently only promote content within their own platform, keeping users insulated and perhaps leading to what feels like boredom or lack of options. While algorithms can sometimes be useful, sometimes letting a consumer choose a show or movie based on mood (based on genre, run time, etc.) gives users a sense of autonomy and choice. We hope our application's simple design and interface is intuitive for all users.
+We wanted our application to provide a solution to a problem we feel is relevant to people of all ages in our society who grapple with indecision when it comes to at-home entertainment. Having spent the last two years at home during a global pandemic, streaming services have become a top form of entertainment when going out is less of a possibility. However, the more time we spend at home, the less we might feel we have options, or that we've "seen everything." Streaming services frequently only promote content within their own platform, keeping users insulated and perhaps leading to what feels like boredom or lack of options. While algorithms can sometimes be useful, sometimes letting a consumer choose a show or movie based on mood, selecting a genre or typing a keyword, giving users a sense of autonomy and choice. We hope our application's simple design and interface is intuitive for all.
 
 USER STORY: 
 AS AN indecisive media consumer 
@@ -44,46 +47,55 @@ By the end of Week 1 we had our app functioning as desired, so we moved on to im
 
 Claire acted as SCRUM master, lead communicator. She created the initial repository and files in VSC for the main branch and created the develop branch. She created the wireframe images for Desktop, Tablet, and Mobile as listed in the images folder using `Draw.io`. Claire assisted with JavaScript by creating the `loadGenres()` function and the `searchByGenres()` function. She created the `modal.js` file, designed the `dummyposter.png` for missing poster results, wrote the `about.html` content, and took the lead on creating the presentation using `docs.google.com/presentation`. Created favicon and implemented initial CSS (color changes) as placeholder for CSS from teammates in preparation for presentation. Shared idea of "how-to" remove single item from watchlist, which was then designed by Colin.
 
-<!-- Colin wrote the majority of the JavaScript functions for Top 10, Watchlist, and even created the Keyword search function. He used the API to help pull results for movie and show descriptions, cleaned up errors, and offered to support CSS design.  Colin, you can write more here, totally whatever you want to say -->
+Colin mostly worked on the JavaScript file, handling DOM manipulation, fetch requests, and localStorage. He set up localStorage to handle saving/loading items in the user's Watchlist. He used a variety of endpoints from TMDB API, including Configuration for creating poster urls, Trending for the Top 10, Search for tv shows/movies based on user input, and Watch Providers for where to stream TV Shows. He handled fetch requests from OMDB API to get further information on movies by IMDB ID. He also spent time finding edge cases and fixing bugs,refactoring the functions to handle different kinds of data returned from different endpoints, and adding behavior to account for missing/bad data from the API.
 
 <!-- Omar took on studying Bulma, a CSS framework like Bootstrap, to help design the look and flow of our application. He tied our modal to our JS. He also offered to do the Keyword search JS, so the function that works is a mix of his and Colin's work. Omar, please write whatever you'd like to say here!-->
 
-<!-- Jake felt the most confident in CSS. He designed the background, chose colors, stylized buttons, and make sure everything was mobile responsive using media queries. Jake, please feel free to add more details here! -->
+<!-- Jake felt the most confident working with CSS. He helped make sure our page was responsive for mobile and tablet users with specialized media queries. Jake, please feel free to add more details here! -->
 
 
 ## View The Project
 
-![Screenshot of Project](/assets/images/screenshot1.png)
+![Screenshot of Project](/assets/images/screenshot2.png)
 
 [Link to Deployed Project](https://crosenfrisk.github.io/Popcorn/)
 
+## Future Enhancements
+
+* Rating Content 👍👎 || ⭐⭐⭐/⭐⭐⭐⭐⭐
+
+* User Notes Section ✍
+
+* UI/UX enhancements for swipe rather than click 👆
+
+* Ability to share or export user watchlists 💬
+
+* List of where the content can be streamed or rented. Currently this does not populate for each API fetched item. 📺
 
 
 ## Technologies Used
 
-[Bulma](https://bulma.io/)
+* [Bulma](https://bulma.io/)
 Used for styling our CSS
 
-[Draw.io](https://app.diagrams.net)
+* [Draw.io](https://app.diagrams.net)
 Used for creation of wireframes
 
-[Canva](https://www.canva.com/)
+* [Canva](https://www.canva.com/)
 Used for the creation of dummy movie poster for "missing" posters.
 
-**Google Docs** for project proposal and presentation.
+* **Google Docs** for project proposal and presentation.
 
-**GitHub** for our repository and Kanban board.
+* **GitHub** for our repository and Kanban board.
 
-**Screencastify** video screen recorder, for application demo.
-
-**Slack** for ongoing communication.
+* **Slack** for ongoing communication.
 
 
 ## Server-Side APIs:
 
 USED: 
 * [The Movie DB](https://developers.themoviedb.org) -- for the movie posters, genres, descriptions. Allows more comprehensive ways to search for recommendations.
-Endpoints used - Configuration, Genres, Search, Trending
+Endpoints used - Configuration, Genres, Search, Trending, Watch Providers
 
 * [OMDB](https://www.omdbapi.com/) -- for in depth details for movies.
 Endpoints used - Search by IMDB ID
@@ -93,11 +105,25 @@ CONSULTED:
 * [Rotten Tomatoes](https://developer.fandango.com/rotten_tomatoes) -- referenced but not used.
 
 
-
 ## Credits
-<!-- * OMDB for their open source API. We used: Discover, Keywords, Genres, and ________ -->
-* Canva for poster creation.
-* Draw.io for wireframe design.
-* Bulma for CSS framework.
 
-## License
+* Bulma for CSS framework.
+* Canva for "dummyposter" creation.
+* Draw.io for wireframe designs.
+* Google Docs for group 
+* OMDB for their open source APIs: Discover, Keywords, Genres, and Trending to help direct results for our users.
+* TMDB for their open source API for information specific to television shows.
+* Slack for group communications.
+* Zoom for group meetings.
+
+🎉 @nightmarefails for hosting office hours and sharing feedback. Gratitude to our classmates for their enthusiasm and support for our project.
+
+## MIT License
+
+Copyright &copy;2022 Omar Asamari, Colin Bares, Jake Radermacher, and Claire Rosenfrisk.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
