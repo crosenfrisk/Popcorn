@@ -1,7 +1,7 @@
 // base url and api keys for both apis from config file
 var theMovieDbUrl = "https://api.themoviedb.org/3/";
 var theMovieDbApiKey = config.theMovieDbApiKey;
-var omdbBaseUrl = 'http://www.omdbapi.com/?apikey='
+var omdbBaseUrl = 'https://www.omdbapi.com/?apikey='
 var omdbAPIKey = config.omdbAPIKey;
 
 // placeholder for data that will be pulled from getConfigInfo
