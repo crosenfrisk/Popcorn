@@ -1,5 +1,5 @@
 :root {
-    background-color: rgba(128, 128, 128, 0.096);   
+    background-color: rgba(128, 128, 128, 0.219);   
 }
 
 header {
@@ -21,14 +21,14 @@ header {
 }
 
 button-container {
-    /*border: 1px solid black;*/
     width: 80%;
     flex-wrap: wrap;
     position: flex;
 }
- 
+
+/* Result of search and genre ----------------- */
 #main-area {
-    margin: 0 200px 0px 200px;
+    margin: 0 200px 20px 200px;
     padding: 0 0 100px 0;  
 }
 
@@ -51,7 +51,9 @@ button-container {
     padding: 15px 0;
     border-radius: 1rem;
 }
+/* End of Result of search and genre ----------------- */
 
+/* Modals ----------------- */
 .modal-content{
     background: -webkit-linear-gradient(right, #D75D5D, #e0d52e);
     border-radius:1pc;
@@ -68,35 +70,14 @@ button-container {
     font-size: 18px;
 }
 
-.saveButton {
-    margin: 10px auto;
-    background: -webkit-linear-gradient(right, #f08080, #e0d52e);
-    padding: 5px;
-    border-radius: 5px;
-    position: relative;
-    bottom: 0;
-}
-
 .aboutimg {
     width: 200px;
     float: right;
     margin-left: 10px;
 }
+/* End of Modals ----------------- */
 
-footer {
-    background: -webkit-linear-gradient(right, #D75D5D, #e0d52e, #D75D5D);    
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: auto;
-}
-
-footer p strong{
-    font-style: italic;
-    }
-    
-    /* styles for save button in modal */
-    
+/* Buttons -----------------------------------*/
 /* styles for genre buttons */
 .genre {
     margin: 2px;
@@ -108,17 +89,16 @@ footer p strong{
 }
 
 /* styles for clear watch list button */
-
 .clear-watchlist{
-    margin: 2px;
+    margin-bottom: 30px;
     background: -webkit-linear-gradient(right, #D75D5D, #e0d52e);
     padding: 5px;
     border-radius: 5px;
     width: 200px;
     height: 40px;
-    position:fixed;
+    position: fixed;
     bottom: 0;
-    margin: 30px auto 40px auto;
+    margin: 30px auto 60px auto;
     font-size: 16px;
 }
     
@@ -131,10 +111,33 @@ footer p strong{
     color:v black;
    
 }
+ /* styles for save button in modal */
+.saveButton {
+    margin: 10px auto;
+    background: -webkit-linear-gradient(right, #f08080, #e0d52e);
+    padding: 5px;
+    border-radius: 5px;
+    position: relative;
+    bottom: 0;
+}
+/* End of Buttons -----------------------------------*/
+
+/* Footer -----------------------------------*/
+footer {
+    background: -webkit-linear-gradient(right, #D75D5D, #e0d52e, #D75D5D);    
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+}
+
+footer p strong{
+    font-style: italic;
+}
+/* End of Footer -----------------------------------*/
     
 
 /* Media Query for small screen Moble*/
-
 @media only screen and (max-width: 600px) {
  
     #movie-images{
@@ -148,7 +151,7 @@ footer p strong{
     } 
 
     #main-area {
-        margin: 0 0px;
+        margin: 0px 0px 30px;
     }
 
     .search {
@@ -167,12 +170,13 @@ footer p strong{
     }
 
     .clear-watchlist{
-       
-        margin: 40px auto 70px auto;
+        margin: 40px auto 85px auto;
         font-size: 16px;
+        padding: 0;
+        height: 30px;
     }
     
     footer p {
-        margin: 15px;
+        margin: 5px;
     }
 }
