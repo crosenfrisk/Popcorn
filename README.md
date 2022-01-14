@@ -4,13 +4,16 @@ Movies and Film Suggestions for You!
 ## Table of Contents
 
 * [Description](#Description)
-* [Process](#Process) | * [Challenges](#Challenges)
+* [Process](#Process) 
+* [Challenges](#Challenges)
 * [Implementation](#Implementation)
-* [Who-Did-What](#Who-Did-What)
-* [View-the-Project](#View-The-Project)
-* [Technologies Used](#Technologies-Used) | * [Server-Side APIs](#Server-Side-APIs)
+* [Who Did What](#Who-Did-What)
+* [View the Project](#View-The-Project)
+* [Future Enhancements](#Future-Enhancements)
+* [Technologies Used](#Technologies-Used) 
+* [Server-Side APIs](#Server-Side-APIs)
 * [Credits](Credits)
-* [MIT-License](#MIT-License)
+* [MIT License](#MIT-License)
 
 ## Description
 
@@ -21,7 +24,7 @@ When a user clicks on a poster image, they can read the synopses of any movie or
 
 ## Process
 
-We wanted our application to provide a solution to a problem we feel is relevant to people of all ages in our society who grapple with indecision when it comes to at-home entertainment. Having spent the last two years at home during a global pandemic, streaming services have become a top form of entertainment when going out is less of a possibility. However, the more time we spend at home, the less we might feel we have options, or that we've "seen everything." Streaming services frequently only promote content within their own platform, keeping users insulated and perhaps leading to what feels like boredom or lack of options. While algorithms can sometimes be useful, sometimes letting a consumer choose a show or movie based on mood (based on genre, run time, etc.) gives users a sense of autonomy and choice. We hope our application's simple design and interface is intuitive for all users.
+We wanted our application to provide a solution to a problem we feel is relevant to people of all ages in our society who grapple with indecision when it comes to at-home entertainment. Having spent the last two years at home during a global pandemic, streaming services have become a top form of entertainment when going out is less of a possibility. However, the more time we spend at home, the less we might feel we have options, or that we've "seen everything." Streaming services frequently only promote content within their own platform, keeping users insulated and perhaps leading to what feels like boredom or lack of options. While algorithms can sometimes be useful, sometimes letting a consumer choose a show or movie based on mood, selecting a genre or typing a keyword, giving users a sense of autonomy and choice. We hope our application's simple design and interface is intuitive for all.
 
 USER STORY: 
 AS AN indecisive media consumer 
@@ -57,24 +60,35 @@ Colin mostly worked on the JavaScript file, handling DOM manipulation, fetch req
 
 [Link to Deployed Project](https://crosenfrisk.github.io/Popcorn/)
 
+## Future Enhancements
+
+* Rating Content 👍👎 || ⭐⭐⭐/⭐⭐⭐⭐⭐
+
+* User Notes Section ✍
+
+* UI/UX enhancements for swipe rather than click 👆
+
+* Ability to share or export user watchlists 💬
+
+* List of where the content can be streamed or rented. Currently this does not populate for each API fetched item. 📺
 
 
 ## Technologies Used
 
-[Bulma](https://bulma.io/)
+* [Bulma](https://bulma.io/)
 Used for styling our CSS
 
-[Draw.io](https://app.diagrams.net)
+* [Draw.io](https://app.diagrams.net)
 Used for creation of wireframes
 
-[Canva](https://www.canva.com/)
+* [Canva](https://www.canva.com/)
 Used for the creation of dummy movie poster for "missing" posters.
 
-**Google Docs** for project proposal and presentation.
+* **Google Docs** for project proposal and presentation.
 
-**GitHub** for our repository and Kanban board.
+* **GitHub** for our repository and Kanban board.
 
-**Slack** for ongoing communication.
+* **Slack** for ongoing communication.
 
 
 ## Server-Side APIs:
@@ -91,7 +105,6 @@ CONSULTED:
 * [Rotten Tomatoes](https://developer.fandango.com/rotten_tomatoes) -- referenced but not used.
 
 
-
 ## Credits
 
 * Bulma for CSS framework.
@@ -103,7 +116,7 @@ CONSULTED:
 * Slack for group communications.
 * Zoom for group meetings.
 
-🎉 @nightmarefails for hosting office hours and sharing feedback.
+🎉 @nightmarefails for hosting office hours and sharing feedback. Gratitude to our classmates for their enthusiasm and support for our project.
 
 ## MIT License
 
