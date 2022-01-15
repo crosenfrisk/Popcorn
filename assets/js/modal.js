@@ -11,7 +11,7 @@ appButton.addEventListener('click', () => {
     modalContentArea.innerHTML = '';
     modal.classList.add('is-active');
     let headingEl = document.createElement('h3');
-    headingEl.classList = 'title has-text-white p-5 mb-5';
+    headingEl.classList = 'title-modal has-text-white p-5';
 
     headingEl.textContent = 'Welcome to Popcorn!';
 
