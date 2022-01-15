@@ -33,7 +33,7 @@ button-container {
 
 /* Result of search and genre ----------------- */
 #main-area {
-    margin: 0 200px 20px 200px;
+    margin: 0 200px;
     padding: 0 0 100px 0;  
 }
 
@@ -152,6 +152,23 @@ footer p strong{
 }
 
 /* Media Query for small screen Mobile*/
+
+@media only screen and (max-width: 980px) {
+
+    #main-area {
+        margin: 0 0px;
+    }
+
+    .subtitle {
+        display: none;
+    }
+
+    .search
+
+    .footer {
+        display: none;
+    }
+};
 
 @media only screen and (max-width: 600px) {
  
