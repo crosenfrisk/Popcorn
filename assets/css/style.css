@@ -180,9 +180,9 @@ footer p strong{
     .search {
         position:relative;
         width: 80%;
-        margin: auto;
-        
+        margin: auto;   
     }
+}
 
 @media only screen and (max-width: 600px) {
  
