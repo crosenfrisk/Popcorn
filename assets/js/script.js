@@ -452,6 +452,7 @@ var getTopTen = function() {
     // add heading
     let heading = document.createElement('h2');
     heading.textContent = `Today's Top Ten`;
+    heading.className='has-text-info is-size-4 is-family-monospace m-0'
     resultsArea.appendChild(heading);
 
     // url pulls top 20 trending movies/shows for the day
