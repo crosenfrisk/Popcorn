@@ -77,7 +77,9 @@ Colin mostly worked on the JavaScript file, handling DOM manipulation, fetch req
 
 To use the app, simply visit the [deployed site](https://crosenfrisk.github.io/Popcorn/).
 
-If you would like to play with the app, please use the fork option. <img src="assets\images\code-branch-solid.svg" width="10" height="10">
+If you would like to play with the app, please use the fork option <img src="assets\images\code-branch-solid.svg" width="10" height="10"> or use the <CODE CLONE> button on GitHub, copy the SSH or HTTPS key and then use the command line prompt within Git Bash $ git clone git@github.com:crosenfrisk/Popcorn.git [and hit enter], this should save the file locally to your device.
+
+After downloading the project from GitHub to your local device, open the Popcorn repository in a code editor such as Visual Studio Code, then view index.html in your web browser or Live Server.
 
 Any questions, feedback, or ideas for future development, please comment @crosenfrisk, @soundproofboot, @osamarli, @jakeradermacher 💌
 
