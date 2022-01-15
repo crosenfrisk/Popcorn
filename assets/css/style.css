@@ -158,6 +158,29 @@ footer p strong{
 
 /* Media Query for small screen Mobile*/
 
+<<<<<<< Updated upstream
+=======
+@media only screen and (max-width: 980px) {
+
+    #main-area {
+        margin: 0 0px;
+    }
+
+    .subtitle {
+        display: none;
+    }
+
+    .search {
+       display: flex;
+       align-items: center;
+    }
+
+    .footer {
+        display: none;
+    }
+};
+
+>>>>>>> Stashed changes
 @media only screen and (max-width: 600px) {
  
     #movie-images{
