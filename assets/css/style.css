@@ -66,13 +66,17 @@ button-container {
     
 }
 
+.title-modal {
+    font-size: 32px;
+}
 .modal img {
     float: right;
-    width: 200x;
+    width: 250px;
 }
 
 .modal p {
     font-size: 18px;
+    top: 0;
 }
 
 .aboutimg {
@@ -161,11 +165,12 @@ footer p strong{
         margin: 10px auto;
     }
 
-
     #main-area {
         margin: 0px 0px;
     }
-
+    .title-modal {
+        font-size: 22px;;
+    }
     .subtitle {
         display: none;
     }
@@ -182,6 +187,11 @@ footer p strong{
         width: 80%;
         margin: auto;   
     }
+
+    .title-modal {
+    font-size: 24px;
+    
+}
 }
 
 @media only screen and (max-width: 600px) {
@@ -212,8 +222,9 @@ footer p strong{
     }
 
     .modal img {
-        float: right;
+        float: none;
         width: 200px;
+        position:relative;
     }
 
     .clear-watchlist{
