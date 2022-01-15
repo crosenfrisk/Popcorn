@@ -155,20 +155,34 @@ footer p strong{
 
 @media only screen and (max-width: 980px) {
 
+    .search {
+        position:relative;
+        width: 90%;
+        margin: 10px auto;
+    }
+
+
     #main-area {
-        margin: 0 0px;
+        margin: 0px 0px;
     }
 
     .subtitle {
         display: none;
     }
 
-    .search
-
     .footer {
         display: none;
     }
 };
+
+@media only screen and (max-width: 780px) {
+
+    .search {
+        position:relative;
+        width: 80%;
+        margin: auto;   
+    }
+}
 
 @media only screen and (max-width: 600px) {
  
@@ -187,7 +201,8 @@ footer p strong{
     }
 
     .search {
-        margin: 50px 50px 0 50px;
+        width: 100%;
+        margin: auto;
     }
 
     .modal-content{
