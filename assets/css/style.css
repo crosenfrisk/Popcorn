@@ -2,11 +2,10 @@
     background-color: rgba(128, 128, 128, 0.219);   
 }
 
-header {
+header, .columns-p-1{
     background: -webkit-linear-gradient(right, #D75D5D, #e0d52e);
     border-bottom: solid 10px hsla(55, 12%, 40%, 0.315);
     height: auto;
-  
 }
 
 .title, .subtitle {
@@ -17,7 +16,13 @@ header {
 .search {
     position: relative;
     margin-top: 85px;
-    
+    float: right;
+}
+
+.input-has-text-right {
+   position: relative;
+   width: fit-content;
+   float: right;
 }
 
 button-container {
@@ -136,8 +141,18 @@ footer p strong{
 }
 /* End of Footer -----------------------------------*/
     
+/* make mouse pointer hover on posters */
+#movie-images img {
+    cursor: pointer;
+}
 
-/* Media Query for small screen Moble*/
+/* heading in about modal */
+#modal-content-area h3{
+    margin: 0;
+}
+
+/* Media Query for small screen Mobile*/
+
 @media only screen and (max-width: 600px) {
  
     #movie-images{
