@@ -106,10 +106,7 @@ footer p strong{
     font-style: italic;
     }
     
-<<<<<<< HEAD
-=======
     /* styles for save button in modal */
->>>>>>> d1303139a09f16ea8a2f110baa5126d3e4478028
     
 /* styles for genre buttons */
 .genre {
@@ -158,8 +155,6 @@ footer p strong{
 
 /* Media Query for small screen Mobile*/
 
-<<<<<<< Updated upstream
-=======
 @media only screen and (max-width: 980px) {
 
     #main-area {
@@ -180,7 +175,6 @@ footer p strong{
     }
 };
 
->>>>>>> Stashed changes
 @media only screen and (max-width: 600px) {
  
     #movie-images{
