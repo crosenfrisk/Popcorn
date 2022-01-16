@@ -452,6 +452,7 @@ var getTopTen = function() {
     // add heading
     let heading = document.createElement('h2');
     heading.textContent = `Today's Top Ten`;
+    heading.className='has-text-info is-size-4 is-family-monospace m-0'
     resultsArea.appendChild(heading);
 
     // url pulls top 20 trending movies/shows for the day
@@ -614,6 +615,7 @@ var searchByGenre = function (genreDataId) {
 
 // take text entered by user and use multi search endpoint from TMDB API to return results with that word
 function searchByKeyword (input) {
+    resultsArea.innerHTML = '';
     let keywordUrl = `${theMovieDbUrl}search/multi?api_key=${theMovieDbApiKey}&query=${input}`;
     fetch(keywordUrl)
     .then(function (response) {

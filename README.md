@@ -1,5 +1,5 @@
 # Popcorn!
-Movies and Film Suggestions for You!
+Movie and Show Suggestions *for You!*
 
 ## Table of Contents
 
@@ -10,6 +10,7 @@ Movies and Film Suggestions for You!
 * [Who Did What](#Who-Did-What)
 * [View the Project](#View-The-Project)
 * [Future Enhancements](#Future-Enhancements)
+* [Installation and Use](#Installation-and-Use)
 * [Technologies Used](#Technologies-Used) 
 * [Server-Side APIs](#Server-Side-APIs)
 * [Credits](Credits)
@@ -51,7 +52,7 @@ Colin mostly worked on the JavaScript file, handling DOM manipulation, fetch req
 
 Omar took the initiative to choose the BULMA CSS library after  examine the reviews of several libraries. He worked mostly on styling the application using BULMA css library and vanilla css. He implement the design of the application after discussing with the team choosing the color, theme and the whole look. He initiate the modal through BULMA and style it and tied it to javascript. He created the media query for the mobile view and style it to be in proper look.
 
-<!-- Jake felt the most confident working with CSS. He helped make sure our page was responsive for mobile and tablet users with specialized media queries. Jake, please feel free to add more details here! -->
+Jake helped brainstorm and design the program. He also helped write the CSS and media queries for use on smaller and mobile displays.
 
 
 ## View The Project
@@ -72,23 +73,37 @@ Omar took the initiative to choose the BULMA CSS library after  examine the revi
 
 * List of where the content can be streamed or rented. Currently this does not populate for each API fetched item. 📺
 
+## Installation and Use
+
+To use the app, simply visit the [deployed site](https://crosenfrisk.github.io/Popcorn/).
+
+If you would like to play with the app, please use the fork option <img src="assets\images\code-branch-solid.svg" width="10" height="10"> or use the <CODE CLONE> button on GitHub, copy the SSH or HTTPS key and then use the command line prompt within Git Bash $ git clone git@github.com:crosenfrisk/Popcorn.git [and hit enter], this should save the file locally to your device.
+
+After downloading the project from GitHub to your local device, open the Popcorn repository in a code editor such as Visual Studio Code, then view index.html in your web browser or Live Server.
+
+Any questions, feedback, or ideas for future development, please comment @crosenfrisk, @soundproofboot, @osamarli, @jakeradermacher 💌
+
 
 ## Technologies Used
 
 * [Bulma](https://bulma.io/)
 Used for styling our CSS
 
-* [Draw.io](https://app.diagrams.net)
-Used for creation of wireframes
-
 * [Canva](https://www.canva.com/)
 Used for the creation of dummy movie poster for "missing" posters.
 
+* [Draw.io](https://app.diagrams.net)
+Used for creation of wireframes
+
+* **Font Awesome** for fork icon in README, with possible future use in application.
+
+* **GitHub** for our repository and project/Kanban board.
+
 * **Google Docs** for project proposal and presentation.
 
-* **GitHub** for our repository and Kanban board.
+* **Slack** for ongoing communication between group members.
 
-* **Slack** for ongoing communication.
+* **Zoom** for group meetings.
 
 
 ## Server-Side APIs:
@@ -106,15 +121,6 @@ CONSULTED:
 
 
 ## Credits
-
-* Bulma for CSS framework.
-* Canva for "dummyposter" creation.
-* Draw.io for wireframe designs.
-* Google Docs for group 
-* OMDB for their open source APIs: Discover, Keywords, Genres, and Trending to help direct results for our users.
-* TMDB for their open source API for information specific to television shows.
-* Slack for group communications.
-* Zoom for group meetings.
 
 🎉 @nightmarefails for hosting office hours and sharing feedback. Gratitude to our classmates for their enthusiasm and support for our project.
 
