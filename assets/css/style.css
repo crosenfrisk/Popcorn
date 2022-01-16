@@ -70,13 +70,17 @@ header, .columns-p-1{
     
 }
 
+.title-modal {
+    font-size: 32px;
+}
 .modal img {
     float: right;
-    width: 200x;
+    width: 250px;
 }
 
 .modal p {
     font-size: 18px;
+    top: 0;
 }
 
 .saveButton {
@@ -157,10 +161,18 @@ footer p strong{
 
 @media only screen and (max-width: 980px) {
 
-    #main-area {
-        margin: 0 0px;
+    .search {
+        position:relative;
+        width: 90%;
+        margin: 10px auto;
     }
 
+    #main-area {
+        margin: 0px 0px;
+    }
+    .title-modal {
+        font-size: 22px;;
+    }
     .subtitle {
         display: none;
     }
@@ -174,6 +186,20 @@ footer p strong{
         display: none;
     }
 };
+
+@media only screen and (max-width: 780px) {
+
+    .search {
+        position:relative;
+        width: 80%;
+        margin: auto;   
+    }
+
+    .title-modal {
+    font-size: 24px;
+    
+}
+}
 
 @media only screen and (max-width: 600px) {
  
@@ -192,7 +218,8 @@ footer p strong{
     }
 
     .search {
-        margin: 50px 50px 0 50px;
+        width: 100%;
+        margin: auto;
     }
 
     .modal-content{
@@ -202,8 +229,9 @@ footer p strong{
     }
 
     .modal img {
-        float: right;
+        float: none;
         width: 200px;
+        position:relative;
     }
 
     .clear-watchlist{

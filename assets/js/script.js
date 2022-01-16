@@ -615,6 +615,7 @@ var searchByGenre = function (genreDataId) {
 
 // take text entered by user and use multi search endpoint from TMDB API to return results with that word
 function searchByKeyword (input) {
+    resultsArea.innerHTML = '';
     let keywordUrl = `${theMovieDbUrl}search/multi?api_key=${theMovieDbApiKey}&query=${input}`;
     fetch(keywordUrl)
     .then(function (response) {
