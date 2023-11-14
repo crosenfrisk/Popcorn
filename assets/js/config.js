@@ -1,4 +1,4 @@
 var config = { 
-    theMovieDbApiKey: '3498aa51f28fb6eba744295d0c036fda',
+    theMovieDbApiKey: '40c3dd8a99d74f29b18816ad67025439',
     omdbAPIKey: 'd1b1aa96'
 }
